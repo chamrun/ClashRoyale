@@ -39,14 +39,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="start.Controller">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Accounts.Controller">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <TextField layoutX="245.0" layoutY="97.0" promptText="Email" />
             <PasswordField layoutX="245.0" layoutY="136.0" promptText="Password" />
-            <Button layoutX="286.0" layoutY="181.0" mnemonicParsing="false" text="Sign up" />
-            <Text layoutX="263.0" layoutY="253.0" onMouseClicked="#openLogIn" strokeType="OUTSIDE" strokeWidth="0.0" text="Already a member?" />
+            <Button layoutX="294.0" layoutY="181.0" mnemonicParsing="false" text="login" />
+            <Text layoutX="255.0" layoutY="247.0" onMouseClicked="#resetPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="forgot your password?" textAlignment="CENTER" />
+            <Text layoutX="253.0" layoutY="270.0" onMouseClicked="#openSignUp" strokeType="OUTSIDE" strokeWidth="0.0" text="don't have an account?" textAlignment="CENTER" />
       </children>
     </AnchorPane>
   </children>

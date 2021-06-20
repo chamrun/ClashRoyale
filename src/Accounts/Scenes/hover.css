@@ -1,0 +1,11 @@
+.text:hover {
+    -fx-fill: blue;
+}
+
+.text:pressed {
+    -fx-fill: blue;
+}
+
+.text-selected {
+    -fx-fill: blue;
+}
