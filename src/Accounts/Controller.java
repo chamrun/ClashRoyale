@@ -1,5 +1,6 @@
 package Accounts;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,24 +18,33 @@ import java.io.IOException;
 public class Controller {
 
 
+
     @FXML
-    public void openSignUp(MouseEvent event){
+    public void openSignUp(Event event){
         ((Text) event.getTarget()).setFill(Color.RED);
         System.out.println(event.getEventType() + " on " + event.getTarget());
         switchToScene(event, "Scenes/signUp.fxml");
     }
 
     @FXML
-    public void openLogIn(MouseEvent event){
+    public void openLogIn(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
         switchToScene(event, "Scenes/logIn.fxml");
     }
 
     @FXML
-    public void resetPassword(MouseEvent event){
+    public void openResetPassword(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
         switchToScene(event, "Scenes/resetPassword.fxml");
+
     }
+
+    @FXML
+    public void confirmEmailToReset(Event event){
+        System.out.println(event.getEventType() + " on " + event.getTarget());
+        switchToScene(event, "Scenes/resetPassword2.fxml");
+    }
+
 
     public void switchToScene(Event event, String sceneName){
         try {
