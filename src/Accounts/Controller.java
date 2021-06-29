@@ -1,14 +1,12 @@
 package Accounts;
 
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,7 +15,8 @@ import java.io.IOException;
 
 public class Controller {
 
-
+    public TextField email;
+    public TextField password;
 
     @FXML
     public void openSignUp(Event event){
@@ -38,6 +37,30 @@ public class Controller {
         switchToScene(event, "Scenes/resetPassword.fxml");
 
     }
+
+    @FXML
+    public void logIn(Event event){
+        System.out.println(event.getEventType() + " on " + event.getTarget());
+
+        User user = Model.tryLogIn(email.getText(), password.getText());
+        if (user == null){
+
+        }
+
+    }
+
+    @FXML
+    public void signUp(Event event){
+        System.out.println(event.getEventType() + " on " + event.getTarget());
+
+        if(Model.signUp(email.getText(), password.getText())){
+
+        }
+
+
+    }
+
+
 
     @FXML
     public void confirmEmailToReset(Event event){
