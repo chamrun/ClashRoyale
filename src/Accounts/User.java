@@ -1,8 +1,6 @@
 package Accounts;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User{
     private final String email;
     private final String password;
 
@@ -11,14 +9,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User getUser(String email, String password) {
-        if (!email.equalsIgnoreCase(this.email)){
-            return null;
-        }
-        if (!password.equals(this.password)){
-            return null;
-        }
-        return this;
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {

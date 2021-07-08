@@ -6,9 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,33 +19,31 @@ public class Controller {
 
     @FXML
     public void openSignUp(Event event){
-        ((Text) event.getTarget()).setFill(Color.RED);
-        System.out.println(event.getEventType() + " on " + event.getTarget());
-        switchToScene(event, "Scenes/signUp.fxml");
+        switchToScene(event, "View/signUp.fxml");
     }
 
     @FXML
     public void openLogIn(Event event){
-        System.out.println(event.getEventType() + " on " + event.getTarget());
-        switchToScene(event, "Scenes/logIn.fxml");
+        switchToScene(event, "View/logIn.fxml");
     }
 
     @FXML
     public void openResetPassword(Event event){
-        System.out.println(event.getEventType() + " on " + event.getTarget());
-        switchToScene(event, "Scenes/resetPassword.fxml");
-
+        switchToScene(event, "View/resetPassword.fxml");
     }
 
     @FXML
     public void logIn(Event event){
-        System.out.println(event.getEventType() + " on " + event.getTarget());
+        System.out.println(event.getEventType() + " on " + ((Button)event.getTarget()).getText());
 
         User user = Model.tryLogIn(email.getText(), password.getText());
         if (user == null){
-
+            System.out.println(email.getText() + ": " + password.getText() + ": wasn't found.");
+            return;
         }
+        System.out.println(email.getText() + ": " + password.getText() + ": signed in.");
 
+        // Here we send user to "MainMenu package"
     }
 
     @FXML
@@ -65,11 +62,14 @@ public class Controller {
     @FXML
     public void confirmEmailToReset(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
-        switchToScene(event, "Scenes/resetPassword2.fxml");
+        switchToScene(event, "View/resetPassword2.fxml");
     }
 
 
     public void switchToScene(Event event, String sceneName){
+
+        System.out.println(event.getEventType() + " on " + event.getTarget());
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
             loader.load();
