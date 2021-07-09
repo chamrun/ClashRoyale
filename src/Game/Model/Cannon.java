@@ -1,8 +1,15 @@
 package Game.Model;
 
-public class Cannon extends Building{
+public class Cannon extends Building implements Card{
 
-    public Cannon(Level level){
+    public Cannon(Level level, Location location){
+
+
+        super(0, 0, 0.8, 5.5, Target.GROUND, 30, 6, null);
+
+
+        /*
+
         int hp, damage;
 
         switch (level){
@@ -34,6 +41,28 @@ public class Cannon extends Building{
         }
 
         super(hp, damage, 0.8, 5.5, Target.GROUND, 30, 6);
+
+         */
+
+        while (true){
+            // TODO: ۰۹/۰۷/۲۱ : Or maybe while(isAlive)? When this ends?
+            endamage();
+            try {
+                Thread.sleep((int) hitSpeed * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+    @Override
+    public int getCost() {
+        return super.cost;
+    }
+
+
+    public void endamage() {
+        Fightable enemy = Board.getNearestEnemy(location);
+        super.endamage(enemy);
+    }
 }

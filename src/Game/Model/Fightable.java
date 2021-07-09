@@ -3,7 +3,7 @@ package Game.Model;
 public abstract class Fightable {
     private int hp;
     private final int damage;
-    private final double hitSpeed;
+    protected final double hitSpeed;
     private final double range;
 
     public Fightable(int hp, int damage, double hitSpeed, double range) {
@@ -15,9 +15,12 @@ public abstract class Fightable {
 
     public void gettingHurt(int damage){
         hp -= damage;
+        if (hp < 0){
+            //Removing fightable
+        }
     }
 
-    public void hurt(Fightable fightable){
+    public void endamage(Fightable fightable){
         fightable.gettingHurt(damage);
     }
 
