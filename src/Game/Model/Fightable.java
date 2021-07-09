@@ -3,10 +3,10 @@ package Game.Model;
 public abstract class Fightable {
     private int hp;
     private final int damage;
-    private final int hitSpeed;
-    private final int range;
+    private final double hitSpeed;
+    private final double range;
 
-    public Fightable(int hp, int damage, int hitSpeed, int range) {
+    public Fightable(int hp, int damage, double hitSpeed, double range) {
         this.hp = hp;
         this.damage = damage;
         this.hitSpeed = hitSpeed;
