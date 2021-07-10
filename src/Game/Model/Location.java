@@ -1,10 +1,10 @@
 package Game.Model;
 
 public class Location {
-    private final int x;
-    private final int y;
+    private final double x;
+    private final double y;
 
-    public Location(int x, int y) {
+    public Location(double x, double y) {
         if (18 < x || 36 < y || x < 0 || y < 0){
             System.out.println("(" + x + "," + y + ") is not valid.");
             if (18 < x)
@@ -22,15 +22,15 @@ public class Location {
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public int getDistance(Location src){
-        return ((x - src.getX()) * (x - src.getX()) + (y - src.getY()) * (y - src.getY()));
+    public double getDistance(Location src){
+        return Math.sqrt(Math.pow(x - src.getX(), 2) + Math.pow(y - src.getY(), 2));
     }
 }

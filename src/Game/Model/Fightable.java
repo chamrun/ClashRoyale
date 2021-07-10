@@ -1,12 +1,12 @@
 package Game.Model;
 
-public abstract class Fightable implements Runnable{
+public abstract class Fightable extends Thread{
     protected Board board;
     protected boolean isAlive;
     private int hp;
     protected int damage;
     protected final double hitSpeed;
-    private final double range;
+    protected final double range;
     protected final Location location;
 
     public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location) {
@@ -23,6 +23,7 @@ public abstract class Fightable implements Runnable{
         hp -= damage;
         if (hp < 0){
             isAlive = false;
+            board.removeFightable(this);
         }
     }
 

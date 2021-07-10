@@ -4,16 +4,14 @@ public class King extends Tower{
 
     public King(Board board, Level level, Location location){
         super(board, getHP(level), getDamage(level), 1, 7, location);
-
-        run();
     }
 
     @Override
     public void run() {
-        while (isAlive){
-            long start = System.currentTimeMillis();
 
-            endamage(board.getNearestEnemy(location));
+        while (isAlive){
+
+            endamage(board.getNearestEnemy(location, range));
 
             try {
                 Thread.sleep((int) hitSpeed * 1000);

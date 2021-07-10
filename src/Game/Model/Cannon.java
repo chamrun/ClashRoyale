@@ -6,7 +6,7 @@ public class Cannon extends Building{
 
         super(board, getHP(level), getDamage(level), 0.8, 5.5, Target.GROUND, 30, 3, location);
 
-        run();
+        start();
 
     }
 
@@ -60,10 +60,10 @@ public class Cannon extends Building{
         while (isAlive){
             long start = System.currentTimeMillis();
 
-            endamage(board.getNearestEnemy(location));
+            endamage(board.getNearestEnemy(location, range));
 
             try {
-                Thread.sleep((int) hitSpeed * 1000);
+                Thread.sleep((int) (hitSpeed * 1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

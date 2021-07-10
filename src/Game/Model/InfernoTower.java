@@ -75,7 +75,7 @@ public class InfernoTower extends Building{
         while (isAlive){
             long start = System.currentTimeMillis();
 
-            Fightable target = board.getNearestEnemy(location);
+            Fightable target = board.getNearestEnemy(location, range);
             endamage(target);
 
             try {

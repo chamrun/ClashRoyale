@@ -5,15 +5,14 @@ public class Queen extends Tower{
     public Queen(Board board, Level level, Location location){
         super(board, getHP(level), getDamage(level), 0.8, 7.5, location);
 
-        run();
+        start();
     }
 
     @Override
     public void run() {
         while (isAlive){
-            long start = System.currentTimeMillis();
 
-            endamage(board.getNearestEnemy(location));
+            endamage(board.getNearestEnemy(location, range));
 
             try {
                 Thread.sleep((int) hitSpeed * 1000);
