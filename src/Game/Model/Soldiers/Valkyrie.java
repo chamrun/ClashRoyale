@@ -2,12 +2,10 @@ package Game.Model.Soldiers;
 
 import Game.Model.*;
 
-public class Barbarian extends Soldier {
-
-
-    public Barbarian(Board board, Level level, Location location) {
+public class Valkyrie extends Soldier{
+    public Valkyrie(Board board, Level level, Location location) {
         super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
-                Target.GROUND, false, 4, 5);
+                Target.GROUND, true, 1, 4);
 
         start();
     }
@@ -31,11 +29,11 @@ public class Barbarian extends Soldier {
         int hp;
 
         switch (level) {
-            case ONE -> hp = 300;
-            case TWO -> hp = 330;
-            case THREE -> hp = 363;
-            case FOUR -> hp = 438;
-            case FIVE -> hp = 480;
+            case ONE -> hp = 880;
+            case TWO -> hp = 968;
+            case THREE -> hp = 1064;
+            case FOUR -> hp = 1170;
+            case FIVE -> hp = 1284;
 
             default -> {
                 hp = 0;
@@ -49,11 +47,11 @@ public class Barbarian extends Soldier {
     private static int getDamage(Level level) {
         int damage;
         switch (level) {
-            case ONE -> damage = 75;
-            case TWO -> damage = 82;
-            case THREE -> damage = 90;
-            case FOUR -> damage = 99;
-            case FIVE -> damage = 109;
+            case ONE -> damage = 120;
+            case TWO -> damage = 132;
+            case THREE -> damage = 145;
+            case FOUR -> damage = 159;
+            case FIVE -> damage = 175;
 
             default -> {
                 damage = 0;

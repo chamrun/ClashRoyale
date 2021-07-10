@@ -20,6 +20,16 @@ public abstract class Soldier extends Fightable implements Card {
         this.cost = cost;
     }
 
+    @Override
+    public void run() {
+        live();
+        die();
+    }
+
+    public abstract void live();
+    public abstract void die();
+
+
     public Location getLocation(){
         return location;
     }
