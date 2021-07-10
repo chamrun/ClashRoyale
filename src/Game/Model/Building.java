@@ -2,7 +2,7 @@ package Game.Model;
 
 public abstract class Building extends Fightable{
     private final Target target;
-    private final int lifeTime;
+    protected final int lifeTime;
     protected final int cost;
     protected final Location location;
 
