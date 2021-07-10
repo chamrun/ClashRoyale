@@ -1,10 +1,10 @@
 package Game.Model;
 
-public class Cannon extends Building implements Card, Runnable{
+public class Cannon extends Building{
 
-    public Cannon(Level level, Location location){
+    public Cannon(Board board, Level level, Location location){
 
-        super(getHP(level), getDamage(level), 0.8, 5.5, Target.GROUND, 30, 6, location);
+        super(board, getHP(level), getDamage(level), 0.8, 5.5, Target.GROUND, 30, 3, location);
 
         run();
 
@@ -53,13 +53,14 @@ public class Cannon extends Building implements Card, Runnable{
     }
 
 
+
     @Override
     public void run() {
 
         while (isAlive){
             long start = System.currentTimeMillis();
 
-            endamage();
+            endamage(board.getNearestEnemy(location));
 
             try {
                 Thread.sleep((int) hitSpeed * 1000);
@@ -71,11 +72,5 @@ public class Cannon extends Building implements Card, Runnable{
                 return;
             }
         }
-    }
-
-
-    public void endamage() {
-        Fightable enemy = Board.getNearestEnemy(location);
-        super.endamage(enemy);
     }
 }
