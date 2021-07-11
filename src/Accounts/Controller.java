@@ -14,7 +14,9 @@ import java.io.IOException;
 
 public class Controller {
 
-    public TextField email;
+    Database database = new Database("localhost", "sa", "SQLpass", "test.dbo.users");
+
+    public TextField userName;
     public TextField password;
 
     @FXML
@@ -36,12 +38,12 @@ public class Controller {
     public void logIn(Event event){
         System.out.println(event.getEventType() + " on " + ((Button)event.getTarget()).getText());
 
-        User user = Model.tryLogIn(email.getText(), password.getText());
+        User user = database.tryLogIn(userName.getText(), password.getText());
         if (user == null){
-            System.out.println(email.getText() + ": " + password.getText() + ": wasn't found.");
+            System.out.println(userName.getText() + ": " + password.getText() + ": wasn't found.");
             return;
         }
-        System.out.println(email.getText() + ": " + password.getText() + ": signed in.");
+        System.out.println(userName.getText() + ": " + password.getText() + ": signed in.");
 
         // Here we send user to "MainMenu package"
     }
@@ -50,7 +52,18 @@ public class Controller {
     public void signUp(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
-        if(Model.signUp(email.getText(), password.getText())){
+        if(database.signUp(userName.getText(), password.getText()) == null){
+
+            System.out.println(userName + " already exists.");
+            //Suggest logging in.
+
+
+        }
+        else {
+
+
+            System.out.println();
+            //
 
         }
 
