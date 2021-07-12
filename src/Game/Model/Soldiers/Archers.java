@@ -5,9 +5,9 @@ import Game.Model.*;
 public class Archers extends Soldier {
 
 
-    public Archers(Board board, Level level, Location location, Team team, FightableType type) {
+    public Archers(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1.2, 5, location, Speed.MEDIUM,
-                Target.GROUND_AIR, false, 2, 3, team, type);
+                Target.GROUND_AIR, false, 2, 3, team, Type.GROUND);
 
         start();
     }
@@ -16,11 +16,6 @@ public class Archers extends Soldier {
     @Override
     public int getCost() {
         return super.cost;
-    }
-
-    @Override
-    public boolean isValidEnemy(Fightable fightable) {
-        return true;
     }
 
     private static int getHP(Level level) {

@@ -1,6 +1,8 @@
-package Game.Model;
+package Game.Model.Towers;
 
-public class Queen extends Tower{
+import Game.Model.*;
+
+public class Queen extends Tower {
 
     public Queen(Board board, Level level, Location location , Team team){
         super(board, getHP(level), getDamage(level), 0.8, 7.5, location , team);

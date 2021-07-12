@@ -1,7 +1,6 @@
 package Game.Model.Spells;
 
 import Game.Model.*;
-import Game.Model.Soldiers.Soldier;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,14 +18,14 @@ public class Fireball extends Spell{
 
     @Override
     public void run() {
-        ArrayList<Fightable> targets = validFightabales();
+        ArrayList<Fightable> targets = validFightables();
 
         applyEffect(targets);
         //again needs board
     }
 
     @Override
-    public ArrayList<Fightable> validFightabales() {
+    public ArrayList<Fightable> validFightables() {
         ArrayList<Fightable> targets = new ArrayList<>();
         LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
@@ -40,9 +39,12 @@ public class Fireball extends Spell{
     @Override
     public void applyEffect(ArrayList<Fightable> targets) {
         for (Fightable fightable : targets){
+            /*
             if (fightable instanceof Soldier)
                 ((Soldier) fightable).die();
             else
+
+             */
                 fightable.toGetHurt(areaDamage);
         }
     }

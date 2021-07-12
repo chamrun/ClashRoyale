@@ -9,9 +9,9 @@ import java.util.TimerTask;
 public class BabyDragon extends Soldier {
 
 
-    public BabyDragon(Board board, Level level, Location location, Team team, FightableType type) {
+    public BabyDragon(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1.8, 3, location, Speed.FAST,
-                Target.GROUND_AIR, true, 1, 4, team, type);
+                Target.GROUND_AIR, true, 1, 4, team, Type.AIR);
 
         start();
     }
@@ -57,11 +57,6 @@ public class BabyDragon extends Soldier {
             }
         }
         return nearestEnemy;
-    }
-
-    @Override
-    public boolean isValidEnemy(Fightable fightable) {
-        return true;
     }
 
     private static int getHP(Level level) {

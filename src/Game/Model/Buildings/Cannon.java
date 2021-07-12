@@ -1,6 +1,8 @@
-package Game.Model;
+package Game.Model.Buildings;
 
-public class Cannon extends Building{
+import Game.Model.*;
+
+public class Cannon extends Building {
 
     public Cannon(Board board, Level level, Location location , Team team){
 

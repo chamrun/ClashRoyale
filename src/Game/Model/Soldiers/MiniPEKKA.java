@@ -4,9 +4,9 @@ import Game.Model.*;
 
 public class MiniPEKKA extends Soldier {
 
-    public MiniPEKKA(Board board, Level level, Location location,Team team , FightableType type) {
+    public MiniPEKKA(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1.8, 0, location, Speed.FAST,
-                Target.GROUND, false, 1, 4, team , type);
+                Target.GROUND, false, 1, 4, team , Type.GROUND);
 
         start();
     }
@@ -15,13 +15,6 @@ public class MiniPEKKA extends Soldier {
     @Override
     public int getCost() {
         return super.cost;
-    }
-
-    @Override
-    public boolean isValidEnemy(Fightable fightable) {
-        if (fightable.getType().equals(FightableType.AIR))
-            return false;
-        return true;
     }
 
     private static int getHP(Level level) {

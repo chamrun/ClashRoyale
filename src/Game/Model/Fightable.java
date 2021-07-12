@@ -1,7 +1,8 @@
 package Game.Model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Fightable extends Thread{
     protected Board board;
@@ -12,10 +13,10 @@ public abstract class Fightable extends Thread{
     protected final double range;
     protected final Location location;
     protected final Team team;
-    protected final FightableType type;
+    protected final Type type;
 //    private boolean isAlive;
 
-    public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location, Team team, FightableType type) {
+    public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location, Team team, Type type) {
         this.team = team;
         this.type = type;
         this.alive = true;
@@ -49,7 +50,7 @@ public abstract class Fightable extends Thread{
         this.hitSpeed += hitSpeed;
     }
 
-    public FightableType getType() {
+    public Type getType() {
         return type;
     }
 
@@ -77,5 +78,18 @@ public abstract class Fightable extends Thread{
 
     public Location getLocation() {
         return location;
+    }
+
+    public void rage(long duration){
+        damage *= 1.4;
+        hitSpeed /= 1.4;
+
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                damage /= 1.4;
+                hitSpeed *= 1.4;
+            }
+        }, duration);
     }
 }

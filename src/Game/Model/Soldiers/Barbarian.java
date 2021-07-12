@@ -5,9 +5,9 @@ import Game.Model.*;
 public class Barbarian extends Soldier {
 
 
-    public Barbarian(Board board, Level level, Location location,Team team , FightableType type) {
+    public Barbarian(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
-                Target.GROUND, false, 4, 5, team , type);
+                Target.GROUND, false, 4, 5, team , Type.GROUND);
 
         start();
     }
@@ -16,13 +16,6 @@ public class Barbarian extends Soldier {
     @Override
     public int getCost() {
         return super.cost;
-    }
-
-    @Override
-    public boolean isValidEnemy(Fightable fightable) {
-        if (fightable.getType().equals(FightableType.AIR))
-            return false;
-        return true;
     }
 
     private static int getHP(Level level) {

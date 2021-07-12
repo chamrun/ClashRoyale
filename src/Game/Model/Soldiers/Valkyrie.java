@@ -3,9 +3,9 @@ package Game.Model.Soldiers;
 import Game.Model.*;
 
 public class Valkyrie extends Soldier{
-    public Valkyrie(Board board, Level level, Location location  , Team team, FightableType type) {
+    public Valkyrie(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
-                Target.GROUND, true, 1, 4, team , type);
+                Target.GROUND, true, 1, 4, team , Type.GROUND);
 
         start();
     }
@@ -15,12 +15,6 @@ public class Valkyrie extends Soldier{
         return super.cost;
     }
 
-    @Override
-    public boolean isValidEnemy(Fightable fightable) {
-        if (fightable.getType().equals(FightableType.AIR))
-            return false;
-        return true;
-    }
 
 
     private static int getHP(Level level) {

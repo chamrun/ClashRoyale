@@ -1,6 +1,6 @@
 package Game.Model;
 
-public enum FightableType {
+public enum Type {
     GROUND,
     AIR,
     BUILDING

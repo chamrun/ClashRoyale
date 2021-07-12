@@ -1,5 +1,8 @@
 package Game.Model;
 
+import Game.Model.Towers.King;
+import Game.Model.Towers.Tower;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -86,6 +89,32 @@ public class Board {
 
             }
         }
+    }
+
+    public void removeFightable(Fightable deadFightable, Team team) {
+        //Update screen...
+
+        if (team.equals(Team.A)){
+            AFightables.remove(deadFightable);
+        }
+        else {
+            BFightables.remove(deadFightable);
+        }
+
+        //TODO: How to to know fightable is in "myArmy" or "enemies"?
+//        myArmy.remove(fightable);
+//        enemies.remove(fightable);
+
+        if (deadFightable instanceof Tower) {
+            //Update crowns...
+            if (deadFightable instanceof King) {
+                gameOver();
+            } else {
+                //Activates King Tower
+            }
+        }
+
+
     }
 
     private void gameOver() {

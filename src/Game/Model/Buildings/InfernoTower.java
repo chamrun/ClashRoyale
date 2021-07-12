@@ -1,6 +1,8 @@
-package Game.Model;
+package Game.Model.Buildings;
 
-public class InfernoTower extends Building{
+import Game.Model.*;
+
+public class InfernoTower extends Building {
     int maxDamage;
 
     public InfernoTower(Board board, Level level, Location location , Team team){

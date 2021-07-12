@@ -13,7 +13,7 @@ public abstract class Soldier extends Fightable implements Card {
     protected final boolean isAreaSplash;
     protected final int count;
     protected final int cost;
-    protected FighterMode mode;
+    protected Mode mode;
     protected Timer moveTimer;
     protected Timer fightTimer;
     protected long moveTime;
@@ -21,7 +21,7 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public Soldier(Board board, int hp, int damage, double hitSpeed, double range, Location location, Speed speed, Target target,
-                   boolean isAreaSplash, int count, int cost, Team team, FightableType type) {
+                   boolean isAreaSplash, int count, int cost, Team team, Type type) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
         this.speed = speed;
         this.target = target;
@@ -43,26 +43,28 @@ public abstract class Soldier extends Fightable implements Card {
     public Fightable getNearestEnemy(double range) {
         double min = range;
         Fightable nearestEnemy = null;
-        LinkedList<Fightable> enemy = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
-        for (Fightable fightable : enemy) {
-            if (this.location.getRegion().equals(fightable.getLocation().getRegion())) {
-                if (this.location.getDistance(fightable.getLocation()) < min) {
-                    if (isValidEnemy(fightable)) {
-                        nearestEnemy = fightable;
-                        min = this.location.getDistance(fightable.getLocation());
+        LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
+
+        for (Fightable enemy : enemies) {
+            if (location.getRegion().equals(enemy.getLocation().getRegion())) {
+                if (location.getDistance(enemy.getLocation()) < min) {
+                    if (isValidEnemy(enemy)) {
+                        nearestEnemy = enemy;
+                        min = location.getDistance(enemy.getLocation());
                     }
                 }
             }
         }
         return nearestEnemy;
     }
+
     public void changeSpeed(){
         //todo : relationship between speed and numbers
     }
 
 
     public void fight(ArrayList<Fightable> targets) {
-        mode = FighterMode.FIGHT;
+        mode = Mode.FIGHT;
         TimerTask fight = new TimerTask() {
             @Override
             public void run() {
@@ -93,7 +95,7 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public void move(Location destination) {
-        mode = FighterMode.MOVE;
+        mode = Mode.MOVE;
         if (destination.getX() == location.getX()) {
             if (destination.getY() > location.getY())
                 location.setY(location.getY() + 1);
@@ -136,10 +138,13 @@ public abstract class Soldier extends Fightable implements Card {
             public void run() {
                 if (!alive)
                     return;
+
                 if (target == null) {
                     Location dest = getNearestBridge();
                     move(dest);
-                } else {
+                }
+
+                else {
                     if (location.getDistance(target.get(0).getLocation()) <= range) {
                         fight(target);
                     } else {
@@ -153,6 +158,7 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public long getMoveTime(){
+        // TODO
         if (speed.equals(Speed.SLOW))
             return 3*1000;
         else if (speed.equals(Speed.MEDIUM))
@@ -162,15 +168,48 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public void die(){
+
+        //This method is to short, we can put it in the end of "run method".
+        board.removeFightable(this, team);
+
+        /*
         if (team.equals(Team.A))
             board.getAFightables().remove(this);
         else
             board.getBFightables().remove(this);
+
+         */
     }
 
-    public abstract boolean isValidEnemy(Fightable fightable);
+    public boolean isValidEnemy(Fightable enemy){
+
+        Type enemyType = enemy.getType();
+
+        if (target.equals(Target.GROUND) && enemyType.equals(Type.AIR))
+            return false;
+
+        if (target.equals(Target.BUILDINGS) && !enemy.getType().equals(Type.BUILDING))
+            return false;
+
+        return true;
+    }
 
     public Location getLocation() {
         return location;
+    }
+
+    @Override
+    public void rage(long duration) {
+        damage *= 1.4;
+        hitSpeed /= 1.4;
+        // TODO speed?
+
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                damage /= 1.4;
+                hitSpeed *= 1.4;
+            }
+        }, duration);
     }
 }

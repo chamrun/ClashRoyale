@@ -1,7 +1,6 @@
 package Game.Model.Spells;
 
 import Game.Model.*;
-import Game.Model.Soldiers.Soldier;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,14 +12,13 @@ public class Arrows extends Spell {
         super(4, 3, board, location, team);
         areaDamage = getAD(level);
 
-
         start();
     }
 
 
 
     @Override
-    public ArrayList<Fightable> validFightabales() {
+    public ArrayList<Fightable> validFightables() {
         ArrayList<Fightable> targets = new ArrayList<>();
         LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
@@ -33,7 +31,7 @@ public class Arrows extends Spell {
 
     @Override
     public void run() {
-        ArrayList<Fightable> targets = validFightabales();
+        ArrayList<Fightable> targets = validFightables();
 
         applyEffect(targets);
     }

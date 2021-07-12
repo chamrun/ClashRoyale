@@ -25,7 +25,7 @@ public abstract class Spell extends Thread implements Card{
 
     public abstract void applyEffect(ArrayList<Fightable> targets);
 
-    public abstract ArrayList<Fightable>  validFightabales();
+    public abstract ArrayList<Fightable> validFightables();
 
     @Override
     public int getCost() {

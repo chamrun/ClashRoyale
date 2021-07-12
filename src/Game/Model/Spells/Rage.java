@@ -1,6 +1,8 @@
 package Game.Model.Spells;
 
 import Game.Model.*;
+import Game.Model.Buildings.Building;
+import Game.Model.Towers.Tower;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,7 +10,7 @@ import java.util.LinkedList;
 public class Rage extends Spell {
 
     private int effect;
-    private double duration;
+    private long duration;
 
     public Rage(Board board, Location location, Level level,Team team) {
         super(5, 3, board, location, team);
@@ -20,7 +22,11 @@ public class Rage extends Spell {
 
     @Override
     public void run() {
-        ArrayList<Fightable> targets = validFightabales();
+        ArrayList<Fightable> targets = validFightables();
+        for (Fightable fightable: targets) {
+            fightable.rage(duration);
+        }
+        /*
         applyEffect(targets);
         try {
             Thread.sleep((long) (duration * 1000));
@@ -28,6 +34,19 @@ public class Rage extends Spell {
             e.printStackTrace();
         }
         eliminateEffect(targets);
+
+         */
+    }
+
+
+
+    @Override
+    public void applyEffect(ArrayList<Fightable> fightables){
+        for (Fightable fightable : fightables){
+            fightable.changeDamage(effect);
+            fightable.changeHitSpeed(effect);
+            // speed ??????
+        }
     }
 
     public void eliminateEffect(ArrayList<Fightable> fightables){
@@ -39,21 +58,12 @@ public class Rage extends Spell {
     }
 
     @Override
-    public void applyEffect(ArrayList<Fightable> fightables){
-        for (Fightable fightable : fightables){
-            fightable.changeDamage(effect);
-            fightable.changeHitSpeed(effect);
-            // speed ??????
-        }
-    }
-
-    @Override
-    public ArrayList<Fightable> validFightabales(){
+    public ArrayList<Fightable> validFightables(){
         ArrayList<Fightable> targets = new ArrayList<>();
         LinkedList<Fightable> fightables = (this.team.equals(Team.A)) ? board.getAFightables() : board.getBFightables();
 
         for (Fightable fightable : fightables){
-            if (fightable instanceof Building || fightable instanceof  Tower){
+            if (fightable instanceof Building || fightable instanceof Tower){
                 if (location.getDistance(fightable.getLocation()) <= radius )
                     targets.add(fightable);
             }
@@ -61,15 +71,15 @@ public class Rage extends Spell {
         return targets;
     }
 
-    private double getDuration(Level level) {
-        double duration;
+    private long getDuration(Level level) {
+        long duration;
 
         switch (level) {
-            case ONE -> duration = 6;
-            case TWO -> duration = 6.5;
-            case THREE -> duration = 7;
-            case FOUR -> duration = 7.5;
-            case FIVE -> duration = 8;
+            case ONE -> duration = 6000;
+            case TWO -> duration = 6500;
+            case THREE -> duration = 7000;
+            case FOUR -> duration = 7500;
+            case FIVE -> duration = 8000;
 
             default -> {
                 duration = 0;
