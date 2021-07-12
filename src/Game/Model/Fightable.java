@@ -2,14 +2,19 @@ package Game.Model;
 
 public abstract class Fightable extends Thread{
     protected Board board;
-    protected boolean isAlive;
-    private int hp;
+    protected boolean alive;
+    protected int hp;
     protected int damage;
     protected final double hitSpeed;
     protected final double range;
     protected final Location location;
+    protected final Team team;
+    protected final FightableType type;
+//    private boolean isAlive;
 
-    public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location) {
+    public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location, Team team, FightableType type) {
+        this.team = team;
+        this.type = type;
         isAlive = true;
         this.board = board;
         this.hp = hp;
@@ -19,12 +24,21 @@ public abstract class Fightable extends Thread{
         this.location = location;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
     public void toGetHurt(int damage){
         hp -= damage;
         if (hp < 0){
-            isAlive = false;
+            alive = false;
             board.removeFightable(this);
         }
+    }
+
+
+    public boolean alive() {
+        return alive;
     }
 
     public void endamage(Fightable fightable){

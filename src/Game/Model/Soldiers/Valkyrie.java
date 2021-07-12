@@ -3,9 +3,9 @@ package Game.Model.Soldiers;
 import Game.Model.*;
 
 public class Valkyrie extends Soldier{
-    public Valkyrie(Board board, Level level, Location location) {
+    public Valkyrie(Board board, Level level, Location location  , Team team, FightableType type) {
         super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
-                Target.GROUND, true, 1, 4);
+                Target.GROUND, true, 1, 4, team , type);
 
         start();
     }
@@ -24,6 +24,7 @@ public class Valkyrie extends Soldier{
     public void die() {
 
     }
+
 
     private static int getHP(Level level) {
         int hp;

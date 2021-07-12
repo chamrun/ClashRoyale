@@ -5,9 +5,9 @@ import Game.Model.*;
 public class BabyDragon extends Soldier {
 
 
-    public BabyDragon(Board board, Level level, Location location) {
+    public BabyDragon(Board board, Level level, Location location,Team team,FightableType type) {
         super(board, getHP(level), getDamage(level), 1.8, 3, location, Speed.FAST,
-                Target.GROUND_AIR, true, 1, 4);
+                Target.GROUND_AIR, true, 1, 4, team,type);
 
         start();
     }
@@ -20,7 +20,29 @@ public class BabyDragon extends Soldier {
 
     @Override
     public void live() {
+        Fightable target = getNearestEnemy(board.getSearchFightableRange());
 
+        if (target == null) {
+            Location dest = changeRegion();
+            move(dest);
+        } else {
+            if (location.getDistance(target.getLocation()) <= range) {
+                fight(target);
+            } else {
+                Location dest = target.getLocation();
+                move(dest);
+            }
+        }
+    }
+
+    public Location changeRegion(){
+        Location dest;
+        if (location.getRegion().equals(Region.A)){
+            dest = new Location(location.getX(), board.getLength()/2);
+        }else {
+            dest = new Location(location.getX(), board.getLength()/2 -1);
+        }
+        return dest;
     }
 
     @Override

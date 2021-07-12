@@ -5,22 +5,35 @@ import Game.Model.*;
 public class Archers extends Soldier {
 
 
-    public Archers(Board board, Level level, Location location) {
+    public Archers(Board board, Level level, Location location, Team team, FightableType type) {
         super(board, getHP(level), getDamage(level), 1.2, 5, location, Speed.MEDIUM,
-                Target.GROUND_AIR, false, 2, 3);
+                Target.GROUND_AIR, false, 2, 3, team, type);
 
         start();
     }
+
 
     @Override
     public int getCost() {
         return super.cost;
     }
 
-    @Override
-    public void live() {
-
-    }
+//    @Override
+//    public void live() {
+//        Fightable target = getNearestEnemy(board.getSearchFightableRange());
+//
+//        if (target == null) {
+//            Location dest = getNearestBridge();
+//            move(dest);
+//        } else {
+//            if (location.getDistance(target.getLocation()) <= range) {
+//                fight(target);
+//            } else {
+//                Location dest = target.getLocation();
+//                move(dest);
+//            }
+//        }
+//    }
 
     @Override
     public void die() {

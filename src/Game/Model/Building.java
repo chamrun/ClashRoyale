@@ -7,7 +7,7 @@ public abstract class Building extends Fightable implements Card{
 
 
     public Building(Board board, int hp, int damage, double hitSpeed, double range, Target target, int lifeTime, int cost, Location location) {
-        super(board, hp, damage, hitSpeed, range, location);
+        super(board, hp, damage, hitSpeed, range, location, team, type);
         this.target = target;
         this.lifeTime = lifeTime;
         this.cost = cost;

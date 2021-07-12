@@ -22,6 +22,8 @@ public class InfernoTower extends Building{
 
         run();
 
+
+
     }
 
     private static int getHP(Level level) {

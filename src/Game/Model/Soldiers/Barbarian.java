@@ -5,12 +5,13 @@ import Game.Model.*;
 public class Barbarian extends Soldier {
 
 
-    public Barbarian(Board board, Level level, Location location) {
+    public Barbarian(Board board, Level level, Location location,Team team , FightableType type) {
         super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
-                Target.GROUND, false, 4, 5);
+                Target.GROUND, false, 4, 5, team , type);
 
         start();
     }
+
 
     @Override
     public int getCost() {
