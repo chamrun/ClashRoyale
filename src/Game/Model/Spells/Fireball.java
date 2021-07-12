@@ -1,14 +1,16 @@
 package Game.Model.Spells;
 
-import Game.Model.Board;
-import Game.Model.Level;
-import Game.Model.Location;
+import Game.Model.*;
+import Game.Model.Soldiers.Soldier;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Fireball extends Spell{
     private int areaDamage;
 
-    public Fireball( Board board, Location location,Level level) {
-        super(2.5, 4, board, location);
+    public Fireball(Board board, Location location, Level level , Team team) {
+        super(2.5, 4, board, location, team);
         areaDamage = getAD(level);
 
 
@@ -17,7 +19,32 @@ public class Fireball extends Spell{
 
     @Override
     public void run() {
+        ArrayList<Fightable> targets = validFightabales();
+
+        applyEffect(targets);
         //again needs board
+    }
+
+    @Override
+    public ArrayList<Fightable> validFightabales() {
+        ArrayList<Fightable> targets = new ArrayList<>();
+        LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
+
+        for (Fightable fightable : enemies) {
+            if (location.getDistance(fightable.getLocation()) <= radius)
+                targets.add(fightable);
+        }
+        return targets;
+    }
+
+    @Override
+    public void applyEffect(ArrayList<Fightable> targets) {
+        for (Fightable fightable : targets){
+            if (fightable instanceof Soldier)
+                ((Soldier) fightable).die();
+            else
+                fightable.toGetHurt(areaDamage);
+        }
     }
 
     private int getAD(Level level){

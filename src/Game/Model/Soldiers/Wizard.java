@@ -16,13 +16,8 @@ public class Wizard extends Soldier {
     }
 
     @Override
-    public void live() {
-
-    }
-
-    @Override
-    public void die() {
-
+    public boolean isValidEnemy(Fightable fightable) {
+        return true;
     }
 
     private static int getHP(Level level) {

@@ -3,9 +3,9 @@ package Game.Model;
 public class InfernoTower extends Building{
     int maxDamage;
 
-    public InfernoTower(Board board, Level level, Location location){
+    public InfernoTower(Board board, Level level, Location location , Team team){
 
-        super(board, getHP(level), getDamage(level), 0.4, 6, Target.GROUND_AIR, 40, 5, location);
+        super(board, getHP(level), getDamage(level), 0.4, 6, Target.GROUND_AIR, 40, 5, location , team);
 
         switch (level) {
             case ONE -> maxDamage = 400;
@@ -74,10 +74,10 @@ public class InfernoTower extends Building{
 
         int damageChanges = (maxDamage - damage) / 100;
 
-        while (isAlive){
+        while (alive){
             long start = System.currentTimeMillis();
 
-            Fightable target = board.getNearestEnemy(location, range);
+            Fightable target = getNearestEnemy(range);
             endamage(target);
 
             try {

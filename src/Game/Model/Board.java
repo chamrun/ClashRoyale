@@ -8,9 +8,6 @@ public class Board {
 
     private final int length;
     private final int width;
-
-    //    LinkedList<Fightable> myArmy;
-//    LinkedList<Fightable> enemies = null;
     private HashMap<Team, Region> teams;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
@@ -28,6 +25,10 @@ public class Board {
         BFightables = new LinkedList<>();
     }
 
+
+    public ArrayList<Bridge> getBridges() {
+        return bridges;
+    }
 
     public int getLength() {
         return length;
@@ -72,8 +73,8 @@ public class Board {
         //Update screen...
 
         //TODO: How to to know fightable is in "myArmy" or "enemies"?
-        myArmy.remove(fightable);
-        enemies.remove(fightable);
+//        myArmy.remove(fightable);
+//        enemies.remove(fightable);
 
 
         if (fightable instanceof Tower) {

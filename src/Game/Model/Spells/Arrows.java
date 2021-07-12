@@ -1,26 +1,50 @@
 package Game.Model.Spells;
 
-import Game.Model.Board;
-import Game.Model.Level;
-import Game.Model.Location;
+import Game.Model.*;
+import Game.Model.Soldiers.Soldier;
 
-public class Arrows extends Spell{
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class Arrows extends Spell {
     private int areaDamage;
 
-    public Arrows(Board board, Location location, Level level) {
-        super(4, 3, board, location);
+    public Arrows(Board board, Location location, Level level, Team team) {
+        super(4, 3, board, location, team);
         areaDamage = getAD(level);
 
 
         start();
     }
 
+
+
     @Override
-    public void run() {
-        //again needs board
+    public ArrayList<Fightable> validFightabales() {
+        ArrayList<Fightable> targets = new ArrayList<>();
+        LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
+
+        for (Fightable fightable : enemies) {
+            if (location.getDistance(fightable.getLocation()) <= radius)
+                targets.add(fightable);
+        }
+        return targets;
     }
 
-    private int getAD(Level level){
+    @Override
+    public void run() {
+        ArrayList<Fightable> targets = validFightabales();
+
+        applyEffect(targets);
+    }
+
+    @Override
+    public void applyEffect(ArrayList<Fightable> targets) {
+        for (Fightable fightable : targets)
+            fightable.toGetHurt(areaDamage);
+    }
+
+    private int getAD(Level level) {
         int ad;
 
         switch (level) {

@@ -18,26 +18,9 @@ public class Archers extends Soldier {
         return super.cost;
     }
 
-//    @Override
-//    public void live() {
-//        Fightable target = getNearestEnemy(board.getSearchFightableRange());
-//
-//        if (target == null) {
-//            Location dest = getNearestBridge();
-//            move(dest);
-//        } else {
-//            if (location.getDistance(target.getLocation()) <= range) {
-//                fight(target);
-//            } else {
-//                Location dest = target.getLocation();
-//                move(dest);
-//            }
-//        }
-//    }
-
     @Override
-    public void die() {
-
+    public boolean isValidEnemy(Fightable fightable) {
+        return true;
     }
 
     private static int getHP(Level level) {

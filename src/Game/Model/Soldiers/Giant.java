@@ -18,13 +18,10 @@ public class Giant extends Soldier {
     }
 
     @Override
-    public void live() {
-
-    }
-
-    @Override
-    public void die() {
-
+    public boolean isValidEnemy(Fightable fightable) {
+        if (fightable.getType().equals(FightableType.BUILDING))
+            return true;
+        return false;
     }
 
     private static int getHP(Level level) {

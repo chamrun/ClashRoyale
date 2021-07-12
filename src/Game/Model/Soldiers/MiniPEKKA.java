@@ -18,13 +18,10 @@ public class MiniPEKKA extends Soldier {
     }
 
     @Override
-    public void live() {
-
-    }
-
-    @Override
-    public void die() {
-
+    public boolean isValidEnemy(Fightable fightable) {
+        if (fightable.getType().equals(FightableType.AIR))
+            return false;
+        return true;
     }
 
     private static int getHP(Level level) {
