@@ -5,7 +5,7 @@ import Game.Model.*;
 public class MiniPEKKA extends Soldier {
 
     public MiniPEKKA(Board board, Level level, Location location, Team team) {
-        super(board, getHP(level), getDamage(level), 1.8, 0, location, Speed.FAST,
+        super(board, getHP(level), getDamage(level), 1800, 1, location, Speed.FAST,
                 Target.GROUND, false, 1, 4, team , Type.GROUND);
 
         start();

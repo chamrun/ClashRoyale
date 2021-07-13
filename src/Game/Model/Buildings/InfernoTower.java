@@ -7,7 +7,7 @@ public class InfernoTower extends Building {
 
     public InfernoTower(Board board, Level level, Location location , Team team){
 
-        super(board, getHP(level), getDamage(level), 0.4, 6, Target.GROUND_AIR, 40, 5, location , team);
+        super(board, getHP(level), getDamage(level), 400, 6, Target.GROUND_AIR, 40, 5, location , team);
 
         switch (level) {
             case ONE -> maxDamage = 400;

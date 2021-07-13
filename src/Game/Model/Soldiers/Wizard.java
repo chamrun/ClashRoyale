@@ -4,7 +4,7 @@ import Game.Model.*;
 
 public class Wizard extends Soldier {
     public Wizard(Board board, Level level, Location location, Team team) {
-        super(board, getHP(level), getDamage(level), 1.7, 5, location, Speed.MEDIUM,
+        super(board, getHP(level), getDamage(level), 1700, 5, location, Speed.MEDIUM,
                 Target.GROUND_AIR, true, 1, 5, team , Type.GROUND);
 
         start();

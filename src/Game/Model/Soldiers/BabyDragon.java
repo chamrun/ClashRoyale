@@ -2,7 +2,6 @@ package Game.Model.Soldiers;
 
 import Game.Model.*;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.TimerTask;
 
@@ -10,7 +9,7 @@ public class BabyDragon extends Soldier {
 
 
     public BabyDragon(Board board, Level level, Location location, Team team) {
-        super(board, getHP(level), getDamage(level), 1.8, 3, location, Speed.FAST,
+        super(board, getHP(level), getDamage(level), 1800, 3, location, Speed.FAST,
                 Target.GROUND_AIR, true, 1, 4, team, Type.AIR);
 
         start();
@@ -24,7 +23,7 @@ public class BabyDragon extends Soldier {
 
     @Override
     public void live() {
-        ArrayList<Fightable> target = new ArrayList<>();
+        LinkedList<Fightable> target = new LinkedList<>();
         target.add(getNearestEnemy(board.getSearchFightableRange()));
         TimerTask move = new TimerTask() {
             @Override

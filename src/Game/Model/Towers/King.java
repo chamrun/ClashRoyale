@@ -5,7 +5,7 @@ import Game.Model.*;
 public class King extends Tower {
 
     public King(Board board, Level level, Location location, Team team){
-        super(board, getHP(level), getDamage(level), 1, 7, location, team);
+        super(board, getHP(level), getDamage(level), 1000, 7, location, team);
     }
 
     @Override

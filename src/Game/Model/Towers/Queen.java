@@ -5,7 +5,7 @@ import Game.Model.*;
 public class Queen extends Tower {
 
     public Queen(Board board, Level level, Location location , Team team){
-        super(board, getHP(level), getDamage(level), 0.8, 7.5, location , team);
+        super(board, getHP(level), getDamage(level), 800, 7.5, location , team);
 
         start();
     }

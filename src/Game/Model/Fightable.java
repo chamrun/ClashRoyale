@@ -9,14 +9,14 @@ public abstract class Fightable extends Thread{
     protected boolean alive;
     protected int hp;
     protected int damage;
-    protected double hitSpeed;
+    protected long hitSpeed;
     protected final double range;
     protected final Location location;
     protected final Team team;
     protected final Type type;
 //    private boolean isAlive;
 
-    public Fightable(Board board, int hp, int damage, double hitSpeed, double range, Location location, Team team, Type type) {
+    public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
         this.team = team;
         this.type = type;
         this.alive = true;

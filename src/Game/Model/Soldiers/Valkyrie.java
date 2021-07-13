@@ -4,7 +4,7 @@ import Game.Model.*;
 
 public class Valkyrie extends Soldier{
     public Valkyrie(Board board, Level level, Location location, Team team) {
-        super(board, getHP(level), getDamage(level), 1.5, 0, location, Speed.MEDIUM,
+        super(board, getHP(level), getDamage(level), 1500, 1, location, Speed.MEDIUM,
                 Target.GROUND, true, 1, 4, team , Type.GROUND);
 
         start();

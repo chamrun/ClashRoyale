@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class Soldier extends Fightable implements Card {
-    protected  Speed speed;
+    protected Speed speed;
     protected final Target target;
     protected final boolean isAreaSplash;
     protected final int count;
@@ -20,7 +20,7 @@ public abstract class Soldier extends Fightable implements Card {
     protected long fightTime;
 
 
-    public Soldier(Board board, int hp, int damage, double hitSpeed, double range, Location location, Speed speed, Target target,
+    public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
                    boolean isAreaSplash, int count, int cost, Team team, Type type) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
         this.speed = speed;
@@ -34,20 +34,131 @@ public abstract class Soldier extends Fightable implements Card {
 
     @Override
     public void run() {
-        live();
-        die();
+
+        while (alive) {
+            LinkedList<Fightable> enemies = getNearEnemies();
+
+            if (enemies == null){
+                move();
+                try {
+                    //TODO millis of sleep is based on "protected Speed speed"
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                fight(enemies);
+                try {
+                    Thread.sleep(hitSpeed);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //live();
+        //die();
+
+    }
+
+    public void move(){
+        if (true)//TODO is in his field)
+        {
+            move(board.getNearestBridge(location));
+        }
+        else
+        {
+            move(board.getNearstTower(location));
+        }
+    }
+
+    /*
+    public void live() {
+
+
+        TimerTask move = new TimerTask() {
+            @Override
+            public void run() {
+
+                ArrayList<Fightable> targets = new ArrayList<>();
+                targets.add(getNearestEnemy(board.getSearchFightableRange()));
+
+                if (!alive)
+                    return;
+
+                if (targets == null) {
+                    Location dest = getNearestBridge();
+                    move(dest);
+                }
+
+                else {
+                    if (location.getDistance(targets.get(0).getLocation()) <= range) {
+                        fight(targets);
+                    } else {
+                        Location dest = targets.get(0).getLocation();
+                        move(dest);
+                    }
+                }
+            }
+        };
+        moveTimer.schedule(move,0,moveTime);
+    }
+     */
+
+
+    public LinkedList<Fightable> getNearEnemies(){
+        LinkedList<Fightable> nearEnemies = new LinkedList<>();
+
+        if (isAreaSplash){
+            LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
+
+            for (Fightable enemy : enemies) {
+                if (location.getDistance(enemy.getLocation()) <= range) {
+                    if (isValidEnemy(enemy)) {
+                        nearEnemies.add(enemy);
+                    }
+                }
+            }
+
+            if (nearEnemies.size() == 0){
+                return null;
+            }
+        }
+
+        else {
+            Fightable nearestEnemy = null;
+            double min = range;
+            LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
+
+            for (Fightable enemy : enemies) {
+                if (location.getDistance(enemy.getLocation()) <= min) {
+                    if (isValidEnemy(enemy)) {
+                        nearestEnemy = enemy;
+                        min = location.getDistance(enemy.getLocation());
+                    }
+                }
+            }
+
+            if (nearestEnemy == null){
+                return null;
+            }
+
+            nearEnemies.add(nearestEnemy);
+        }
+
+        return nearEnemies;
     }
 
 
-    @Override
-    public Fightable getNearestEnemy(double range) {
+    public Fightable getNearestEnemy() {
         double min = range;
         Fightable nearestEnemy = null;
         LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
         for (Fightable enemy : enemies) {
             if (location.getRegion().equals(enemy.getLocation().getRegion())) {
-                if (location.getDistance(enemy.getLocation()) < min) {
+                if (location.getDistance(enemy.getLocation()) <= min) {
                     if (isValidEnemy(enemy)) {
                         nearestEnemy = enemy;
                         min = location.getDistance(enemy.getLocation());
@@ -63,7 +174,15 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
 
-    public void fight(ArrayList<Fightable> targets) {
+    public void fight(LinkedList<Fightable> targets) {
+
+        while (alive) {
+            for (Fightable target : targets) {
+                target.toGetHurt(damage);
+            }
+        }
+
+        /*
         mode = Mode.FIGHT;
         TimerTask fight = new TimerTask() {
             @Override
@@ -80,6 +199,8 @@ public abstract class Soldier extends Fightable implements Card {
             }
         };
         fightTimer.schedule(fight,0,fightTime);
+
+         */
     }
     
     public void updateTargetList(ArrayList<Fightable> targets){
@@ -128,33 +249,6 @@ public abstract class Soldier extends Fightable implements Card {
             }
         }
         return dest;
-    }
-
-    public void live() {
-        ArrayList<Fightable> target = new ArrayList<>();
-        target.add(getNearestEnemy(board.getSearchFightableRange()));
-        TimerTask move = new TimerTask() {
-            @Override
-            public void run() {
-                if (!alive)
-                    return;
-
-                if (target == null) {
-                    Location dest = getNearestBridge();
-                    move(dest);
-                }
-
-                else {
-                    if (location.getDistance(target.get(0).getLocation()) <= range) {
-                        fight(target);
-                    } else {
-                        Location dest = target.get(0).getLocation();
-                        move(dest);
-                    }
-                }
-            }
-        };
-        moveTimer.schedule(move,0,moveTime);
     }
 
     public long getMoveTime(){

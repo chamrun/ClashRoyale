@@ -6,7 +6,7 @@ public class Archers extends Soldier {
 
 
     public Archers(Board board, Level level, Location location, Team team) {
-        super(board, getHP(level), getDamage(level), 1.2, 5, location, Speed.MEDIUM,
+        super(board, getHP(level), getDamage(level), 1200, 5, location, Speed.MEDIUM,
                 Target.GROUND_AIR, false, 2, 3, team, Type.GROUND);
 
         start();

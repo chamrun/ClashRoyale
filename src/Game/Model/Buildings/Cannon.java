@@ -6,7 +6,7 @@ public class Cannon extends Building {
 
     public Cannon(Board board, Level level, Location location , Team team){
 
-        super(board, getHP(level), getDamage(level), 0.8, 5.5, Target.GROUND, 30,
+        super(board, getHP(level), getDamage(level), 800, 5.5, Target.GROUND, 30,
                 3, location,team);
         start();
 
