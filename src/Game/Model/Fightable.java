@@ -62,7 +62,7 @@ public abstract class Fightable extends Thread{
         hp -= damage;
         if (hp < 0){
             alive = false;
-            board.removeFightable(this);
+            board.removeFightable(this, team);
         }
     }
 

@@ -91,19 +91,16 @@ public class Board {
         }
     }
 
-    public void removeFightable(Fightable deadFightable, Team team) {
+    public void removeFightable(Fightable deadFightable, Team killerTeam) {
         //Update screen...
 
-        if (team.equals(Team.A)){
-            AFightables.remove(deadFightable);
-        }
-        else {
+        if (killerTeam.equals(Team.A)){
             BFightables.remove(deadFightable);
         }
+        else {
+            AFightables.remove(deadFightable);
+        }
 
-        //TODO: How to to know fightable is in "myArmy" or "enemies"?
-//        myArmy.remove(fightable);
-//        enemies.remove(fightable);
 
         if (deadFightable instanceof Tower) {
             //Update crowns...
@@ -119,5 +116,18 @@ public class Board {
 
     private void gameOver() {
         //Showing final result and saving game in history
+    }
+
+    public Location getNearestTower(Location location) {
+        // TODO: should be this way:
+        /*
+        if (width / 2 < location.getX())
+            return bridges.getAHead();
+        else
+            return bridges.getBHead();
+
+         */
+
+        return null;
     }
 }

@@ -63,13 +63,15 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public void move(){
+
         if (true)//TODO is in his field)
         {
-            move(board.getNearestBridge(location));
+            move(getNearestBridge());
+            //TODO: should be: move(board.getNearestBridge(location));
         }
         else
         {
-            move(board.getNearstTower(location));
+            move(board.getNearestTower(location));
         }
     }
 
@@ -107,11 +109,12 @@ public abstract class Soldier extends Fightable implements Card {
      */
 
 
+
     public LinkedList<Fightable> getNearEnemies(){
         LinkedList<Fightable> nearEnemies = new LinkedList<>();
+        LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
         if (isAreaSplash){
-            LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
             for (Fightable enemy : enemies) {
                 if (location.getDistance(enemy.getLocation()) <= range) {
@@ -126,19 +129,8 @@ public abstract class Soldier extends Fightable implements Card {
             }
         }
 
-        else {
-            Fightable nearestEnemy = null;
-            double min = range;
-            LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
-
-            for (Fightable enemy : enemies) {
-                if (location.getDistance(enemy.getLocation()) <= min) {
-                    if (isValidEnemy(enemy)) {
-                        nearestEnemy = enemy;
-                        min = location.getDistance(enemy.getLocation());
-                    }
-                }
-            }
+        else {// AreaSplash == false -> we'll return the nearest enemy
+            Fightable nearestEnemy = getNearestEnemy(enemies);
 
             if (nearestEnemy == null){
                 return null;
@@ -151,18 +143,15 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
 
-    public Fightable getNearestEnemy() {
+    public Fightable getNearestEnemy(LinkedList<Fightable> enemies) {
         double min = range;
         Fightable nearestEnemy = null;
-        LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
         for (Fightable enemy : enemies) {
-            if (location.getRegion().equals(enemy.getLocation().getRegion())) {
-                if (location.getDistance(enemy.getLocation()) <= min) {
-                    if (isValidEnemy(enemy)) {
-                        nearestEnemy = enemy;
-                        min = location.getDistance(enemy.getLocation());
-                    }
+            if (location.getDistance(enemy.getLocation()) <= min) {
+                if (isValidEnemy(enemy)) {
+                    nearestEnemy = enemy;
+                    min = location.getDistance(enemy.getLocation());
                 }
             }
         }
@@ -222,7 +211,8 @@ public abstract class Soldier extends Fightable implements Card {
                 location.setY(location.getY() + 1);
             else
                 location.setY(location.getY() - 1);
-        } else {
+        }
+        else {
             if (destination.getX() > location.getX())
                 location.setX(location.getX() + 1);
             else
@@ -231,24 +221,27 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public Location getNearestBridge() {
+        //TODO: should be transferred to "Board", and bridges needs some changes.
         double min = board.getLength();
-        Location dest = null;
+        Location nearestBridge = null;
+
         if (location.getRegion().equals(Region.A)){
             for (Bridge bridge : board.getBridges()){
                 if (bridge.getAHead().getDistance(location) < min){
                     min = bridge.getAHead().getDistance(location);
-                    dest = bridge.getAHead();
-                }
-            }
-        }else{
-            for (Bridge bridge : board.getBridges()){
-                if (bridge.getBHead().getDistance(location) < min){
-                    min = bridge.getBHead().getDistance(location);
-                    dest = bridge.getBHead();
+                    nearestBridge = bridge.getAHead();
                 }
             }
         }
-        return dest;
+        else{
+            for (Bridge bridge : board.getBridges()){
+                if (bridge.getBHead().getDistance(location) < min){
+                    min = bridge.getBHead().getDistance(location);
+                    nearestBridge = bridge.getBHead();
+                }
+            }
+        }
+        return nearestBridge;
     }
 
     public long getMoveTime(){
