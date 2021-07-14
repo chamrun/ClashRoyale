@@ -1,9 +1,9 @@
 .text:hover {
-    -fx-fill: purple;
+    -fx-fill: red;
 }
 
 .text:pressed {
-    -fx-fill: red;
+    -fx-fill: purple;
 }
 
 .text:selected {
