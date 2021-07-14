@@ -1,11 +1,13 @@
-package Game.Model;
+package Game.Model.Buildings;
 
-public class Cannon extends Building{
+import Game.Model.*;
 
-    public Cannon(Board board, Level level, Location location){
+public class Cannon extends Building {
 
-        super(board, getHP(level), getDamage(level), 0.8, 5.5, Target.GROUND, 30, 3, location);
+    public Cannon(Board board, Level level, Location location , Team team){
 
+        super(board, getHP(level), getDamage(level), 800, 5.5, Target.GROUND, 30,
+                3, location,team);
         start();
 
     }
@@ -57,10 +59,10 @@ public class Cannon extends Building{
     @Override
     public void run() {
 
-        while (isAlive){
+        while (alive){
             long start = System.currentTimeMillis();
 
-            endamage(board.getNearestEnemy(location, range));
+            endamage(getNearestEnemy(range));
 
             try {
                 Thread.sleep((int) (hitSpeed * 1000));

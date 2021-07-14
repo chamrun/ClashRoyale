@@ -1,18 +1,20 @@
-package Game.Model;
+package Game.Model.Towers;
 
-public class Queen extends Tower{
+import Game.Model.*;
 
-    public Queen(Board board, Level level, Location location){
-        super(board, getHP(level), getDamage(level), 0.8, 7.5, location);
+public class Queen extends Tower {
+
+    public Queen(Board board, Level level, Location location , Team team){
+        super(board, getHP(level), getDamage(level), 800, 7.5, location , team);
 
         start();
     }
 
     @Override
     public void run() {
-        while (isAlive){
+        while (alive){
 
-            endamage(board.getNearestEnemy(location, range));
+            endamage(getNearestEnemy( range));
 
             try {
                 Thread.sleep((int) hitSpeed * 1000);
