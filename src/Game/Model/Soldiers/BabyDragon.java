@@ -21,7 +21,7 @@ public class BabyDragon extends Soldier {
     }
 
 
-    @Override
+    //@Override
     public void live() {
         LinkedList<Fightable> target = new LinkedList<>();
         target.add(getNearestEnemy(board.getSearchFightableRange()));

@@ -15,7 +15,7 @@ public class Database {
         try {
             Connection connection = DriverManager.getConnection
                     //("jdbc:sqlserver://localhost;user=sa;password=SQLpass;");
-                    ("jdbc:sqlserver://" + host + ";user=" + user + ";password=" + password + ";");
+                            ("jdbc:sqlserver://" + host + ";user=" + user + ";password=" + password + ";");
 
             statement = connection.createStatement();
         } catch (SQLException throwables) {
@@ -37,18 +37,12 @@ public class Database {
 
             String signupCmd = "INSERT INTO " + tableName + "\n" +
                     "(uname, pass, mcode) VALUES " +
-                    "(" + userName + ", " + getMd5(password) + ", 1)";
+                    "('" + userName + "', '" + getMd5(password) + "', '1')";
 
-            ResultSet resultSet = statement.executeQuery(signupCmd);
+            int num = statement.executeUpdate(signupCmd);
 
-            // Print results from select statement
-            while (resultSet.next()) {
-
-                if (resultSet.getString("pass").startsWith(password)){
-                    return new User(userName, password);
-                }
-
-                //System.out.println(resultSet.getString("uname") + ":: " + resultSet.getString("mcode"));
+            if (num == 1) {
+                return new User(userName, password);
             }
 
         }
@@ -56,13 +50,14 @@ public class Database {
             e.printStackTrace();
             return null;
         }
+
         return null;
 
     }
 
 
     public User tryLogIn(String userName, String password){
-        System.out.println(userName + " is trying to login with: " + password);
+        System.out.println(userName + " is trying to login...");
 
 
         try{
@@ -75,8 +70,14 @@ public class Database {
             // Print results from select statement
             while (resultSet.next()) {
 
-                if (resultSet.getString("pass").startsWith(password)){
-                    return new User(userName, password);
+                String hashedInput = getMd5(password);
+                String pass = resultSet.getString("pass").replace(" ", "");
+
+                System.out.println("'" + hashedInput + "'\n" +
+                        "'" + pass + "'");
+
+                if (pass.equals(hashedInput)){
+                    return new User(userName, hashedInput);
                 }
 
                 //System.out.println(resultSet.getString("uname") + ":: " + resultSet.getString("mcode"));
