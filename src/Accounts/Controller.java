@@ -43,7 +43,7 @@ public class Controller {
             System.out.println(userName.getText() + ": " + password.getText() + ": wasn't found.");
             return;
         }
-        System.out.println(userName.getText() + ": " + password.getText() + ": signed in.");
+        System.out.println(userName.getText() + " logged in.");
 
         // Here we send user to "MainMenu package"
     }
@@ -52,17 +52,16 @@ public class Controller {
     public void signUp(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
-        if(database.signUp(userName.getText(), password.getText()) == null){
+        User user = database.signUp(userName.getText(), password.getText());
+        if (user == null){
 
-            System.out.println(userName + " already exists.");
+            System.out.println(userName.getText() + " already exists.");
             //Suggest logging in.
-
 
         }
         else {
 
-
-            System.out.println();
+            System.out.println(user + " signed up.");
             //
 
         }
