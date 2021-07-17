@@ -35,15 +35,18 @@ public class Controller {
     }
 
     @FXML
-    public void logIn(Event event){
-        System.out.println(event.getEventType() + " on " + ((Button)event.getTarget()).getText());
+    public void logIn(Event event) {
+        System.out.println(event.getEventType() + " on " + ((Button) event.getTarget()).getText());
 
         User user = database.tryLogIn(userName.getText(), password.getText());
-        if (user == null){
+        if (user == null) {
             System.out.println(userName.getText() + ": " + password.getText() + ": wasn't found.");
             return;
         }
         System.out.println(userName.getText() + " logged in.");
+
+
+        switchToScene(event, "../Menu/Profile.fxml").setUser(user);
 
         // Here we send user to "MainMenu package"
     }
@@ -63,7 +66,6 @@ public class Controller {
 
             System.out.println(user + " signed up.");
             switchToScene(event, "View/logIn.fxml");
-            //
 
         }
 
@@ -79,7 +81,7 @@ public class Controller {
     }
 
 
-    public void switchToScene(Event event, String sceneName){
+    public Menu.Controller switchToScene(Event event, String sceneName){
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
@@ -91,6 +93,9 @@ public class Controller {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            if (sceneName.startsWith("..")) {
+                return loader.getController();
+            }
             /*
             Parent root = new FXMLLoader(getClass().getResource("LogIn.fxml")).load();
             Stage stage = new Stage();
@@ -101,5 +106,7 @@ public class Controller {
         catch (IOException e){
             e.printStackTrace();
         }
+
+        return null;
     }
 }
