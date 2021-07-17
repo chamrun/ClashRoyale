@@ -1,17 +1,24 @@
 package Game.Model.Soldiers;
 
 import Game.Model.*;
+import javafx.geometry.Point3D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Barbarian extends Soldier {
+
+    protected ImageView walk_parallel_r;
+//    protected ImageView walk_closed_r;
+//    protected ImageView walk_open_r;
 
 
     public Barbarian(Board board, Level level, Location location, Team team) {
         super(board, getHP(level), getDamage(level), 1500, 1, location, Speed.MEDIUM,
                 Target.GROUND, false, 4, 5, team , Type.GROUND);
 
+
         start();
     }
-
 
     @Override
     public int getCost() {

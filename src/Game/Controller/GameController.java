@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 public class GameController {
 
     @FXML
-    private Pane landPane;
+    public Pane landPane;
 
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {

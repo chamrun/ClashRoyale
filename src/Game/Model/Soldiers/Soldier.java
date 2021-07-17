@@ -1,6 +1,9 @@
 package Game.Model.Soldiers;
 
 import Game.Model.*;
+import javafx.geometry.Point3D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,8 +21,14 @@ public abstract class Soldier extends Fightable implements Card {
     protected Timer fightTimer;
     protected long moveTime;
     protected long fightTime;
-
-
+    protected ImageView walk_closed_r;
+    protected ImageView walk_open_r;
+    protected ImageView walk_closed_l;
+    protected ImageView walk_open_l;
+    protected ImageView walk_closed_u;
+    protected ImageView walk_open_u;
+    protected ImageView walk_closed_d;
+    protected ImageView walk_open_d;
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
                    boolean isAreaSplash, int count, int cost, Team team, Type type) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
@@ -30,7 +39,64 @@ public abstract class Soldier extends Fightable implements Card {
         this.cost = cost;
         fightTime = (long) hitSpeed * 1000;
         moveTime = getMoveTime();
+
+        initializeWalkImages();
+
     }
+
+    public  void initializeWalkImages(){
+        String addressForOpen = null;
+        String addressForClosed = null;
+
+        if (this instanceof Barbarian){
+            addressForClosed = "characters/Barbarians/Bar_Walk_Closed.png";
+            addressForOpen = "characters/Barbarians/Bar_Walk_Open.png";
+        }else if (this instanceof Archers){
+            addressForClosed = "characters/Archers/Arc_Walk_Closed.png";
+            addressForOpen = "characters/Archers/Arc_Walk_Open.png";
+        }else if (this instanceof BabyDragon){
+            addressForClosed = "characters/BabyDragon/Bab_Walk_Open.png";
+            addressForOpen = addressForClosed;
+        }else if (this instanceof Giant){
+            addressForClosed = "characters/Giant/Gia_Walk_Closed.png";
+            addressForOpen = "characters/Giant/Gia_Walk_Open.png";
+        }else if (this instanceof MiniPEKKA){
+            addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
+            addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
+        }else if (this instanceof Valkyrie){
+            addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
+            addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
+        }else if (this instanceof Wizard){
+            addressForClosed = "characters/Wizard/Wiz_Walk_Closed.png";
+            addressForOpen = "characters/Wizard/Wiz_Walk_Open.png";
+        }
+        makeRotationForms(walk_open_r,walk_open_l,walk_open_u,walk_open_d,addressForOpen);
+        makeRotationForms(walk_closed_r,walk_closed_l,walk_closed_u,walk_closed_d,addressForClosed);
+
+    }
+
+    public void makeRotationForms(ImageView imageView1 , ImageView imageView2 , ImageView imageView3,
+                                  ImageView imageView4 ,String address){
+        imageView1 = new ImageView(new Image(address));
+        for (int i = 0 ;i < 3;i++){
+            ImageView base = new ImageView(new Image(address));
+            if (i == 0){
+                base.setRotationAxis(new Point3D(0,1,0));
+                base.setRotate(180);
+                imageView2 = base;
+            }else {
+                base.setRotationAxis(new Point3D(0,0,1));
+                if (i == 1){
+                    base.setRotate(-90);
+                    imageView3 = base;
+                }else {
+                    base.setRotate(90);
+                    imageView4 = base;
+                }
+            }
+        }
+    }
+
 
     @Override
     public void run() {
