@@ -62,6 +62,7 @@ public class Controller {
         else {
 
             System.out.println(user + " signed up.");
+            switchToScene(event, "View/logIn.fxml");
             //
 
         }
