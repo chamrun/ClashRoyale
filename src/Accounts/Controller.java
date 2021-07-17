@@ -40,7 +40,8 @@ public class Controller {
 
         User user = database.tryLogIn(userName.getText(), password.getText());
         if (user == null) {
-            System.out.println(userName.getText() + ": " + password.getText() + ": wasn't found.");
+            System.out.println(userName.getText() + " couldn't log in.");
+
             return;
         }
         System.out.println(userName.getText() + " logged in.");
@@ -92,6 +93,7 @@ public class Controller {
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle(getTitle(sceneName));
             stage.show();
             if (sceneName.startsWith("..")) {
                 return loader.getController();
@@ -104,9 +106,14 @@ public class Controller {
              */
         }
         catch (IOException e){
-            e.printStackTrace();
+            System.out.println(sceneName + ": wrong?");
         }
 
         return null;
+    }
+
+    private String getTitle(String sceneName) {
+        String[] strings = (sceneName.replace(".fxml", "")).split("/");
+        return strings[strings.length - 1];
     }
 }
