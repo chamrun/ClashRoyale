@@ -43,7 +43,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" stylesheets="@hover.css" VBox.vgrow="ALWAYS">
       <children>
-            <TextField fx:id="userName" layoutX="245.0" layoutY="97.0" promptText="Email" />
+            <TextField fx:id="userName" layoutX="245.0" layoutY="97.0" promptText="userName" />
             <PasswordField fx:id="password" layoutX="245.0" layoutY="136.0" promptText="Password" />
             <Button layoutX="286.0" layoutY="181.0" mnemonicParsing="false" onAction="#signUp" text="Sign up" />
             <Text layoutX="263.0" layoutY="253.0" onMouseClicked="#openLogIn" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Already a member?" />

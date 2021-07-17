@@ -11,6 +11,7 @@ public class Board {
 
     private final int length;
     private final int width;
+    private Location[][] locations;
     private HashMap<Team, Region> teams;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
@@ -20,6 +21,7 @@ public class Board {
     public Board(HashMap<Team, Region> teams, int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
         this.length = length;
         this.width = width;
+        initializeLocations();
         this.bridges = bridges;
         this.searchFightableRange = searchFightableRange;
         this.teams.put(Team.A, Region.A);
@@ -28,6 +30,17 @@ public class Board {
         BFightables = new LinkedList<>();
     }
 
+    public void initializeLocations(){
+        for (int i = 0; i < length ; i++){
+            for (int j = 0 ; j < width ; j++){
+                locations[i][j] = new Location(i,j);
+            }
+        }
+    }
+
+    public Location[][] getLocations() {
+        return locations;
+    }
 
     public ArrayList<Bridge> getBridges() {
         return bridges;
