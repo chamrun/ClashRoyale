@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class Database {
 
-    Statement statement;
-    String tableName;
+    private Statement statement;
+    private final String tableName;
 
     public Database(String host, String user, String password, String tableName){
 
@@ -26,14 +26,8 @@ public class Database {
 
     }
 
-    public User signUp(String userName, String password){
+    public User trySignUp(String userName, String password){
         try{
-
-
-            //Check if userName is not new, return null
-            //if(){
-            //  return null;
-            // }
 
             String signupCmd = "INSERT INTO " + tableName + "\n" +
                     "(uname, pass, mcode) VALUES " +
@@ -42,7 +36,7 @@ public class Database {
             int num = statement.executeUpdate(signupCmd);
 
             if (num == 1) {
-                return new User(userName, password);
+                return new User(this, userName);
             }
 
         }
@@ -55,14 +49,13 @@ public class Database {
 
     }
 
-
     public User tryLogIn(String userName, String password){
         System.out.println(userName + " is trying to login...");
 
 
         try{
 
-            String cmd = "SELECT * FROM test.dbo.users\n" +
+            String cmd = "SELECT pass FROM test.dbo.users\n" +
                     "WHERE uname = " + "'" + userName + "'";
 
             ResultSet resultSet = statement.executeQuery(cmd);
@@ -71,13 +64,13 @@ public class Database {
             while (resultSet.next()) {
 
                 String hashedInput = getMd5(password);
-                String pass = resultSet.getString("pass").replace(" ", "");
+                String pass = resultSet.getString("pass").replace(" ", "");// Because pass is too lone, TODO: should be set (16)
 
                 System.out.println("'" + hashedInput + "'\n" +
                         "'" + pass + "'");
 
                 if (pass.equals(hashedInput)){
-                    return new User(userName, hashedInput);
+                    return new User(this, userName);
                 }
 
                 //System.out.println(resultSet.getString("uname") + ":: " + resultSet.getString("mcode"));
@@ -118,5 +111,16 @@ public class Database {
         }
     }
 
+    public void update(String userName, int level) {
+        //ToDo: level row should be added.
+        String query = "update " + tableName + " set level = " + level + " where uname = '" + userName + "'";
+        try {
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
+
+        System.out.println(userName + ": " + level);
+    }
 }

@@ -52,7 +52,7 @@ public class Controller {
     public void signUp(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
-        User user = database.signUp(userName.getText(), password.getText());
+        User user = database.trySignUp(userName.getText(), password.getText());
         if (user == null){
 
             System.out.println(userName.getText() + " already exists.");
