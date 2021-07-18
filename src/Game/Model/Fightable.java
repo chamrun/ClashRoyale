@@ -1,5 +1,8 @@
 package Game.Model;
 
+
+import javafx.scene.image.ImageView;
+
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,7 +17,8 @@ public abstract class Fightable extends Thread{
     protected final Location location;
     protected final Team team;
     protected final Type type;
-//    private boolean isAlive;
+    protected ImageView currentImage;
+        //    private boolean isAlive;
 
     public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
         this.team = team;
@@ -26,6 +30,10 @@ public abstract class Fightable extends Thread{
         this.hitSpeed = hitSpeed;
         this.range = range;
         this.location = location;
+    }
+
+    public ImageView getCurrentImage() {
+        return currentImage;
     }
 
     public void changeDamage(int damage) {

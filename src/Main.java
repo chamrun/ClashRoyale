@@ -20,7 +20,7 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene(root));
         ImageView imageView = new ImageView(new Image("characters/Barbarians/Bar_Walk_Open.png"));
         ImageView imageView1 = new ImageView(new Image("characters/Barbarians/Bar_Walk_Closed.png"));
-        ImageView imageView3 = new ImageView(new Image("characters/Barbarians/Bar_Walk_Parallel.png"));
+//        ImageView imageView3 = new ImageView(new Image("characters/Barbarians/Bar_Walk_Parallel.png"));
 
         imageView.setRotationAxis(new Point3D(0,1,0));
         imageView.setRotate(180);
@@ -35,6 +35,7 @@ public class Main extends Application {
         loader.load();
         Parent root = loader.getRoot();
         GameController controller = loader.getController();
+
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
         imageView1.setFitHeight(70);
@@ -42,13 +43,17 @@ public class Main extends Application {
         imageView2.setFitHeight(70);
         imageView2.setFitWidth(70);
         imageView.setX(50);
-        imageView1.setX(150);
-        imageView2.setX(250);
+        imageView.setY(70);
+        imageView1.setX(170);
+        imageView1.setY(70);
+        imageView2.setX(260);
+
+        controller.backgroundImage.setFitWidth(1136);
 
 //        imageView.setRotationAxis(new );
         controller.landPane.getChildren().add(imageView);
         controller.landPane.getChildren().add(imageView1);
-        controller.landPane.getChildren().add(imageView3);
+//        controller.landPane.getChildren().add(imageView);
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

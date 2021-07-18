@@ -4,12 +4,17 @@ import Debugging.Deb;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 
 
 public class GameController {
 
     @FXML
     public Pane landPane;
+
+    @FXML
+    public ImageView backgroundImage;
+
 
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {

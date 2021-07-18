@@ -29,6 +29,8 @@ public abstract class Soldier extends Fightable implements Card {
     protected ImageView walk_open_u;
     protected ImageView walk_closed_d;
     protected ImageView walk_open_d;
+    protected int moveProgress;
+
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
                    boolean isAreaSplash, int count, int cost, Team team, Type type) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
@@ -82,7 +84,7 @@ public abstract class Soldier extends Fightable implements Card {
             ImageView base = new ImageView(new Image(address));
             if (i == 0){
                 base.setRotationAxis(new Point3D(0,1,0));
-                base.setRotate(180);
+                base.setRotate(-180);
                 imageView2 = base;
             }else {
                 base.setRotationAxis(new Point3D(0,0,1));
@@ -97,6 +99,13 @@ public abstract class Soldier extends Fightable implements Card {
         }
     }
 
+    public Mode getMode() {
+        return mode;
+    }
+
+    public int getMoveProgress() {
+        return moveProgress;
+    }
 
     @Override
     public void run() {
@@ -105,10 +114,12 @@ public abstract class Soldier extends Fightable implements Card {
             LinkedList<Fightable> enemies = getNearEnemies();
 
             if (enemies == null){
-                move();
                 try {
-                    //TODO millis of sleep is based on "protected Speed speed"
-                    Thread.sleep(1000);
+                    Thread.sleep(moveTime / 2);
+                    mode = Mode.MOVE_0;
+                    move();
+                    Thread.sleep(moveTime/2);
+                    mode = Mode.MOVE_1;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -271,7 +282,7 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public void move(Location destination) {
-        mode = Mode.MOVE;
+//        mode = Mode.MOVE;
         if (destination.getX() == location.getX()) {
             if (destination.getY() > location.getY())
                 location.setY(location.getY() + 1);

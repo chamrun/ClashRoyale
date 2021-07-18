@@ -6,14 +6,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.Controller.GameController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="270.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backgroundImage" fitWidth="480.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/Land/landOfGame.jpg" />
                      </image>

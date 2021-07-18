@@ -1,6 +1,13 @@
 package Game.View;
 
 import Game.Model.Board;
+import Game.Model.Fightable;
+import Game.Model.Soldiers.Soldier;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class GameView {
 
@@ -9,12 +16,36 @@ public class GameView {
     private final double landWidth = landLength * 9.0 / 16;
     private final double tileLength = 0;
     private final double tileWidth = 0;
+    private final int progressStandard = 1;
+    private Pane pane;
 
     public void update(){
 
-        //check fightables and their modes and directions and set images in their location
+        //todo : clear pane
 
+
+        LinkedList<Fightable> fightables = board.getAFightables();
+        setFightableImages(fightables);
+
+        fightables = board.getBFightables();
+        setFightableImages(fightables);
+
+
+        // check fightables and their modes and directions and set images in their location
         
+    }
+
+    public void setFightableImages(LinkedList<Fightable> fightables){
+        for (Fightable fightable : fightables){
+            ImageView curr = fightable.getCurrentImage();
+            if (fightable instanceof Soldier){
+                //todo : setting location : direction and moveProgress and location
+                pane.getChildren().add(curr);
+            }else {
+                //todo : setting location
+                pane.getChildren().add(curr);
+            }
+        }
     }
 
 
