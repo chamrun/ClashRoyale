@@ -32,38 +32,38 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.Controller">
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Main.jpg" />
+            <Image url="@../../Pix/Menu/subMenu.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Deck.png" />
+            <Image url="@../../Pix/Menu/Deck.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Histoory.png" />
+            <Image url="@../../Pix/Menu/Histoory.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="248.0" fitWidth="330.0" layoutX="157.0" layoutY="24.0">
+      <ImageView fitHeight="248.0" fitWidth="330.0" layoutX="94.0" layoutY="30.0">
          <image>
-            <Image url="@../Pix/Menu/ClashRoyale.png" />
+            <Image url="@../../Pix/Menu/ClashRoyale.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="225.0" fitWidth="300.0" layoutX="233.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Battle.png" />
+            <Image url="@../../Pix/Menu/Battle.png" />
          </image>
       </ImageView>
       <Label layoutX="80.0" layoutY="446.0" prefHeight="72.0" prefWidth="151.0" text="DECK">
@@ -76,15 +76,26 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="463.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="HISTORY">
+      <Label layoutX="463.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="PROFILE">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="880.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="48.0" fitWidth="64.0" layoutX="890.0" layoutY="20.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Exit.png" />
+            <Image url="@../../Pix/Menu/Exit.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="843.0" layoutY="24.0" onMouseClicked="#gotoMainMenu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Pix/Menu/Back.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </AnchorPane>

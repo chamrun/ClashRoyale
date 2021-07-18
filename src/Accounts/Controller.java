@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Controller {
 
     Database database = new Database("localhost", "sa", "SQLpass", "test.dbo.users");
@@ -47,7 +45,7 @@ public class Controller {
         System.out.println(userName.getText() + " logged in.");
 
 
-        switchToScene(event, "../Menu/MainMenu.fxml").setUser(user);
+        switchToScene(event, "../Menu/View/MainMenu.fxml").setUser(user);
 
         // Here we send user to "MainMenu package"
     }
@@ -95,6 +93,7 @@ public class Controller {
             stage.setScene(scene);
             stage.setTitle(getTitle(sceneName));
             stage.show();
+
             if (sceneName.startsWith("..")) {
                 return loader.getController();
             }
@@ -105,7 +104,7 @@ public class Controller {
             stage.show();
              */
         }
-        catch (IOException e){
+        catch (Exception e){
             System.out.println(sceneName + ": wrong?");
         }
 

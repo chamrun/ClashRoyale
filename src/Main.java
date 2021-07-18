@@ -13,7 +13,7 @@ public class Main extends Application {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("Accounts/View/login.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("Menu/MainMenu.fxml"));a  a
+        //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/MainMenu.fxml"));
 
 
         primaryStage.getIcons().add(new Image("Pix/Accounts/icon.png"));

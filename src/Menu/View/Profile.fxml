@@ -32,59 +32,69 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu.Controller">
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Main.jpg" />
+            <Image url="@../../Pix/Menu/Profile.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="420.0" layoutX="530.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="330.0" />
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Deck.png" />
+            <Image url="@../../Pix/Menu/Exit.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="847.0" layoutY="24.0" onMouseClicked="#gotoMainMenu" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Histoory.png" />
+            <Image url="@../../Pix/Menu/Back.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <ImageView fitHeight="248.0" fitWidth="330.0" layoutX="157.0" layoutY="24.0">
-         <image>
-            <Image url="@../Pix/Menu/ClashRoyale.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="225.0" fitWidth="300.0" layoutX="233.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Pix/Menu/Battle.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="80.0" layoutY="446.0" prefHeight="72.0" prefWidth="151.0" text="DECK">
+      <Text fx:id="levelText" layoutX="560.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your level: " textAlignment="CENTER" wrappingWidth="261.85125732421875">
          <font>
-            <Font size="40.0" />
+            <Font size="35.0" />
          </font>
-      </Label>
-      <Label layoutX="259.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="BATTLE!">
-         <font>
-            <Font name="System Bold" size="40.0" />
-         </font>
-      </Label>
-      <Label layoutX="463.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="PROFILE">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="48.0" fitWidth="64.0" layoutX="880.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      </Text>
+      <ProgressBar fx:id="levelBar" layoutX="560.0" layoutY="200.0" prefHeight="20.0" prefWidth="265.0" progress="0.0">
+         <effect>
+            <DropShadow />
+         </effect></ProgressBar>
+      <PieChart fx:id="chart" layoutX="596.0" layoutY="223.0" prefHeight="219.0" prefWidth="200.0" />
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="797.0" layoutY="24.0" onMouseClicked="#refreshProfile" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Pix/Menu/Exit.png" />
+            <Image url="@../../Pix/Menu/Refresh.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
+      <Text fx:id="coins" layoutX="560.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Coins:" textAlignment="CENTER" wrappingWidth="264.1697998046875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="628.0" layoutY="465.0" text="Delete my Account" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
    </children>
 </AnchorPane>
