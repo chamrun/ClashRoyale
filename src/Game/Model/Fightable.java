@@ -18,6 +18,7 @@ public abstract class Fightable extends Thread{
     protected final Team team;
     protected final Type type;
     protected ImageView currentImage;
+    protected Direction direction;
         //    private boolean isAlive;
 
     public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
@@ -30,6 +31,10 @@ public abstract class Fightable extends Thread{
         this.hitSpeed = hitSpeed;
         this.range = range;
         this.location = location;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     public ImageView getCurrentImage() {
@@ -99,5 +104,10 @@ public abstract class Fightable extends Thread{
                 hitSpeed *= 1.4;
             }
         }, duration);
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }

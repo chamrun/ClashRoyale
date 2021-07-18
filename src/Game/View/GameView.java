@@ -1,5 +1,6 @@
 package Game.View;
 
+import Debugging.Deb;
 import Game.Model.Board;
 import Game.Model.Fightable;
 import Game.Model.Soldiers.Soldier;
@@ -23,12 +24,15 @@ public class GameView {
 
         //todo : clear pane
 
+        Deb.print("The screen was cleared.");
 
         LinkedList<Fightable> fightables = board.getAFightables();
         setFightableImages(fightables);
 
         fightables = board.getBFightables();
         setFightableImages(fightables);
+
+        //todo : update elixirs
 
 
         // check fightables and their modes and directions and set images in their location
@@ -45,6 +49,8 @@ public class GameView {
                 //todo : setting location
                 pane.getChildren().add(curr);
             }
+            Deb.print("new position of"+ fightable.getClass().toString()
+                    +" on screen :  X = "+curr.getX()+" , Y = "+curr.getY()+" , Direction = "+ fightable.getDirection());
         }
     }
 
