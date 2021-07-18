@@ -76,12 +76,12 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="463.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="PROFILE">
+      <Label layoutX="463.0" layoutY="446.0" prefHeight="72.0" prefWidth="178.0" text="HISTORY">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <ImageView fitHeight="48.0" fitWidth="64.0" layoutX="880.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="880.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pix/Menu/Exit.png" />
          </image>

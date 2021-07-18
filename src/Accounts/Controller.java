@@ -47,7 +47,7 @@ public class Controller {
         System.out.println(userName.getText() + " logged in.");
 
 
-        switchToScene(event, "../Menu/Profile.fxml").setUser(user);
+        switchToScene(event, "../Menu/MainMenu.fxml").setUser(user);
 
         // Here we send user to "MainMenu package"
     }
