@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
@@ -47,6 +48,9 @@ public class GameController {
         });
         Deb.print("deleting char");
     }
+
+    @FXML
+    private ProgressBar timeProgressBar;
 
     @FXML
     public Pane landPane;

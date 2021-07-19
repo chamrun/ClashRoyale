@@ -38,6 +38,8 @@ public class GameView {
 
     public void update() {
 
+        if (fighters.size() == 0)
+            return;
         fighters.get(0).getCurrentImage().setLayoutX(tileWidth+fighters.get(0).getCurrentImage().getLayoutX());
         try {
             Thread.sleep(5000);
@@ -45,6 +47,7 @@ public class GameView {
             e.printStackTrace();
         }
         controller.die(fighters.get(0).getCurrentImage());
+        fighters.remove(0);
 
         //todo : clear pane
 //

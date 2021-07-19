@@ -13,8 +13,8 @@ public class TestFighter extends Thread{
     public TestFighter(Location location) {
         this.location = location;
         currentImage = new ImageView(new Image("characters/MiniPEKKA/Min_Walk_Open.png"));
-        currentImage.setFitHeight(70);
-        currentImage.setFitWidth(70);
+        currentImage.setFitHeight(50);
+        currentImage.setFitWidth(50);
 
     }
 

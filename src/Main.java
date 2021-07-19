@@ -1,6 +1,4 @@
 import Game.Controller.GameController;
-import Game.Model.Board;
-import Game.Model.Soldiers.Barbarian;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
@@ -8,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("Game/View/GameView.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("Game/View/GameView1.fxml"));
 //        primaryStage.setTitle("Game");
 //        primaryStage.setScene(new Scene(root));
         ImageView imageView = new ImageView(new Image("characters/Barbarians/Bar_Walk_Open.png"));
@@ -36,12 +33,12 @@ public class Main extends Application {
         Parent root = loader.getRoot();
         GameController controller = loader.getController();
 
-        imageView.setFitHeight(70);
-        imageView.setFitWidth(70);
-        imageView1.setFitHeight(70);
-        imageView1.setFitWidth(70);
-        imageView2.setFitHeight(70);
-        imageView2.setFitWidth(70);
+        imageView.setFitHeight(30.5);
+        imageView.setFitWidth(30.5);
+        imageView1.setFitHeight(50);
+        imageView1.setFitWidth(50);
+        imageView2.setFitHeight(30.5);
+        imageView2.setFitWidth(30.5);
         imageView.setX(50);
         imageView.setY(70);
         imageView1.setX(170);
