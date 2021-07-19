@@ -52,7 +52,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="420.0" layoutX="530.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="330.0" />
-      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#gotoExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pix/Menu/Exit.png" />
          </image>

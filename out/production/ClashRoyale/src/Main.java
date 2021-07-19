@@ -12,9 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("Accounts/View/login.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("Accounts/View/login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/MainMenu.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("Menu/View/NewGame.fxml"));
 
         primaryStage.getIcons().add(new Image("Pix/Accounts/icon.png"));
         primaryStage.setTitle("Login");

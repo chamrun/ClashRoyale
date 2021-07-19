@@ -2,6 +2,7 @@ package Menu;
 
 import Accounts.Database;
 import Accounts.User;
+import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,10 +99,10 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void askDifficulty(Event event){
+    public void gotoNewGame(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
         //switchToScene(event, "AskDifficulty");
-        switchToScene(event, "View/Profile.fxml");
+        switchToScene(event, "View/NewGame.fxml");
     }
 
     @FXML
@@ -112,16 +113,26 @@ public class Controller implements Initializable {
     @FXML
     public void gotoProfile(MouseEvent event){
         //chart
-
-
         switchToScene(event, "View/Profile.fxml");
-
 
     }
 
 
+    @FXML
     public void gotoDeck(MouseEvent event) {
         switchToScene(event, "View/Deck.fxml");
+    }
+
+    @FXML
+    public void logout(Event event){
+        System.out.println("logging out...");
+        //are you sure?
+        switchToScene(event, "../Accounts/View/login.fxml");
+    }
+
+
+    public void gotoExit(MouseEvent event) {
+        switchToScene(event, "View/Exit.fxml");
     }
 
 
@@ -169,11 +180,6 @@ public class Controller implements Initializable {
         return strings[strings.length - 1];
     }
 
-    public void logout(MouseEvent event) {
-        System.out.println("logging out...");
-        //are you sure?
-        switchToScene(event, "../Accounts/View/login.fxml");
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -190,6 +196,20 @@ public class Controller implements Initializable {
             //Load decks...
         }
 
+    }
+
+    public void restart(MouseEvent event) {
+        String[] args = new String[0];
+        try {
+            Main.main(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exit(MouseEvent event) {
+        System.out.println("Exiting...");
+        System.exit(0);
     }
 
 

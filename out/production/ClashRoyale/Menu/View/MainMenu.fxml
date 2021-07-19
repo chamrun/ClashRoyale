@@ -69,7 +69,7 @@
             <Image url="@../../Pix/Menu/ClashRoyale.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="170.0" fitWidth="150.0" layoutX="260.0" layoutY="285.0" onMouseClicked="#askDifficulty" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="170.0" fitWidth="150.0" layoutX="260.0" layoutY="285.0" onMouseClicked="#gotoNewGame" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pix/Menu/Battle.png" />
          </image>
@@ -92,7 +92,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label layoutX="259.0" layoutY="446.0" onMouseClicked="#askDifficulty" prefHeight="72.0" prefWidth="178.0" text="BATTLE!">
+      <Label layoutX="259.0" layoutY="446.0" onMouseClicked="#gotoNewGame" prefHeight="72.0" prefWidth="178.0" text="BATTLE!">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -107,7 +107,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#gotoExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pix/Menu/Exit.png" />
          </image>
