@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -69,7 +70,7 @@
             <Font name="Rockwell" size="35.0" />
          </font>
       </Text>
-      <RadioButton layoutX="680.0" layoutY="175.0" mnemonicParsing="false" text="EASY">
+      <RadioButton fx:id="easy" layoutX="680.0" layoutY="175.0" mnemonicParsing="false" text="EASY">
          <font>
             <Font name="Rockwell" size="25.0" />
          </font>
@@ -77,15 +78,16 @@
             <ToggleGroup fx:id="tg" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="390.0" layoutY="175.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$tg">
+      <RadioButton fx:id="medium" layoutX="390.0" layoutY="175.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$tg">
          <font>
             <Font name="Rockwell" size="25.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="160.0" layoutY="175.0" mnemonicParsing="false" text="HARD" toggleGroup="$tg">
+      <RadioButton fx:id="hard" layoutX="160.0" layoutY="175.0" mnemonicParsing="false" text="HARD" toggleGroup="$tg">
          <font>
             <Font name="Rockwell" size="25.0" />
          </font>
       </RadioButton>
+      <Button layoutX="641.0" layoutY="56.0" mnemonicParsing="false" onAction="#startGame" text="BATTLE!" />
    </children>
 </AnchorPane>

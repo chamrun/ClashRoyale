@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,66 +28,11 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
-
-
-
-    @FXML
-    private PieChart chart;
-
-    @FXML
-    private Text levelText;
-
-    @FXML
-    private Text coins;
-
-    @FXML
-    private ProgressBar levelBar;
-
+    /**
+     * Common Controller
+     */
 
     User user;
-
-
-    @FXML
-    public void refreshProfile(Event event){
-
-        levelText.setText(("Level " + user.getLevel().toString()));
-        coins.setText(user.getCoins() + "");
-
-        //ToDo: just for test, should be removed
-
-
-        if (chart.getData().size() != 0) {
-            chart.getData().clear();
-
-            System.out.println("Removing all from chart...");
-        }
-
-        PieChart.Data wins = new PieChart.Data("Wins", user.getWins());
-        PieChart.Data loses = new PieChart.Data("Loses", user.getLoses());
-
-        ObservableList<PieChart.Data> chartData =
-                FXCollections.observableArrayList(
-                        wins, loses);
-
-        chart.getData().addAll(chartData);
-
-        loses.getNode().setStyle("-fx-pie-color: blue");
-        wins.getNode().setStyle("-fx-pie-color: red");
-
-        chartData.forEach(data ->
-                data.nameProperty().bind(
-                        Bindings.concat(
-                                data.getName(), ": ", data.getPieValue()
-                        )
-                )
-        );
-
-
-        levelBar.setProgress(user.getLevelProgress());
-
-
-
-    }
 
     @FXML
     public void setUser(Event event, User user) {
@@ -117,7 +64,6 @@ public class Controller implements Initializable {
 
     }
 
-
     @FXML
     public void gotoDeck(MouseEvent event) {
         switchToScene(event, "View/Deck.fxml");
@@ -130,13 +76,9 @@ public class Controller implements Initializable {
         switchToScene(event, "../Accounts/View/login.fxml");
     }
 
-
     public void gotoExit(MouseEvent event) {
         switchToScene(event, "View/Exit.fxml");
     }
-
-
-
 
     public void setUser(User user) {
 
@@ -180,7 +122,6 @@ public class Controller implements Initializable {
         return strings[strings.length - 1];
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("initialize of Menu.Controller");
@@ -213,23 +154,89 @@ public class Controller implements Initializable {
         System.exit(0);
     }
 
-    public void testCrcle(MouseEvent event) {
 
-        System.out.println(event);
-        /*
-        System.out.println(((Circle)event.getSource()).getFill());
+    /**
+     * Profile Controller
+     */
+    @FXML
+    private PieChart chart;
+    @FXML
+    private Text levelText;
+    @FXML
+    private Text coins;
+    @FXML
+    private ProgressBar levelBar;
 
-        Circle circle = (Circle)event.getSource();
-        if (circle.getFill().toString().contains("fd5602")){//if circle is Orange
-            circle.setFill(Paint.valueOf("fedebe"));//Make it Yellow
+    @FXML
+    public void refreshProfile(Event event){
+
+        levelText.setText(("Level " + user.getLevel().toString()));
+        coins.setText(user.getCoins() + "");
+
+        //ToDo: just for test, should be removed
+
+
+        if (chart.getData().size() != 0) {
+            chart.getData().clear();
+
+            System.out.println("Removing all from chart...");
         }
 
-         */
+        PieChart.Data wins = new PieChart.Data("Wins", user.getWins());
+        PieChart.Data loses = new PieChart.Data("Loses", user.getLoses());
+
+        ObservableList<PieChart.Data> chartData =
+                FXCollections.observableArrayList(
+                        wins, loses);
+
+        chart.getData().addAll(chartData);
+
+        loses.getNode().setStyle("-fx-pie-color: blue");
+        wins.getNode().setStyle("-fx-pie-color: red");
+
+        chartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), ": ", data.getPieValue()
+                        )
+                )
+        );
+
+
+        levelBar.setProgress(user.getLevelProgress());
+
+
 
     }
 
-    public void testCircle(MouseEvent event) {
+
+    /**
+     * NewGame Controller
+     */
+    @FXML
+    private ToggleGroup tg;
+    @FXML
+    private RadioButton easy;
+    @FXML
+    private RadioButton medium;
+    @FXML
+    private RadioButton hard;
+
+    public void startGame(Event event) {
         System.out.println(event);
+
+        RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
+
+        if (selectedButton == easy){
+            System.out.println("Starting easy game...");
+
+        }
+        else if (selectedButton == medium){
+            System.out.println("Starting medium game...");
+        }
+        else if (selectedButton == hard){
+            System.out.println("Starting hard game...");
+        }
     }
 
 
@@ -240,6 +247,13 @@ public class Controller implements Initializable {
     }
 
      */
+
+
+    /**
+     * Deck Controller
+     */
+
+
 
 
 }
