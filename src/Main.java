@@ -48,8 +48,6 @@ public class Main extends Application {
         imageView1.setY(70);
         imageView2.setX(260);
 
-        controller.backgroundImage.setFitWidth(1136);
-
 //        imageView.setRotationAxis(new );
         controller.landPane.getChildren().add(imageView);
         controller.landPane.getChildren().add(imageView1);

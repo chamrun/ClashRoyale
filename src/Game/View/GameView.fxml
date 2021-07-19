@@ -10,9 +10,9 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="backgroundImage" fitWidth="480.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backgroundImage" fitHeight="270.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/Land/landOfGame.jpg" />
                      </image>
