@@ -48,7 +48,7 @@
             <Image url="@../../Pix/Menu/NewGame.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#gotoExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pix/Menu/Exit.png" />
          </image>

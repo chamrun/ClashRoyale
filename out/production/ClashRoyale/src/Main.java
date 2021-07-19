@@ -14,7 +14,7 @@ public class Main extends Application {
 
         //Parent root = FXMLLoader.load(getClass().getResource("Accounts/View/login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/MainMenu.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("Menu/View/NewGame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Menu/View/Deck.fxml"));
 
         primaryStage.getIcons().add(new Image("Pix/Accounts/icon.png"));
         primaryStage.setTitle("Login");

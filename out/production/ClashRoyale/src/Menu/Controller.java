@@ -200,6 +200,7 @@ public class Controller implements Initializable {
 
     public void restart(MouseEvent event) {
         String[] args = new String[0];
+
         try {
             Main.main(args);
         } catch (Exception e) {
@@ -212,6 +213,25 @@ public class Controller implements Initializable {
         System.exit(0);
     }
 
+    public void testCrcle(MouseEvent event) {
+
+        System.out.println(event);
+        /*
+        System.out.println(((Circle)event.getSource()).getFill());
+
+        Circle circle = (Circle)event.getSource();
+        if (circle.getFill().toString().contains("fd5602")){//if circle is Orange
+            circle.setFill(Paint.valueOf("fedebe"));//Make it Yellow
+        }
+
+         */
+
+    }
+
+    public void testCircle(MouseEvent event) {
+        System.out.println(event);
+    }
+
 
 
     /*
@@ -220,4 +240,6 @@ public class Controller implements Initializable {
     }
 
      */
+
+
 }
