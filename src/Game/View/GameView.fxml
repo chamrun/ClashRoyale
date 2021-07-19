@@ -54,14 +54,24 @@
                <top>
                   <AnchorPane prefHeight="40.0" prefWidth="976.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text layoutX="397.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="score" wrappingWidth="59.88446044921875">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="408.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Desktop/clash%201/seri%2014/Free-Game-Icons-of-Fantasy-Potions-Pack-1/PNG/potions%20(3).png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="528.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Desktop/clash%201/seri%2014/Free-Game-Icons-of-Fantasy-Potions-Pack-1/PNG/potions%20(3).png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="388.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="20.0">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Times New Roman" size="22.0" />
                            </font>
                         </Text>
-                        <Text layoutX="520.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="score">
+                        <Text fill="#206945" layoutX="568.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot; TimesNewRoman&quot;; -fx-font-family: Garamond;" text="3" textAlignment="CENTER" wrappingWidth="20.0">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="22.0" />
                            </font>
                         </Text>
                      </children>
@@ -82,7 +92,7 @@
                      <children>
                         <ImageView fitHeight="549.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Pic/Land/landOfGame.jpg"/>
+                              <Image url="@../../Pic/Land/landOfGame.jpg" />
                            </image>
                         </ImageView>
                         <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" onMouseMoved="#moveMouseOnLandPane" prefHeight="549.0" />

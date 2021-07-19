@@ -46,7 +46,14 @@ public class Main extends Application {
         imageView2.setX(260);
 
 //        imageView.setRotationAxis(new );
-        controller.landPane.getChildren().add(imageView);
+        ImageView imageView3 = new ImageView();
+        imageView3.setLayoutX(0);
+        imageView3.setLayoutY(0);
+        imageView3.setFitWidth(50);
+        imageView3.setFitHeight(50);
+        Image image = new Image("characters/Barbarians/Bar_Walk_Closed.png");
+        imageView3.setImage(image);
+        controller.landPane.getChildren().add(imageView3);
         controller.landPane.getChildren().add(imageView1);
 //        controller.landPane.getChildren().add(imageView);
 
