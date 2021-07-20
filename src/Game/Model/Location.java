@@ -3,6 +3,11 @@ package Game.Model;
 public class Location {
     private double x;
     private double y;
+    private boolean isEmpty;
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
 
     public Location(double x, double y) {
         if (18 < x || 36 < y || x < 0 || y < 0) {

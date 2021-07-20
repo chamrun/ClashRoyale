@@ -2,22 +2,35 @@ package Game.Controller;
 
 import Debugging.Deb;
 import Debugging.TestFighter;
+import Game.Model.Buildings.Cannon;
+import Game.Model.Buildings.InfernoTower;
+import Game.Model.Card;
+import Game.Model.Fightable;
 import Game.Model.Location;
+import Game.Model.Soldiers.*;
+import Game.Model.Spells.Arrows;
+import Game.Model.Spells.Fireball;
+import Game.Model.Spells.Rage;
 import Game.View.GameView;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 
+import java.util.HashMap;
 import java.util.TimerTask;
 import java.util.Timer;
 
 
 public class GameController {
+    private Location[][] locations;
+    private HashMap<Image, String> cardImages;
+    private Image chosenCard;
     private Timer timer = new Timer();
     private final int FRAMES_PER_SECOND = 1;
     private boolean isTimeOver = false;
@@ -75,41 +88,6 @@ public class GameController {
         long frameTimeInMilliseconds = (long) (1000.0 / FRAMES_PER_SECOND);
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
         Deb.print("Timer task starts.");
-
-//        Deb.print("im in start timer method");
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Deb.print("im in timer thread");
-//                while (true){
-//                    Platform.runLater(new Runnable() {
-//                        public void run() {
-//                            if (landPane.getChildren().size() !=2)
-//                            landPane.getChildren().get(2).setLayoutX(landPane.getChildren().get(2).getLayoutX()+50);
-//                        }
-//                    });
-//                    Deb.print("View has updated. {in controller}");
-//                    try {
-//                        Thread.sleep(2000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
-//        while (true){
-//            Platform.runLater(new Runnable() {
-//                public void run() {
-//                    landPane.getChildren().get(2).setLayoutX(landPane.getChildren().get(2).getLayoutX()+50);
-//                }
-//            });
-//            Deb.print("View has updated. {in controller}");
-//            try {
-//                Thread.sleep(2000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
     }
 
@@ -173,27 +151,46 @@ public class GameController {
         //add Elixirs to players
     }
 
+    public void removeLandElement(ImageView imageView){
+        landPane.getChildren().remove(imageView);
+    }
+
 
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {
 
         //todo : check validation of location and card then put it in
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
-        TestFighter testFighter = new TestFighter(new Location(event.getX() / gameView.getTileWidth(),
-                event.getY() / gameView.getTileHeight()));
-//
-        gameView.getFighters().add(testFighter);
-        startTimer();
+        Location chosenLocation = locations[(int) (event.getX()/gameView.getTileWidth())][(int) (event.getY()/gameView.getTileHeight())];
+        if (chosenCard != null){
+            if (chosenLocation.isEmpty()){
+                Card card = createCard(chosenLocation);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        landPane.getChildren().add(card.getCurrentImage());
+                    }
+                });
+                Deb.print("Class : GameController | method : clickMouseOnLandPane " +
+                        "| new card added to landPane.");
+            }
+        }
+
+//        TestFighter testFighter = new TestFighter(new Location(event.getX() / gameView.getTileWidth(),
+//                event.getY() / gameView.getTileHeight()));
+////
+//        gameView.getFighters().add(testFighter);
+//        startTimer();
 //        testFighter.start();
 //
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-        testFighter.getCurrentImage().setLayoutX(event.getX());
-        testFighter.getCurrentImage().setLayoutY(event.getY());
-        landPane.getChildren().add(testFighter.getCurrentImage());
-            }
-        });
+//        Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//        testFighter.getCurrentImage().setLayoutX(event.getX());
+//        testFighter.getCurrentImage().setLayoutY(event.getY());
+//        landPane.getChildren().add(testFighter.getCurrentImage());
+//            }
+//        });
     }
 
     @FXML
@@ -201,6 +198,50 @@ public class GameController {
 
         //todo : check validation of location and card then highlight it.
 //        Deb.print("Mouse moved on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
+    }
+
+    public Card createCard(Location location){
+        Card card = null;
+        switch (cardImages.get(chosenCard)){
+            case "Archers":
+                card =  new Archers();
+                break;
+            case "BabyDragon":
+                card = new BabyDragon();
+                break;
+            case "Barbarian":
+                card = new Barbarian();
+                break;
+            case "Giant":
+                card = new Giant();
+                break;
+            case "MiniPEKKA":
+                card = new MiniPEKKA();
+                break;
+            case "Valkyrie":
+                card = new Valkyrie();
+                break;
+            case "Wizard":
+                card = new Wizard();
+                break;
+            case "Cannon":
+                card = new Cannon();
+                break;
+            case "InfernoTower":
+                card = new InfernoTower();
+                break;
+            case "Arrows":
+                card = new Arrows();
+                break;
+            case "Fireball":
+                card = new Fireball();
+                break;
+            case "Rage":
+                card = new Rage();
+                break;
+        }
+        Deb.print("Class : GameController | method : createCard | new card created.");
+        return card;
     }
 
 }
