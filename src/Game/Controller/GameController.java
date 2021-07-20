@@ -22,10 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TimerTask;
-import java.util.Timer;
+import java.util.*;
 
 
 public class GameController {
@@ -223,11 +220,15 @@ public class GameController {
     }
 
     public Image getRandomCardImage(){
+        Random random = new Random();
+        int randomNum = random.nextInt()% 3;
+        int i = 0;
         for (Map.Entry<Image,String> entry : cardImages.entrySet()){
             if (cardImageViewsContain(entry.getKey()))
                 continue;
-            return entry.getKey();
-
+            if (i == randomNum)
+                return entry.getKey();
+            i++;
         }
         return null;
     }
