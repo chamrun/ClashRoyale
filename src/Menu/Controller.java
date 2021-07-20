@@ -6,6 +6,7 @@ import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +18,14 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -99,7 +102,7 @@ public class Controller implements Initializable {
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle(getTitle(sceneName));
+            stage.setTitle(getTitle(sceneName, ".fxml"));
             stage.show();
 
             if (!sceneName.startsWith("..")){
@@ -117,8 +120,8 @@ public class Controller implements Initializable {
 
     }
 
-    private String getTitle(String sceneName) {
-        String[] strings = (sceneName.replace(".fxml", "")).split("/");
+    private String getTitle(String url, String suffix) {
+        String[] strings = (url.replace(suffix, "")).split("/");
         return strings[strings.length - 1];
     }
 
@@ -254,6 +257,86 @@ public class Controller implements Initializable {
      */
 
 
+    @FXML
+    void radioButtonAction(ActionEvent event) {
+
+
+        ((RadioButton) event.getSource()).setUserData("hello");
+
+        System.out.println("userData: " +((RadioButton) event.getSource()).getUserData());
+
+
+
+        //System.out.println(event);
+        //System.out.println(((RadioButton) event.getSource()).getChildrenUnmodifiable());
+
+
+
+        /*
+        if (radioButton.isSelected()){
+            user.addCard(cardName);
+        }
+        else{
+            user.removeCard(cardName);
+        }
+
+         */
+
+
+
+
+
+
+
+    }
+
+
+    @FXML
+    void selectCurrentDeck(ActionEvent event) {
+        Parent root = ((Node)event.getSource()).getScene().getRoot();
+        RadioButton[] radioButtons = getRootRadiobuttons(root);
+        System.out.println(Arrays.toString(radioButtons));
+
+        String[] selectedDeck = new String[]{"BabyDragon", "Inferno", "Barbarian"};//user.getDeck();
+
+        for (String cardName: selectedDeck){
+            for (RadioButton radioButton: radioButtons){
+                if (radioButton == null)
+                    continue;
+
+                if (cardName.equalsIgnoreCase(getRadiobuttonCardname(radioButton))){
+                    radioButton.setSelected(true);
+                }
+            }
+        }
+    }
+
+    private RadioButton[] getRootRadiobuttons(Parent root) {
+        ObservableList<Node> children = root.getChildrenUnmodifiable();
+        //System.out.println(children);
+
+        RadioButton[] radioButtons = new RadioButton[8];
+        int i = 0;
+
+        for (Node node: children){
+            //System.out.println(node.getClass());
+            if (node instanceof RadioButton){
+                radioButtons[i] = (RadioButton) node;
+                i++;
+            }
+        }
+
+        //System.out.println(Arrays.toString(radioButtons));
+        return radioButtons;
+    }
+
+    private String getRadiobuttonCardname(RadioButton radioButton) {
+        ObservableList<Node> images = radioButton.getChildrenUnmodifiable();
+        String imageUrl = ((ImageView)images.get(0)).getImage().getUrl();
+        String cardName = getTitle(imageUrl, ".png");
+        //System.out.println(cardName);
+        return cardName;
+    }
 
 
 }

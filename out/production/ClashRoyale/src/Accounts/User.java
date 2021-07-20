@@ -12,6 +12,10 @@ public class User {
     private int loses;
     Card[] deck;
 
+    public Card[] getDeck() {
+        return deck;
+    }
+
     public User(Database database, String name) {
         this.database = database;
         this.name = name;

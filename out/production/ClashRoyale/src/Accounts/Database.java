@@ -7,6 +7,9 @@ import java.sql.*;
 
 public class Database {
 
+
+    //ToDo: empty uName-pass can log in :/
+
     private Statement statement;
     private final String tableName;
 
