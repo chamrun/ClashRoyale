@@ -1,11 +1,9 @@
 package Game.Controller;
 
 import Debugging.Deb;
-import Debugging.TestFighter;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
 import Game.Model.Card;
-import Game.Model.Fightable;
 import Game.Model.Location;
 import Game.Model.Soldiers.*;
 import Game.Model.Spells.Arrows;
@@ -14,7 +12,6 @@ import Game.Model.Spells.Rage;
 import Game.View.GameView;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -89,13 +86,7 @@ public class GameController {
     public void startTimer() {
         TimerTask timerTask = new TimerTask() {
             public void run() {
-                gameView.update();
-//                Platform.runLater(new Runnable() {
-//                    public void run() {
-//                        if (landPane.getChildren().size() != 2)
-//                            landPane.getChildren().get(2).setLayoutX(landPane.getChildren().get(2).getLayoutX() + 50);
-//                    }
-//                });
+//                gameView.update();
                 Deb.print("View has updated. {in controller}");
             }
         };
@@ -107,17 +98,6 @@ public class GameController {
     }
 
     public void update() {
-//        gameView.update();
-
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                landPane.getChildren().get(2).setLayoutX(landPane.getChildren().get(2).getLayoutX() + 50);
-//                testFighter.getCurrentImage().setLayoutY(event.getY());
-//                landPane.getChildren().add(testFighter.getCurrentImage());
-            }
-        });
         //todo : update view
         //todo : check time limit
         //todo : check end of game
@@ -192,23 +172,6 @@ public class GameController {
         }
 
         resetCardAndLocation();
-
-
-//        TestFighter testFighter = new TestFighter(new Location(event.getX() / gameView.getTileWidth(),
-//                event.getY() / gameView.getTileHeight()));
-////
-//        gameView.getFighters().add(testFighter);
-//        startTimer();
-//        testFighter.start();
-//
-//        Platform.runLater(new Runnable() {
-//            @Override
-//            public void run() {
-//        testFighter.getCurrentImage().setLayoutX(event.getX());
-//        testFighter.getCurrentImage().setLayoutY(event.getY());
-//        landPane.getChildren().add(testFighter.getCurrentImage());
-//            }
-//        });
     }
 
     public void resetCardAndLocation(){

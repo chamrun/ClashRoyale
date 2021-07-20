@@ -11,16 +11,19 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class Soldier extends Fightable implements Card {
+
+
     protected Speed speed;
     protected final Target target;
     protected final boolean isAreaSplash;
     protected final int count;
     protected final int cost;
+
     protected Mode mode;
-    protected Timer moveTimer;
-    protected Timer fightTimer;
+
+
     protected long moveTime;
-    protected long fightTime;
+    protected int moveProgress;
     protected ImageView walk_closed_r;
     protected ImageView walk_open_r;
     protected ImageView walk_closed_l;
@@ -29,7 +32,11 @@ public abstract class Soldier extends Fightable implements Card {
     protected ImageView walk_open_u;
     protected ImageView walk_closed_d;
     protected ImageView walk_open_d;
-    protected int moveProgress;
+
+
+    protected long fightTime;
+
+
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
                    boolean isAreaSplash, int count, int cost, Team team, Type type) {
