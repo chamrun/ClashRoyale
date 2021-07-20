@@ -72,7 +72,65 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Text fill="WHITE" layoutX="126.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose 8 cards!">
+         <font>
+            <Font name="Rockwell" size="40.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="425.0" layoutY="53.0" onAction="#selectCurrentDeck" text="(Show my current deck)" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="20.0" />
+         </font>
+      </Hyperlink>
       <RadioButton layoutX="30.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Wizard.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </RadioButton>
+      <RadioButton layoutX="30.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Giant.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="30.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/barbarian.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="210.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>
             <Font name="Rockwell" size="30.0" />
          </font>
@@ -90,14 +148,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </RadioButton>
-      <RadioButton layoutX="30.0" layoutY="400.0" mnemonicParsing="false" textFill="WHITE">
+      <RadioButton layoutX="210.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="30.0" />
          </font>
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/Giant.png" />
+                  <Image url="@../../Pix/Cards/PEKKA.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -105,14 +163,14 @@
             </ImageView>
          </graphic>
       </RadioButton>
-      <RadioButton layoutX="30.0" layoutY="260.0" mnemonicParsing="false" textFill="WHITE">
+      <RadioButton layoutX="210.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="30.0" />
          </font>
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/barbarian.png" />
+                  <Image url="@../../Pix/Cards/Valkyrie.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -120,15 +178,101 @@
             </ImageView>
          </graphic>
       </RadioButton>
-      <Text fill="WHITE" layoutX="126.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose 8 cards:">
+      <RadioButton layoutX="390.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>
-            <Font name="Rockwell" size="40.0" />
+            <Font name="Rockwell" size="30.0" />
          </font>
-      </Text>
-      <Hyperlink layoutX="425.0" layoutY="53.0" onAction="#selectCurrentDeck" text="(Show my current deck)" textFill="#ff00ee">
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Archer.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </RadioButton>
+      <RadioButton layoutX="390.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
-            <Font name="Rockwell" size="20.0" />
+            <Font name="Rockwell" size="30.0" />
          </font>
-      </Hyperlink>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Cannon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="390.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Inferno.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="570.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Fireball.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="570.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Arrows.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
+      <RadioButton layoutX="570.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Pix/Cards/Rage.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </RadioButton>
    </children>
 </AnchorPane>
