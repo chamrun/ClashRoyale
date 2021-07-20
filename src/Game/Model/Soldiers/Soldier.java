@@ -35,7 +35,23 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     protected long fightTime;
-
+    protected ImageView fight_1_r;
+    protected ImageView fight_1_l;
+    protected ImageView fight_1_u;
+    protected ImageView fight_1_p;
+    protected ImageView fight_2_r;
+    protected ImageView fight_2_l;
+    protected ImageView fight_2_u;
+    protected ImageView fight_2_p;
+    protected ImageView fight_3_r;
+    protected ImageView fight_3_l;
+    protected ImageView fight_3_u;
+    protected ImageView fight_3_p;
+    protected ImageView fight_4_r;
+    protected ImageView fight_4_l;
+    protected ImageView fight_4_u;
+    protected ImageView fight_4_p;
+    protected ImageView[] fightImageViews;
 
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
@@ -50,55 +66,96 @@ public abstract class Soldier extends Fightable implements Card {
         moveTime = getMoveTime();
 
         initializeWalkImages();
+        initializeFightImages();
 
     }
 
-    public  void initializeWalkImages(){
+    public void initializeFightImages() {
+        String address = null;
+        fightImageViews[0] = fight_1_r;
+        fightImageViews[4] = fight_1_l;
+        fightImageViews[8] = fight_1_u;
+        fightImageViews[12] = fight_1_p;
+        fightImageViews[1] = fight_2_r;
+        fightImageViews[5] = fight_2_l;
+        fightImageViews[9] = fight_2_u;
+        fightImageViews[13] = fight_2_p;
+        fightImageViews[2] = fight_3_r;
+        fightImageViews[6] = fight_3_l;
+        fightImageViews[10] = fight_3_u;
+        fightImageViews[14] = fight_3_p;
+        fightImageViews[3] = fight_4_r;
+        fightImageViews[7] = fight_4_l;
+        fightImageViews[11] = fight_4_u;
+        fightImageViews[15] = fight_4_p;
+
+        for (int i = 1; i < 5; i++) {
+            if (this instanceof Barbarian) {
+                address = "characters/Barbarians/Bar_Fight_" + i + ".png";
+            } else if (this instanceof Archers) {
+                address = "characters/Archers/Arc_Fight_" + i + ".png";
+            } else if (this instanceof BabyDragon) {
+                address = "characters/BabyDragon/Bab_Fight_" + i + ".png";
+            } else if (this instanceof Giant) {
+                address = "characters/Giant/Gia_Fight_" + i + ".png";
+            } else if (this instanceof MiniPEKKA) {
+                address = "characters/MiniPEKKA/Min_Fight_" + i + ".png";
+            } else if (this instanceof Valkyrie) {
+                address = "characters/MiniPEKKA/Min_Fight_" + i + ".png";
+            } else if (this instanceof Wizard) {
+                address = "characters/Wizard/Wiz_Fight_" + i + ".png";
+            }
+            makeRotationForms(fightImageViews[i - 1], fightImageViews[i + 3],
+                    fightImageViews[i + 7], fightImageViews[i + 11], address);
+        }
+    }
+
+    public void initializeWalkImages() {
         String addressForOpen = null;
         String addressForClosed = null;
 
-        if (this instanceof Barbarian){
+        if (this instanceof Barbarian) {
             addressForClosed = "characters/Barbarians/Bar_Walk_Closed.png";
             addressForOpen = "characters/Barbarians/Bar_Walk_Open.png";
-        }else if (this instanceof Archers){
+        } else if (this instanceof Archers) {
             addressForClosed = "characters/Archers/Arc_Walk_Closed.png";
             addressForOpen = "characters/Archers/Arc_Walk_Open.png";
-        }else if (this instanceof BabyDragon){
+        } else if (this instanceof BabyDragon) {
             addressForClosed = "characters/BabyDragon/Bab_Walk_Open.png";
             addressForOpen = addressForClosed;
-        }else if (this instanceof Giant){
+        } else if (this instanceof Giant) {
             addressForClosed = "characters/Giant/Gia_Walk_Closed.png";
             addressForOpen = "characters/Giant/Gia_Walk_Open.png";
-        }else if (this instanceof MiniPEKKA){
+        } else if (this instanceof MiniPEKKA) {
             addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
             addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
-        }else if (this instanceof Valkyrie){
+        } else if (this instanceof Valkyrie) {
             addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
             addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
-        }else if (this instanceof Wizard){
+        } else if (this instanceof Wizard) {
             addressForClosed = "characters/Wizard/Wiz_Walk_Closed.png";
             addressForOpen = "characters/Wizard/Wiz_Walk_Open.png";
         }
-        makeRotationForms(walk_open_r,walk_open_l,walk_open_u,walk_open_d,addressForOpen);
-        makeRotationForms(walk_closed_r,walk_closed_l,walk_closed_u,walk_closed_d,addressForClosed);
+        makeRotationForms(walk_open_r, walk_open_l, walk_open_u, walk_open_d, addressForOpen);
+        makeRotationForms(walk_closed_r, walk_closed_l, walk_closed_u, walk_closed_d, addressForClosed);
 
     }
 
-    public void makeRotationForms(ImageView imageView1 , ImageView imageView2 , ImageView imageView3,
-                                  ImageView imageView4 ,String address){
+    public void makeRotationForms(ImageView imageView1, ImageView imageView2, ImageView imageView3,
+                                  ImageView imageView4, String address) {
         imageView1 = new ImageView(new Image(address));
-        for (int i = 0 ;i < 3;i++){
+        for (int i = 0; i < 3; i++) {
             ImageView base = new ImageView(new Image(address));
-            if (i == 0){
-                base.setRotationAxis(new Point3D(0,1,0));
+            if (i == 0) {
+                base.setRotationAxis(new Point3D(0, 1, 0));
                 base.setRotate(-180);
                 imageView2 = base;
-            }else {
-                base.setRotationAxis(new Point3D(0,0,1));
-                if (i == 1){
+            } else {
+                base.setRotationAxis(new Point3D(0, 0, 1));
+                if (i == 1) {
                     base.setRotate(-90);
                     imageView3 = base;
-                }else {
+                } else {
                     base.setRotate(90);
                     imageView4 = base;
                 }
@@ -120,18 +177,17 @@ public abstract class Soldier extends Fightable implements Card {
         while (alive) {
             LinkedList<Fightable> enemies = getNearEnemies();
 
-            if (enemies == null){
+            if (enemies == null) {
                 try {
                     Thread.sleep(moveTime / 2);
                     mode = Mode.MOVE_0;
                     move();
-                    Thread.sleep(moveTime/2);
+                    Thread.sleep(moveTime / 2);
                     mode = Mode.MOVE_1;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-            else {
+            } else {
                 fight(enemies);
                 try {
                     Thread.sleep(hitSpeed);
@@ -146,15 +202,13 @@ public abstract class Soldier extends Fightable implements Card {
 
     }
 
-    public void move(){
+    public void move() {
 
         if (true)//TODO is in his field)
         {
             move(getNearestBridge());
             //TODO: should be: move(board.getNearestBridge(location));
-        }
-        else
-        {
+        } else {
             move(board.getNearestTower(location));
         }
     }
@@ -193,12 +247,11 @@ public abstract class Soldier extends Fightable implements Card {
      */
 
 
-
-    public LinkedList<Fightable> getNearEnemies(){
+    public LinkedList<Fightable> getNearEnemies() {
         LinkedList<Fightable> nearEnemies = new LinkedList<>();
         LinkedList<Fightable> enemies = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
 
-        if (isAreaSplash){
+        if (isAreaSplash) {
 
             for (Fightable enemy : enemies) {
                 if (location.getDistance(enemy.getLocation()) <= range) {
@@ -208,15 +261,13 @@ public abstract class Soldier extends Fightable implements Card {
                 }
             }
 
-            if (nearEnemies.size() == 0){
+            if (nearEnemies.size() == 0) {
                 return null;
             }
-        }
-
-        else {// AreaSplash == false -> we'll return the nearest enemy
+        } else {// AreaSplash == false -> we'll return the nearest enemy
             Fightable nearestEnemy = getNearestEnemy(enemies);
 
-            if (nearestEnemy == null){
+            if (nearestEnemy == null) {
                 return null;
             }
 
@@ -242,7 +293,7 @@ public abstract class Soldier extends Fightable implements Card {
         return nearestEnemy;
     }
 
-    public void changeSpeed(){
+    public void changeSpeed() {
         //todo : relationship between speed and numbers
     }
 
@@ -275,8 +326,8 @@ public abstract class Soldier extends Fightable implements Card {
 
          */
     }
-    
-    public void updateTargetList(ArrayList<Fightable> targets){
+
+    public void updateTargetList(ArrayList<Fightable> targets) {
         LinkedList<Fightable> enemy = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
         for (Fightable fightable : enemy) {
             if (this.location.getRegion().equals(fightable.getLocation().getRegion())) {
@@ -295,8 +346,7 @@ public abstract class Soldier extends Fightable implements Card {
                 location.setY(location.getY() + 1);
             else
                 location.setY(location.getY() - 1);
-        }
-        else {
+        } else {
             if (destination.getX() > location.getX())
                 location.setX(location.getX() + 1);
             else
@@ -309,17 +359,16 @@ public abstract class Soldier extends Fightable implements Card {
         double min = board.getLength();
         Location nearestBridge = null;
 
-        if (location.getRegion().equals(Region.A)){
-            for (Bridge bridge : board.getBridges()){
-                if (bridge.getAHead().getDistance(location) < min){
+        if (location.getRegion().equals(Region.A)) {
+            for (Bridge bridge : board.getBridges()) {
+                if (bridge.getAHead().getDistance(location) < min) {
                     min = bridge.getAHead().getDistance(location);
                     nearestBridge = bridge.getAHead();
                 }
             }
-        }
-        else{
-            for (Bridge bridge : board.getBridges()){
-                if (bridge.getBHead().getDistance(location) < min){
+        } else {
+            for (Bridge bridge : board.getBridges()) {
+                if (bridge.getBHead().getDistance(location) < min) {
                     min = bridge.getBHead().getDistance(location);
                     nearestBridge = bridge.getBHead();
                 }
@@ -328,17 +377,17 @@ public abstract class Soldier extends Fightable implements Card {
         return nearestBridge;
     }
 
-    public long getMoveTime(){
+    public long getMoveTime() {
         // TODO
         if (speed.equals(Speed.SLOW))
-            return 3*1000;
+            return 3 * 1000;
         else if (speed.equals(Speed.MEDIUM))
-            return 2*1000;
+            return 2 * 1000;
         else
-            return 1*1000;
+            return 1 * 1000;
     }
 
-    public void die(){
+    public void die() {
 
         //This method is to short, we can put it in the end of "run method".
         board.removeFightable(this, team);
@@ -352,7 +401,7 @@ public abstract class Soldier extends Fightable implements Card {
          */
     }
 
-    public boolean isValidEnemy(Fightable enemy){
+    public boolean isValidEnemy(Fightable enemy) {
 
         Type enemyType = enemy.getType();
 
