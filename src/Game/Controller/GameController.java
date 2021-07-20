@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TimerTask;
 import java.util.Timer;
 
@@ -37,14 +38,31 @@ public class GameController {
     private long gameTime = 3 * 60 * 1000;
     private boolean doubleElixir = false;
     private long elixirTime = 2 * 1000;
+    private ImageView[] cardImageViews;
+    private ImageView chosenImageView;
+    private Location chosenLocation;
 
     private GameView gameView;
 
 
     public GameController() {
         this.gameView = new GameView(this);
+        initializeCardImageViews();
+
+
 //        startTimer();
 
+    }
+
+    public void initializeCardImageViews(){
+        cardImageViews[0] = cardImageView1;
+        cardImageViews[1] = cardImageView2;
+        cardImageViews[2] = cardImageView3;
+        cardImageViews[3] = cardImageView4;
+        cardImageViews[4] = cardImageView5;
+        for (int i = 0 ;i <5 ;i++){
+            cardImageViews[i].setImage((Image) cardImages.keySet().toArray()[i]);
+        }
     }
 
     public void initialize(GameView gameView) {
@@ -52,7 +70,7 @@ public class GameController {
 //        startTimer();
     }
 
-    public void die(Node node){
+    public void die(Node node) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -151,7 +169,7 @@ public class GameController {
         //add Elixirs to players
     }
 
-    public void removeLandElement(ImageView imageView){
+    public void removeLandElement(ImageView imageView) {
         landPane.getChildren().remove(imageView);
     }
 
@@ -161,9 +179,9 @@ public class GameController {
 
         //todo : check validation of location and card then put it in
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
-        Location chosenLocation = locations[(int) (event.getX()/gameView.getTileWidth())][(int) (event.getY()/gameView.getTileHeight())];
-        if (chosenCard != null){
-            if (chosenLocation.isEmpty()){
+        chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
+        if (chosenCard != null) {
+            if (chosenLocation.isEmpty()) {
                 Card card = createCard(chosenLocation);
                 Platform.runLater(new Runnable() {
                     @Override
@@ -175,6 +193,9 @@ public class GameController {
                         "| new card added to landPane.");
             }
         }
+
+        resetCardAndLocation();
+
 
 //        TestFighter testFighter = new TestFighter(new Location(event.getX() / gameView.getTileWidth(),
 //                event.getY() / gameView.getTileHeight()));
@@ -193,6 +214,31 @@ public class GameController {
 //        });
     }
 
+    public void resetCardAndLocation(){
+        chosenLocation = null;
+        chosenImageView.setImage(cardImageViews[4].getImage());
+        cardImageViews[4].setImage(getRandomCardImage());
+        chosenCard = null;
+        Deb.print("chosenCard and chosenLocation resets.");
+    }
+
+    public Image getRandomCardImage(){
+        for (Map.Entry<Image,String> entry : cardImages.entrySet()){
+            if (cardImageViewsContain(entry.getKey()))
+                continue;
+            return entry.getKey();
+
+        }
+        return null;
+    }
+    private boolean cardImageViewsContain(Image image){
+        for (int i = 0 ; i < 5 ; i++){
+            if (cardImageViews[i].getImage().equals(image))
+                return true;
+        }
+        return false;
+    }
+
     @FXML
     void moveMouseOnLandPane(MouseEvent event) {
 
@@ -200,11 +246,11 @@ public class GameController {
 //        Deb.print("Mouse moved on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
     }
 
-    public Card createCard(Location location){
+    public Card createCard(Location location) {
         Card card = null;
-        switch (cardImages.get(chosenCard)){
+        switch (cardImages.get(chosenCard)) {
             case "Archers":
-                card =  new Archers();
+                card = new Archers();
                 break;
             case "BabyDragon":
                 card = new BabyDragon();
@@ -242,6 +288,29 @@ public class GameController {
         }
         Deb.print("Class : GameController | method : createCard | new card created.");
         return card;
+    }
+
+
+    @FXML
+    private ImageView cardImageView1;
+
+    @FXML
+    private ImageView cardImageView3;
+
+    @FXML
+    private ImageView cardImageView2;
+
+    @FXML
+    private ImageView cardImageView4;
+
+    @FXML
+    private ImageView cardImageView5;
+
+
+    @FXML
+    void clickMouseOnCard(MouseEvent event) {
+        chosenImageView = ((ImageView) event.getSource());
+        chosenCard = chosenImageView.getImage();
     }
 
 }

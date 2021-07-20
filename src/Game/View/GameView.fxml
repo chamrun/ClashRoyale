@@ -21,27 +21,27 @@
          <left>
             <AnchorPane prefHeight="649.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="160.0" fitWidth="110.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView1" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="118.0" fitWidth="110.0" layoutX="25.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView3" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="264.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="127.0" fitWidth="110.0" layoutX="25.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView2" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="132.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="127.0" fitWidth="110.0" layoutX="25.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView4" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="396.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="528.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView5" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="528.0" onMouseClicked="#clickMouseOnCard" opacity="0.55" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
