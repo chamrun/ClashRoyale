@@ -1,5 +1,7 @@
 package Accounts;
 
+import Player.User;
+
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.math.BigInteger;

@@ -1,7 +1,7 @@
 package Menu;
 
 import Accounts.Database;
-import Accounts.User;
+import Player.User;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;

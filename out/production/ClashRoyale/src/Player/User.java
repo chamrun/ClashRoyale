@@ -1,5 +1,6 @@
-package Accounts;
+package Player;
 
+import Accounts.Database;
 import Game.Model.Level;
 
 public class User {
