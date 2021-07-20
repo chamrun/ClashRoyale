@@ -1,5 +1,6 @@
 package Game.Model.Soldiers;
 
+import Debugging.Deb;
 import Game.Model.*;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
@@ -173,17 +174,14 @@ public abstract class Soldier extends Fightable implements Card {
 
     @Override
     public void run() {
-
         while (alive) {
             LinkedList<Fightable> enemies = getNearEnemies();
 
             if (enemies == null) {
+                move();
                 try {
-                    Thread.sleep(moveTime / 2);
-                    mode = Mode.MOVE_0;
-                    move();
-                    Thread.sleep(moveTime / 2);
-                    mode = Mode.MOVE_1;
+                    Thread.sleep(moveTime);
+                    Deb.print(toString() + "between two damages : " + moveTime + "seconds.");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -191,25 +189,34 @@ public abstract class Soldier extends Fightable implements Card {
                 fight(enemies);
                 try {
                     Thread.sleep(hitSpeed);
+                    Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
-
-        //live();
-        //die();
-
     }
+
+    //live();
+    //die();
+
+}
 
     public void move() {
 
-        if (true)//TODO is in his field)
-        {
-            move(getNearestBridge());
-            //TODO: should be: move(board.getNearestBridge(location));
+        //find nearest enemy
+        //if it is null go to bridge
+        //if it is on bridge go over
+
+        Fightable target = getNearestEnemy(board.getSearchFightableRange());
+        if (target != null) {
+            move(target.getLocation());
+            Deb.print(toString() + " moving towards the target : " + target.toString() + " in X = " + target.getLocation().getX()
+                    + " Y = " + target.getLocation().getY());
         } else {
-            move(board.getNearestTower(location));
+            move(getNearestBridge());
+            Deb.print(toString() + " moving towards the bridge head : " + " in X = " + getLocation().getX()
+                    + " Y = " + target.getLocation().getY());
         }
     }
 
@@ -305,38 +312,8 @@ public abstract class Soldier extends Fightable implements Card {
                 target.toGetHurt(damage);
             }
         }
-
-        /*
-        mode = Mode.FIGHT;
-        TimerTask fight = new TimerTask() {
-            @Override
-            public void run() {
-                if(isAreaSplash)
-                    updateTargetList(targets);
-                if (targets.size() == 0)
-                    return;
-                for (Fightable fightable : targets) {
-                    if (fightable.alive() == false)
-                        targets.remove(fightable);
-                    endamage(fightable);
-                }
-            }
-        };
-        fightTimer.schedule(fight,0,fightTime);
-
-         */
     }
 
-    public void updateTargetList(ArrayList<Fightable> targets) {
-        LinkedList<Fightable> enemy = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
-        for (Fightable fightable : enemy) {
-            if (this.location.getRegion().equals(fightable.getLocation().getRegion())) {
-                if (this.location.getDistance(fightable.getLocation()) <= range) {
-                    targets.add(fightable);
-                }
-            }
-        }
-    }
 
 
     public void move(Location destination) {
@@ -359,6 +336,10 @@ public abstract class Soldier extends Fightable implements Card {
         double min = board.getLength();
         Location nearestBridge = null;
 
+        if (isOnBridge()) {
+            return getAnotherHead();
+        }
+
         if (location.getRegion().equals(Region.A)) {
             for (Bridge bridge : board.getBridges()) {
                 if (bridge.getAHead().getDistance(location) < min) {
@@ -375,6 +356,26 @@ public abstract class Soldier extends Fightable implements Card {
             }
         }
         return nearestBridge;
+    }
+
+    public Location getAnotherHead() {
+        if (location.getY() == board.getBridges().get(0).getAHead().getY() )
+            return (team.equals(Team.A))?board.getBridges().get(0).getBHead():board.getBridges().get(0).getAHead();
+        else
+            return (team.equals(Team.A))?board.getBridges().get(1).getBHead():board.getBridges().get(1).getAHead();
+    }
+
+    public boolean isOnBridge() {
+        if (location.getY() == board.getBridges().get(0).getAHead().getY() ){
+            if (location.getX() >= board.getBridges().get(0).getAHead().getX()
+            && location.getX() <= board.getBridges().get(0).getBHead().getY())
+                return true;
+        }else if (location.getY() == board.getBridges().get(1).getAHead().getY() ){
+            if (location.getX() >= board.getBridges().get(1).getAHead().getX()
+                    && location.getX() <= board.getBridges().get(1).getBHead().getY())
+                return true;
+        }
+        return false;
     }
 
     public long getMoveTime() {
