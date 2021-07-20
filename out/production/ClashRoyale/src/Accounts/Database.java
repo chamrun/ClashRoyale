@@ -133,7 +133,7 @@ public class Database {
         }
     }
 
-    public void update(String userName, int coins) {
+    public void update(String userName, int coins, int winsOrLoses, boolean isWon) {
         //ToDo: level row should be added.
         String query = "update " + tableName + " set Coins = " + coins + " where UserName = '" + userName + "'";
         try {
@@ -143,6 +143,22 @@ public class Database {
             return;
         }
         System.out.println(userName + "coins updated: " + coins);
+
+        if (isWon){
+            query = "update " + tableName + " set Wins = " + winsOrLoses + " where UserName = '" + userName + "'";
+        }
+        else {
+            query = "update " + tableName + " set Loses = " + winsOrLoses + " where UserName = '" + userName + "'";
+        }
+        try {
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return;
+        }
+        System.out.println("WinsOrLoses updated.");
+
+
     }
 
     public void update(String userName, String newDeck) {

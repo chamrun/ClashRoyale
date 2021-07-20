@@ -3,14 +3,13 @@ package Player;
 import Accounts.Database;
 import Game.Model.Level;
 
-public class User {
+public class User extends Player{
     private final Database database;
     private final String name;
     private Level level;
     private int coins;
     private int wins;
     private int loses;
-    String[] deck;
 
     public String[] getDeck() {
         return deck;
@@ -49,14 +48,23 @@ public class User {
 
 
     public void addWin() {
+        //System.out.println("Last Coins: " + coins + " - Level: " + level);
         coins += 200;
+
         wins++;
-        if (level.getCoins() < coins){
+        if (level.getNextLevelCoins() < coins){
             levelUp();
+            //System.out.println("LevelUp to: " + level);
         }
+        //System.out.println();
+
+        System.out.println("New Coins: " + coins + " - Level: " + level);
+        database.update(name, coins, wins,true);
+
     }
 
     public void addLose() {
+        //System.out.println("Last Coins: " + coins + " - Level: " + level);
         coins -= 70;
         if (coins < 0){
             coins = 0;
@@ -65,7 +73,11 @@ public class User {
         loses++;
         if (coins < level.getCoins()){
             levelDown();
+            //System.out.println("LevelDown to: " + level);
         }
+        System.out.println("New Coins: " + coins + " - Level: " + level);
+        database.update(name, coins, loses, false);
+        //System.out.println();
     }
 
     public int getWins() {
@@ -76,7 +88,7 @@ public class User {
         return loses;
     }
 
-    public String getName() {
+    public String getUserName() {
         return name;
     }
 
@@ -104,17 +116,17 @@ public class User {
 
     public void levelDown() {
 
-        if (level.equals(Level.FIVE))
-            level = Level.FOUR;
-
-        if (level.equals(Level.FOUR))
-            level = Level.THREE;
+        if (level.equals(Level.TWO))
+            level = Level.ONE;
 
         if (level.equals(Level.THREE))
             level = Level.TWO;
 
-        if (level.equals(Level.TWO))
-            level = Level.ONE;
+        if (level.equals(Level.FOUR))
+            level = Level.THREE;
+
+        if (level.equals(Level.FIVE))
+            level = Level.FOUR;
 
         //database.update(name, level.getInt());
 
@@ -140,4 +152,8 @@ public class User {
         return true;
     }
 
+    @Override
+    protected void play() {
+
+    }
 }

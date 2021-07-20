@@ -176,6 +176,13 @@ public class Controller implements Initializable {
     @FXML
     public void refreshProfile(Event event){
 
+        /*
+        user.addWin();
+        user.addLose();
+        user.addWin();
+
+
+         */
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
 
