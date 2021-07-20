@@ -1,11 +1,12 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class Valkyrie extends Soldier{
-    public Valkyrie(Board board, Level level, Location location, Team team) {
+    public Valkyrie(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1500, 1, location, Speed.MEDIUM,
-                Target.GROUND, true, 1, 4, team , Type.GROUND);
+                Target.GROUND, true, 1, 4, team , Type.GROUND,controller);
 
         start();
     }

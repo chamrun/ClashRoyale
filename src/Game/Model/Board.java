@@ -9,33 +9,40 @@ import java.util.LinkedList;
 
 public class Board {
 
-    private final int length;
+    private final int height;
     private final int width;
     private Location[][] locations;
-    private HashMap<Team, Region> teams;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
-    private final ArrayList<Bridge> bridges;
+//    private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
-
-
-    public Board(HashMap<Team, Region> teams, int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
-        this.length = length;
+    public Board( int height, int width,int searchFightableRange) {
+        this.height = height;
         this.width = width;
         initializeLocations();
-        this.bridges = bridges;
         this.searchFightableRange = searchFightableRange;
-        this.teams.put(Team.A, Region.A);
-        this.teams.put(Team.B, Region.B);
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
     }
 
+
+//    public Board( int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
+//        this.length = length;
+//        this.width = width;
+//        initializeLocations();
+//        this.bridges = bridges;
+//        this.searchFightableRange = searchFightableRange;
+//        AFightables = new LinkedList<>();
+//        BFightables = new LinkedList<>();
+//    }
+
     public void initializeLocations(){
-        for (int i = 0; i < length ; i++){
-            for (int j = 0 ; j < width ; j++){
-                locations[i][j] = new Location(i,j);
+        locations = new Location[width][height];
+        for (int i = 0; i < width; i++){
+            for (int j = 0 ; j < height ; j++){
+//                Location location = new Location(i,j);
+                locations[i][j] =  new Location(i,j);
             }
         }
     }
@@ -44,12 +51,12 @@ public class Board {
         return locations;
     }
 
-    public ArrayList<Bridge> getBridges() {
-        return bridges;
-    }
+//    public ArrayList<Bridge> getBridges() {
+//        return bridges;
+//    }
 
-    public int getLength() {
-        return length;
+    public int getHeight() {
+        return height;
     }
 
     public int getWidth() {
@@ -58,10 +65,6 @@ public class Board {
 
     public int getSearchFightableRange() {
         return searchFightableRange;
-    }
-
-    public HashMap<Team, Region> getTeams() {
-        return teams;
     }
 
     public LinkedList<Fightable> getAFightables() {

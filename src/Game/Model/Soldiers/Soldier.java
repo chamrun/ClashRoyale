@@ -1,8 +1,11 @@
 package Game.Model.Soldiers;
 
 import Debugging.Deb;
+import Game.Controller.GameController;
 import Game.Model.*;
+import javafx.application.Platform;
 import javafx.geometry.Point3D;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -39,27 +42,28 @@ public abstract class Soldier extends Fightable implements Card {
     protected ImageView fight_1_r;
     protected ImageView fight_1_l;
     protected ImageView fight_1_u;
-    protected ImageView fight_1_p;
+    protected ImageView fight_1_d;
     protected ImageView fight_2_r;
     protected ImageView fight_2_l;
     protected ImageView fight_2_u;
-    protected ImageView fight_2_p;
+    protected ImageView fight_2_d;
     protected ImageView fight_3_r;
     protected ImageView fight_3_l;
     protected ImageView fight_3_u;
-    protected ImageView fight_3_p;
+    protected ImageView fight_3_d;
     protected ImageView fight_4_r;
     protected ImageView fight_4_l;
     protected ImageView fight_4_u;
-    protected ImageView fight_4_p;
+    protected ImageView fight_4_d;
     protected ImageView[] fightImageViews;
     protected double tileWidth = 976 / 35.0;
     protected double tileHeight = 549 / 18.0;
     protected double sizeOfChar = 50;
+    protected GameController controller;
 
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
-                   boolean isAreaSplash, int count, int cost, Team team, Type type) {
+                   boolean isAreaSplash, int count, int cost, Team team, Type type,GameController controller) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
         this.speed = speed;
         this.target = target;
@@ -68,7 +72,9 @@ public abstract class Soldier extends Fightable implements Card {
         this.cost = cost;
         fightTime = (long) hitSpeed * 1000;
         moveTime = getMoveTime();
+        currentImage = new ImageView();
 
+//        moveTime = 10* 1000;
         initializeWalkImages();
         initializeFightImages();
         if (team.equals(Team.A)) {
@@ -78,29 +84,31 @@ public abstract class Soldier extends Fightable implements Card {
             currentImage = walk_open_l;
             direction = Direction.LEFT;
         }
-        currentImage.setLayoutX(tileWidth * location.getX());
-        currentImage.setLayoutX(tileHeight * location.getY());
+        currentImage.setX(tileWidth * location.getX());
+        currentImage.setY(tileHeight * location.getY());
+        this.controller = controller;
 
     }
 
     public void initializeFightImages() {
         String address = null;
+        fightImageViews = new ImageView[16];
         fightImageViews[0] = fight_1_r;
         fightImageViews[4] = fight_1_l;
         fightImageViews[8] = fight_1_u;
-        fightImageViews[12] = fight_1_p;
+        fightImageViews[12] = fight_1_d;
         fightImageViews[1] = fight_2_r;
         fightImageViews[5] = fight_2_l;
         fightImageViews[9] = fight_2_u;
-        fightImageViews[13] = fight_2_p;
+        fightImageViews[13] = fight_2_d;
         fightImageViews[2] = fight_3_r;
         fightImageViews[6] = fight_3_l;
         fightImageViews[10] = fight_3_u;
-        fightImageViews[14] = fight_3_p;
+        fightImageViews[14] = fight_3_d;
         fightImageViews[3] = fight_4_r;
         fightImageViews[7] = fight_4_l;
         fightImageViews[11] = fight_4_u;
-        fightImageViews[15] = fight_4_p;
+        fightImageViews[15] = fight_4_d;
 
         for (int i = 1; i < 5; i++) {
             if (this instanceof Barbarian) {
@@ -118,14 +126,21 @@ public abstract class Soldier extends Fightable implements Card {
             } else if (this instanceof Wizard) {
                 address = "characters/Wizard/Wiz_Fight_" + i + ".png";
             }
-            makeRotationForms(fightImageViews[i - 1], fightImageViews[i + 3],
-                    fightImageViews[i + 7], fightImageViews[i + 11], address);
+
+            System.out.println(address);
+            if (i == 3)
+                fightImageViews[i - 1] = makeRotationForms(i, address);
+            else if (i == 0)
+                fightImageViews[i + 3] = makeRotationForms(i, address);
+            else if (i == 1)
+                fightImageViews[i + 7] = makeRotationForms(i, address);
+            else fightImageViews[i + 11] = makeRotationForms(i, address);
         }
     }
 
     public void initializeWalkImages() {
-        String addressForOpen = null;
-        String addressForClosed = null;
+        String addressForOpen = new String();
+        String addressForClosed = new String();
 
         if (this instanceof Barbarian) {
             addressForClosed = "characters/Barbarians/Bar_Walk_Closed.png";
@@ -149,41 +164,50 @@ public abstract class Soldier extends Fightable implements Card {
             addressForClosed = "characters/Wizard/Wiz_Walk_Closed.png";
             addressForOpen = "characters/Wizard/Wiz_Walk_Open.png";
         }
-        makeRotationForms(walk_open_r, walk_open_l, walk_open_u, walk_open_d, addressForOpen);
-        makeRotationForms(walk_closed_r, walk_closed_l, walk_closed_u, walk_closed_d, addressForClosed);
+        System.out.println(addressForClosed);
+        System.out.println(addressForOpen);
 
+        for (int i = 0; i < 4; i++) {
+            if (i == 3)
+                walk_open_r = makeRotationForms(i, addressForOpen);
+            else if (i == 0)
+                walk_open_l = makeRotationForms(i, addressForOpen);
+            else if (i == 1)
+                walk_open_u = makeRotationForms(i, addressForOpen);
+            else walk_open_d = makeRotationForms(i, addressForOpen);
+        }
+        for (int i = 0; i < 4; i++) {
+            if (i == 3)
+                walk_closed_r = makeRotationForms(i, addressForClosed);
+            else if (i == 0)
+                walk_closed_l = makeRotationForms(i, addressForClosed);
+            else if (i == 1)
+                walk_closed_u = makeRotationForms(i, addressForClosed);
+            else walk_closed_d = makeRotationForms(i, addressForClosed);
+        }
     }
 
-    public void makeRotationForms(ImageView imageView1, ImageView imageView2, ImageView imageView3,
-                                  ImageView imageView4, String address) {
-        imageView1 = new ImageView(new Image(address));
-        convertAppropriateSize(imageView1);
+    public ImageView makeRotationForms(int i, String address) {
+        ImageView imageView = new ImageView(new Image(address));
+        convertAppropriateSize(imageView);
 
-        for (int i = 0; i < 3; i++) {
-            ImageView base = new ImageView(new Image(address));
-            if (i == 0) {
-                base.setRotationAxis(new Point3D(0, 1, 0));
-                base.setRotate(-180);
-                imageView2 = base;
-                convertAppropriateSize(imageView2);
+        if (i == 0) {
+            imageView.setRotationAxis(new Point3D(0, 1, 0));
+            imageView.setRotate(-180);
+        } else if (i == 1 || i == 2) {
+            imageView.setRotationAxis(new Point3D(0, 0, 1));
+            if (i == 1) {
+                imageView.setRotate(-90);
             } else {
-                base.setRotationAxis(new Point3D(0, 0, 1));
-                if (i == 1) {
-                    base.setRotate(-90);
-                    imageView3 = base;
-                    convertAppropriateSize(imageView3);
-                } else {
-                    base.setRotate(90);
-                    imageView4 = base;
-                    convertAppropriateSize(imageView4);
-                }
+                imageView.setRotate(90);
             }
         }
+        return imageView;
     }
 
     public void convertAppropriateSize(ImageView imageView) {
         imageView.setFitHeight(sizeOfChar);
-        imageView.setFitHeight(sizeOfChar);
+        imageView.setFitWidth(sizeOfChar);
     }
 
     public Mode getMode() {
@@ -201,7 +225,7 @@ public abstract class Soldier extends Fightable implements Card {
 
             if (enemies == null) {
                 move();
-                Deb.print(toString() + "between two damages : " + moveTime + "seconds.");
+                Deb.print(toString() + "between two steps : " + moveTime + "seconds.");
             } else {
                 fight(enemies);
                 try {
@@ -220,17 +244,17 @@ public abstract class Soldier extends Fightable implements Card {
         //find nearest enemy
         //if it is null go to bridge
         //if it is on bridge go over
-
-        Fightable target = getNearestEnemy(board.getSearchFightableRange());
-        if (target != null) {
-            move(target.getLocation());
-            Deb.print(toString() + " moving towards the target : " + target.toString() + " in X = " + target.getLocation().getX()
-                    + " Y = " + target.getLocation().getY());
-        } else {
-            move(getNearestBridge());
-            Deb.print(toString() + " moving towards the bridge head : " + " in X = " + getLocation().getX()
-                    + " Y = " + target.getLocation().getY());
-        }
+        move(new Location(12, 12));
+//        Fightable target = getNearestEnemy(board.getSearchFightableRange());
+//        if (target != null) {
+//            move(target.getLocation());
+//            Deb.print(toString() + " moving towards the target : " + target.toString() + " in X = " + target.getLocation().getX()
+//                    + " Y = " + target.getLocation().getY());
+//        } else {
+//            move(getNearestBridge());
+//            Deb.print(toString() + " moving towards the bridge head : " + " in X = " + getLocation().getX()
+//                    + " Y = " + target.getLocation().getY());
+//        }
     }
 
 
@@ -296,40 +320,42 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public void move(Location destination) {
+        if (location.getDistance(destination) == 0)
+            return;
         location.setEmpty(true);
-//        mode = Mode.MOVE;
         if (destination.getX() == location.getX()) {
             if (destination.getY() > location.getY()) {
-                direction = Direction.RIGHT;
+                direction = Direction.DOWN;
                 moveSteps();
-                location.setY(location.getY() + 1);
+                location = board.getLocations()[location.getX()][location.getY() + 1];
             } else {
-                direction = Direction.LEFT;
+                direction = Direction.UP;
                 moveSteps();
-                location.setY(location.getY() - 1);
+                location = board.getLocations()[location.getX()][location.getY() - 1];
             }
         } else {
             if (destination.getX() > location.getX()) {
-                direction = Direction.UP;
+                direction = Direction.RIGHT;
                 moveSteps();
-                location.setX(location.getX() + 1);
+                location = board.getLocations()[location.getX() + 1][location.getY()];
             } else {
-                direction = Direction.DOWN;
+                direction = Direction.LEFT;
                 moveSteps();
-                location.setX(location.getX() - 1);
+                location = board.getLocations()[location.getX() - 1][location.getY()];
             }
         }
-        location = board.getLocations()[location.getX()][location.getY()];
+        Deb.print("new Location : X = "+location.getX()+" Y = "+location.getY());
         location.setEmpty(false);
-        currentImage.setLayoutX(location.getX() * tileWidth);
-        currentImage.setLayoutY(location.getY() * tileHeight);
-        Deb.print("moved to  :  X = "+location.getX()+" Y = "+location.getY());
+        currentImage.setX(location.getX() * tileWidth);
+        currentImage.setY(location.getY() * tileHeight);
+        Deb.print("moved to  :  X = " + location.getX() + " Y = " + location.getY());
     }
 
     public void moveSteps() {
         try {
-            for (int  i= 0 ; i < 4 ; i++){
-                Thread.sleep(moveTime/4);
+            for (int i = 0; i < 4; i++) {
+                Deb.print("step "+i+" : progress : "+ moveProgress);
+                Thread.sleep(moveTime / 4);
                 prepareMoveImageView();
                 moveProgress++;
             }
@@ -340,68 +366,77 @@ public abstract class Soldier extends Fightable implements Card {
 
     }
 
-    public void prepareMoveImageView(){
-        if (direction.equals(Direction.RIGHT)){
-            currentImage = (moveProgress%2==1)? walk_closed_r:walk_open_r;
-            currentImage.setLayoutX(location.getX()*tileWidth + moveProgress * tileWidth /4);
-        }else if(direction.equals(Direction.LEFT)){
-            currentImage = (moveProgress%2==1)? walk_closed_l:walk_open_l;
-            currentImage.setLayoutX(location.getX()*tileWidth - moveProgress * tileWidth /4);
-        }else if (direction.equals(Direction.UP)){
-            currentImage = (moveProgress%2==1)? walk_closed_u:walk_open_u;
-            currentImage.setLayoutY(location.getY()*tileHeight + moveProgress * tileHeight /4);
-        }else {
-            currentImage = (moveProgress%2==1)? walk_closed_d:walk_open_d;
-            currentImage.setLayoutY(location.getY()*tileHeight - moveProgress * tileHeight /4);
-        }
-    }
 
-    public Location getNearestBridge() {
-        //TODO: should be transferred to "Board", and bridges needs some changes.
-        double min = board.getLength();
-        Location nearestBridge = null;
-
-        if (isOnBridge()) {
-            return getAnotherHead();
-        }
-
-        if (location.getRegion().equals(Region.A)) {
-            for (Bridge bridge : board.getBridges()) {
-                if (bridge.getAHead().getDistance(location) < min) {
-                    min = bridge.getAHead().getDistance(location);
-                    nearestBridge = bridge.getAHead();
-                }
-            }
+    public void prepareMoveImageView() {
+        controller.clear(currentImage);
+        if (direction.equals(Direction.RIGHT)) {
+            currentImage = (moveProgress % 2 == 1) ? walk_closed_r : walk_open_r;
+            currentImage.setY(location.getY()*tileHeight);
+            currentImage.setX(location.getX() * tileWidth + moveProgress * tileWidth / 4);
+        } else if (direction.equals(Direction.LEFT)) {
+            currentImage = (moveProgress % 2 == 1) ? walk_closed_l : walk_open_l;
+            currentImage.setY(location.getY()*tileHeight);
+            currentImage.setX(location.getX() * tileWidth - moveProgress * tileWidth / 4);
+        } else if (direction.equals(Direction.UP)) {
+            currentImage = (moveProgress % 2 == 1) ? walk_closed_u : walk_open_u;
+            currentImage.setX(location.getX()*tileWidth);
+            currentImage.setY(location.getY() * tileHeight - moveProgress * tileHeight / 4);
         } else {
-            for (Bridge bridge : board.getBridges()) {
-                if (bridge.getBHead().getDistance(location) < min) {
-                    min = bridge.getBHead().getDistance(location);
-                    nearestBridge = bridge.getBHead();
-                }
-            }
+            currentImage = (moveProgress % 2 == 1) ? walk_closed_d : walk_open_d;
+            currentImage.setX(location.getX()*tileWidth);
+            currentImage.setY(location.getY() * tileHeight + moveProgress * tileHeight / 4);
         }
-        return nearestBridge;
+        controller.addElement(currentImage);
+        Deb.print("Image for walk has set. direction : "+direction+" image : "+currentImage.getImage().getUrl()
+        +" position : X = " +currentImage.getX()+" Y = "+currentImage.getY());
     }
-
-    public Location getAnotherHead() {
-        if (location.getY() == board.getBridges().get(0).getAHead().getY())
-            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
-        else
-            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
-    }
-
-    public boolean isOnBridge() {
-        if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
-            if (location.getX() >= board.getBridges().get(0).getAHead().getX()
-                    && location.getX() <= board.getBridges().get(0).getBHead().getY())
-                return true;
-        } else if (location.getY() == board.getBridges().get(1).getAHead().getY()) {
-            if (location.getX() >= board.getBridges().get(1).getAHead().getX()
-                    && location.getX() <= board.getBridges().get(1).getBHead().getY())
-                return true;
-        }
-        return false;
-    }
+//
+//    public Location getNearestBridge() {
+//        //TODO: should be transferred to "Board", and bridges needs some changes.
+//        double min = board.getLength();
+//        Location nearestBridge = null;
+//
+//        if (isOnBridge()) {
+//            return getAnotherHead();
+//        }
+//
+//        if (location.getRegion().equals(Region.A)) {
+//            for (Bridge bridge : board.getBridges()) {
+//                if (bridge.getAHead().getDistance(location) < min) {
+//                    min = bridge.getAHead().getDistance(location);
+//                    nearestBridge = bridge.getAHead();
+//                }
+//            }
+//        } else {
+//            for (Bridge bridge : board.getBridges()) {
+//                if (bridge.getBHead().getDistance(location) < min) {
+//                    min = bridge.getBHead().getDistance(location);
+//                    nearestBridge = bridge.getBHead();
+//                }
+//            }
+//        }
+//        return nearestBridge;
+//    }
+//
+//    public Location getAnotherHead() {
+//        if (location.getY() == board.getBridges().get(0).getAHead().getY())
+//            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
+//        else
+//            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
+//    }
+//
+//    public boolean isOnBridge() {
+//        if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
+//            if (location.getX() >= board.getBridges().get(0).getAHead().getX()
+//                    && location.getX() <= board.getBridges().get(0).getBHead().getY())
+//                return true;
+//        } else if (location.getY() == board.getBridges().get(1).getAHead().getY()) {
+//            if (location.getX() >= board.getBridges().get(1).getAHead().getX()
+//                    && location.getX() <= board.getBridges().get(1).getBHead().getY())
+//                return true;
+//        }
+//        return false;
+//    }
 
     public long getMoveTime() {
         // TODO

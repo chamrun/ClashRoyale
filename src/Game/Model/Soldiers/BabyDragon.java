@@ -1,5 +1,6 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
@@ -11,9 +12,9 @@ import java.util.TimerTask;
 public class BabyDragon extends Soldier {
 
 
-    public BabyDragon(Board board, Level level, Location location, Team team) {
+    public BabyDragon(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1800, 3, location, Speed.FAST,
-                Target.GROUND_AIR, true, 1, 4, team, Type.AIR);
+                Target.GROUND_AIR, true, 1, 4, team, Type.AIR,controller);
 
         start();
     }

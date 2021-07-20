@@ -18,7 +18,7 @@ import java.util.LinkedList;
 public class GameView {
 
     //    private Board board;
-    private final double landWidth = 480;
+    private final double landWidth = 976;
     private final double landHeight = landWidth * 9.0 / 16;
     private final double tileHeight = landHeight / 18;
     private final double tileWidth = landWidth / 35;

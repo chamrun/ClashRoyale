@@ -16,6 +16,7 @@ public class Fireball extends Spell{
         start();
     }
 
+
     @Override
     public void run() {
         ArrayList<Fightable> targets = validFightables();

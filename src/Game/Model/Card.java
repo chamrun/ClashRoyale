@@ -4,5 +4,5 @@ import javafx.scene.image.ImageView;
 
 public interface Card {
     int getCost();
-    ImageView getCurrentImage();
+//    ImageView getCurrentImage();
 }

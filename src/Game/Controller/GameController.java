@@ -1,10 +1,9 @@
 package Game.Controller;
 
 import Debugging.Deb;
+import Game.Model.*;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
-import Game.Model.Card;
-import Game.Model.Location;
 import Game.Model.Soldiers.*;
 import Game.Model.Spells.Arrows;
 import Game.Model.Spells.Fireball;
@@ -35,28 +34,41 @@ public class GameController {
     private ImageView[] cardImageViews;
     private ImageView chosenImageView;
     private Location chosenLocation;
+    private Board board;
+    private int count = 0;
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 
     private GameView gameView;
 
 
     public GameController() {
         this.gameView = new GameView(this);
-        initializeCardImageViews();
+//        initializeCardImageViews();
+//        board = new Board(18,35,18);
 
 
 //        startTimer();
 
     }
 
+    public void initialize(){
+//        initializeCardImageViews();
+//        board = new Board(18,35,18);
+    }
+
     public void initializeCardImageViews(){
+        cardImageViews = new ImageView[5];
         cardImageViews[0] = cardImageView1;
         cardImageViews[1] = cardImageView2;
         cardImageViews[2] = cardImageView3;
         cardImageViews[3] = cardImageView4;
         cardImageViews[4] = cardImageView5;
-        for (int i = 0 ;i <5 ;i++){
-            cardImageViews[i].setImage((Image) cardImages.keySet().toArray()[i]);
-        }
+//        for (int i = 0 ;i <5 ;i++){
+//            cardImageViews[i].setImage((Image) cardImages.keySet().toArray()[i]);
+//        }
     }
 
     public void initialize(GameView gameView) {
@@ -150,29 +162,75 @@ public class GameController {
         landPane.getChildren().remove(imageView);
     }
 
-
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {
+        if (count == 0){
+            initializeCardImageViews();
+            board = new Board(18,35,18);
+            locations = board.getLocations();
+        }
+        count++;
 
         //todo : check validation of location and card then put it in
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
-        if (chosenCard != null) {
+//        chosenLocation = locations[(int) (event.getY() / gameView.getTileHeight())][(int) (event.getX() / gameView.getTileWidth())];
             if (chosenLocation.isEmpty()) {
-                Card card = createCard(chosenLocation);
+                Card card = new Barbarian(board, Level.ONE,chosenLocation,(count%2 == 1)? Team.A:Team.B,this);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        landPane.getChildren().add(card.getCurrentImage());
+                        landPane.getChildren().add(((Fightable)card).getCurrentImage());
                     }
                 });
                 Deb.print("Class : GameController | method : clickMouseOnLandPane " +
-                        "| new card added to landPane.");
-            }
+                        "| new card added to landPane: Location : X = "+chosenLocation.getX()+" Y = "+chosenLocation.getY());
         }
 
-        resetCardAndLocation();
+//        resetCardAndLocation();
     }
+
+    public void addElement(Node node){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                landPane.getChildren().add(node);
+            }
+        });
+    }
+
+    public void clear(Node node){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                landPane.getChildren().remove(node);
+            }
+        });
+    }
+
+
+//    @FXML
+//    void clickMouseOnLandPane(MouseEvent event) {
+//
+//        //todo : check validation of location and card then put it in
+//        Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
+//        chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
+//        if (chosenCard != null) {
+//            if (chosenLocation.isEmpty()) {
+//                Card card = createCard(chosenLocation);
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        landPane.getChildren().add(card.getCurrentImage());
+//                    }
+//                });
+//                Deb.print("Class : GameController | method : clickMouseOnLandPane " +
+//                        "| new card added to landPane.");
+//            }
+//        }
+//
+//        resetCardAndLocation();
+//    }
 
     public void resetCardAndLocation(){
         chosenLocation = null;
@@ -210,49 +268,49 @@ public class GameController {
 //        Deb.print("Mouse moved on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
     }
 
-    public Card createCard(Location location) {
-        Card card = null;
-        switch (cardImages.get(chosenCard)) {
-            case "Archers":
-                card = new Archers();
-                break;
-            case "BabyDragon":
-                card = new BabyDragon();
-                break;
-            case "Barbarian":
-                card = new Barbarian();
-                break;
-            case "Giant":
-                card = new Giant();
-                break;
-            case "MiniPEKKA":
-                card = new MiniPEKKA();
-                break;
-            case "Valkyrie":
-                card = new Valkyrie();
-                break;
-            case "Wizard":
-                card = new Wizard();
-                break;
-            case "Cannon":
-                card = new Cannon();
-                break;
-            case "InfernoTower":
-                card = new InfernoTower();
-                break;
-            case "Arrows":
-                card = new Arrows();
-                break;
-            case "Fireball":
-                card = new Fireball();
-                break;
-            case "Rage":
-                card = new Rage();
-                break;
-        }
-        Deb.print("Class : GameController | method : createCard | new card created.");
-        return card;
-    }
+//    public Card createCard(Location location) {
+//        Card card = null;
+//        switch (cardImages.get(chosenCard)) {
+//            case "Archers":
+//                card = new Archers();
+//                break;
+//            case "BabyDragon":
+//                card = new BabyDragon();
+//                break;
+//            case "Barbarian":
+//                card = new Barbarian();
+//                break;
+//            case "Giant":
+//                card = new Giant();
+//                break;
+//            case "MiniPEKKA":
+//                card = new MiniPEKKA();
+//                break;
+//            case "Valkyrie":
+//                card = new Valkyrie();
+//                break;
+//            case "Wizard":
+//                card = new Wizard();
+//                break;
+//            case "Cannon":
+//                card = new Cannon();
+//                break;
+//            case "InfernoTower":
+//                card = new InfernoTower();
+//                break;
+//            case "Arrows":
+//                card = new Arrows();
+//                break;
+//            case "Fireball":
+//                card = new Fireball();
+//                break;
+//            case "Rage":
+//                card = new Rage();
+//                break;
+//        }
+//        Deb.print("Class : GameController | method : createCard | new card created.");
+//        return card;
+//    }
 
 
     @FXML
