@@ -24,42 +24,7 @@ public class BabyDragon extends Soldier {
     }
 
 
-    //@Override
-    public void live() {
-        LinkedList<Fightable> target = new LinkedList<>();
-        target.add(getNearestEnemy(board.getSearchFightableRange()));
-        TimerTask move = new TimerTask() {
-            @Override
-            public void run() {
-                if (!alive)
-                    return;
-                if (location.getDistance(target.get(0).getLocation()) <= range) {
-                    fight(target);
-                } else {
-                    Location dest = target.get(0).getLocation();
-                    move(dest);
-                }
 
-            }
-        };
-        moveTimer.schedule(move, 0, moveTime);
-    }
-
-    @Override
-    public Fightable getNearestEnemy(double range) {
-        double min = range;
-        Fightable nearestEnemy = null;
-        LinkedList<Fightable> enemy = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
-        for (Fightable fightable : enemy) {
-            if (this.location.getDistance(fightable.getLocation()) < min) {
-                if (isValidEnemy(fightable)) {
-                    nearestEnemy = fightable;
-                    min = this.location.getDistance(fightable.getLocation());
-                }
-            }
-        }
-        return nearestEnemy;
-    }
 
     private static int getHP(Level level) {
         int hp;

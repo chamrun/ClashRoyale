@@ -14,7 +14,7 @@ public abstract class Fightable extends Thread{
     protected int damage;
     protected long hitSpeed;
     protected final double range;
-    protected final Location location;
+    protected  Location location;
     protected final Team team;
     protected final Type type;
     protected ImageView currentImage;

@@ -18,6 +18,8 @@ public class Board {
     private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
+
+
     public Board(HashMap<Team, Region> teams, int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
         this.length = length;
         this.width = width;

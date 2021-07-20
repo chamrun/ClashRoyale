@@ -53,6 +53,9 @@ public abstract class Soldier extends Fightable implements Card {
     protected ImageView fight_4_u;
     protected ImageView fight_4_p;
     protected ImageView[] fightImageViews;
+    protected double tileWidth = 976 / 35.0;
+    protected double tileHeight = 549 / 18.0;
+    protected double sizeOfChar = 50;
 
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
@@ -68,6 +71,15 @@ public abstract class Soldier extends Fightable implements Card {
 
         initializeWalkImages();
         initializeFightImages();
+        if (team.equals(Team.A)) {
+            currentImage = walk_open_r;
+            direction = Direction.RIGHT;
+        } else {
+            currentImage = walk_open_l;
+            direction = Direction.LEFT;
+        }
+        currentImage.setLayoutX(tileWidth * location.getX());
+        currentImage.setLayoutX(tileHeight * location.getY());
 
     }
 
@@ -145,23 +157,33 @@ public abstract class Soldier extends Fightable implements Card {
     public void makeRotationForms(ImageView imageView1, ImageView imageView2, ImageView imageView3,
                                   ImageView imageView4, String address) {
         imageView1 = new ImageView(new Image(address));
+        convertAppropriateSize(imageView1);
+
         for (int i = 0; i < 3; i++) {
             ImageView base = new ImageView(new Image(address));
             if (i == 0) {
                 base.setRotationAxis(new Point3D(0, 1, 0));
                 base.setRotate(-180);
                 imageView2 = base;
+                convertAppropriateSize(imageView2);
             } else {
                 base.setRotationAxis(new Point3D(0, 0, 1));
                 if (i == 1) {
                     base.setRotate(-90);
                     imageView3 = base;
+                    convertAppropriateSize(imageView3);
                 } else {
                     base.setRotate(90);
                     imageView4 = base;
+                    convertAppropriateSize(imageView4);
                 }
             }
         }
+    }
+
+    public void convertAppropriateSize(ImageView imageView) {
+        imageView.setFitHeight(sizeOfChar);
+        imageView.setFitHeight(sizeOfChar);
     }
 
     public Mode getMode() {
@@ -179,12 +201,7 @@ public abstract class Soldier extends Fightable implements Card {
 
             if (enemies == null) {
                 move();
-                try {
-                    Thread.sleep(moveTime);
-                    Deb.print(toString() + "between two damages : " + moveTime + "seconds.");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Deb.print(toString() + "between two damages : " + moveTime + "seconds.");
             } else {
                 fight(enemies);
                 try {
@@ -197,10 +214,6 @@ public abstract class Soldier extends Fightable implements Card {
         }
     }
 
-    //live();
-    //die();
-
-}
 
     public void move() {
 
@@ -219,39 +232,6 @@ public abstract class Soldier extends Fightable implements Card {
                     + " Y = " + target.getLocation().getY());
         }
     }
-
-    /*
-    public void live() {
-
-
-        TimerTask move = new TimerTask() {
-            @Override
-            public void run() {
-
-                ArrayList<Fightable> targets = new ArrayList<>();
-                targets.add(getNearestEnemy(board.getSearchFightableRange()));
-
-                if (!alive)
-                    return;
-
-                if (targets == null) {
-                    Location dest = getNearestBridge();
-                    move(dest);
-                }
-
-                else {
-                    if (location.getDistance(targets.get(0).getLocation()) <= range) {
-                        fight(targets);
-                    } else {
-                        Location dest = targets.get(0).getLocation();
-                        move(dest);
-                    }
-                }
-            }
-        };
-        moveTimer.schedule(move,0,moveTime);
-    }
-     */
 
 
     public LinkedList<Fightable> getNearEnemies() {
@@ -315,19 +295,64 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
 
-
     public void move(Location destination) {
+        location.setEmpty(true);
 //        mode = Mode.MOVE;
         if (destination.getX() == location.getX()) {
-            if (destination.getY() > location.getY())
+            if (destination.getY() > location.getY()) {
+                direction = Direction.RIGHT;
+                moveSteps();
                 location.setY(location.getY() + 1);
-            else
+            } else {
+                direction = Direction.LEFT;
+                moveSteps();
                 location.setY(location.getY() - 1);
+            }
         } else {
-            if (destination.getX() > location.getX())
+            if (destination.getX() > location.getX()) {
+                direction = Direction.UP;
+                moveSteps();
                 location.setX(location.getX() + 1);
-            else
+            } else {
+                direction = Direction.DOWN;
+                moveSteps();
                 location.setX(location.getX() - 1);
+            }
+        }
+        location = board.getLocations()[location.getX()][location.getY()];
+        location.setEmpty(false);
+        currentImage.setLayoutX(location.getX() * tileWidth);
+        currentImage.setLayoutY(location.getY() * tileHeight);
+        Deb.print("moved to  :  X = "+location.getX()+" Y = "+location.getY());
+    }
+
+    public void moveSteps() {
+        try {
+            for (int  i= 0 ; i < 4 ; i++){
+                Thread.sleep(moveTime/4);
+                prepareMoveImageView();
+                moveProgress++;
+            }
+            moveProgress = 0;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void prepareMoveImageView(){
+        if (direction.equals(Direction.RIGHT)){
+            currentImage = (moveProgress%2==1)? walk_closed_r:walk_open_r;
+            currentImage.setLayoutX(location.getX()*tileWidth + moveProgress * tileWidth /4);
+        }else if(direction.equals(Direction.LEFT)){
+            currentImage = (moveProgress%2==1)? walk_closed_l:walk_open_l;
+            currentImage.setLayoutX(location.getX()*tileWidth - moveProgress * tileWidth /4);
+        }else if (direction.equals(Direction.UP)){
+            currentImage = (moveProgress%2==1)? walk_closed_u:walk_open_u;
+            currentImage.setLayoutY(location.getY()*tileHeight + moveProgress * tileHeight /4);
+        }else {
+            currentImage = (moveProgress%2==1)? walk_closed_d:walk_open_d;
+            currentImage.setLayoutY(location.getY()*tileHeight - moveProgress * tileHeight /4);
         }
     }
 
@@ -359,18 +384,18 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public Location getAnotherHead() {
-        if (location.getY() == board.getBridges().get(0).getAHead().getY() )
-            return (team.equals(Team.A))?board.getBridges().get(0).getBHead():board.getBridges().get(0).getAHead();
+        if (location.getY() == board.getBridges().get(0).getAHead().getY())
+            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
         else
-            return (team.equals(Team.A))?board.getBridges().get(1).getBHead():board.getBridges().get(1).getAHead();
+            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
     }
 
     public boolean isOnBridge() {
-        if (location.getY() == board.getBridges().get(0).getAHead().getY() ){
+        if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
             if (location.getX() >= board.getBridges().get(0).getAHead().getX()
-            && location.getX() <= board.getBridges().get(0).getBHead().getY())
+                    && location.getX() <= board.getBridges().get(0).getBHead().getY())
                 return true;
-        }else if (location.getY() == board.getBridges().get(1).getAHead().getY() ){
+        } else if (location.getY() == board.getBridges().get(1).getAHead().getY()) {
             if (location.getX() >= board.getBridges().get(1).getAHead().getX()
                     && location.getX() <= board.getBridges().get(1).getBHead().getY())
                 return true;
@@ -393,13 +418,8 @@ public abstract class Soldier extends Fightable implements Card {
         //This method is to short, we can put it in the end of "run method".
         board.removeFightable(this, team);
 
-        /*
-        if (team.equals(Team.A))
-            board.getAFightables().remove(this);
-        else
-            board.getBFightables().remove(this);
+        //todo : in game controller delete character.
 
-         */
     }
 
     public boolean isValidEnemy(Fightable enemy) {
