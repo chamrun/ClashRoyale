@@ -89,7 +89,7 @@
       </ImageView>
       <Text fx:id="levelText" layoutX="560.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your level: " textAlignment="CENTER" wrappingWidth="261.85125732421875">
          <font>
-            <Font size="35.0" />
+            <Font name="Rockwell" size="39.0" />
          </font>
       </Text>
       <ProgressBar fx:id="levelBar" layoutX="560.0" layoutY="200.0" prefHeight="20.0" prefWidth="265.0" progress="0.0">
@@ -107,12 +107,12 @@
       </ImageView>
       <Text fx:id="coins" layoutX="560.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Coins:" textAlignment="CENTER" wrappingWidth="264.1697998046875">
          <font>
-            <Font size="20.0" />
+            <Font name="Rockwell" size="20.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="628.0" layoutY="465.0" text="Delete my Account" textFill="RED">
+      <Hyperlink layoutX="605.0" layoutY="460.0" text="Delete my Account" textFill="RED">
          <font>
-            <Font size="15.0" />
+            <Font name="Rockwell" size="20.0" />
          </font>
       </Hyperlink>
    </children>

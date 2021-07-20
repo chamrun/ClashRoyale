@@ -1,6 +1,5 @@
 package Accounts;
 
-import Game.Model.Card;
 import Game.Model.Level;
 
 public class User {
@@ -10,28 +9,37 @@ public class User {
     private int coins;
     private int wins;
     private int loses;
-    Card[] deck;
+    String[] deck;
 
-    public Card[] getDeck() {
+    public String[] getDeck() {
         return deck;
     }
 
     public User(Database database, String name) {
         this.database = database;
         this.name = name;
-        level = Level.TWO;
-        deck = new Card[8];
-
-        wins = 3;
-        loses = 1;
-        coins = 350;
+        level = Level.ONE;
+        wins = 0;
+        loses = 0;
+        coins = 0;
+        deck = new String[]{"Wizard", "BabyDragon", "Archer", "Fireball", "Barbarian", "Valkyrie", "Inferno", "Rage"};
+        database.update(name, getDeckString());
     }
 
-    public User(Database database, String name, int coins, int wins, int loses) {//int level ^ switch level 1->ONE, 2->TWO...
+    private String getDeckString() {
+        String deckString = "";
+        for (String cardName: deck) {
+            deckString += cardName + " ";
+        }
+
+        return deckString;
+    }
+
+    public User(Database database, String name, String deck, int coins, int wins, int loses) {//int level ^ switch level 1->ONE, 2->TWO...
         this.database = database;
         this.name = name;
         level = Level.ONE;
-        deck = new Card[8];
+        //deck = new String[8];
 
         //ToDo: Should be read from database
         wins = 1;

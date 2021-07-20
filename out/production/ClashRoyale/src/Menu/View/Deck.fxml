@@ -35,6 +35,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -76,11 +77,17 @@
          <font>
             <Font name="Rockwell" size="40.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Text>
       <Hyperlink layoutX="425.0" layoutY="53.0" onAction="#selectCurrentDeck" text="(Show my current deck)" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="20.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Hyperlink>
       <RadioButton layoutX="30.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>

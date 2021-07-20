@@ -261,12 +261,6 @@ public class Controller implements Initializable {
     void radioButtonAction(ActionEvent event) {
 
 
-        ((RadioButton) event.getSource()).setUserData("hello");
-
-        System.out.println("userData: " +((RadioButton) event.getSource()).getUserData());
-
-
-
         //System.out.println(event);
         //System.out.println(((RadioButton) event.getSource()).getChildrenUnmodifiable());
 
@@ -284,10 +278,6 @@ public class Controller implements Initializable {
 
 
 
-
-
-
-
     }
 
 
@@ -297,7 +287,7 @@ public class Controller implements Initializable {
         RadioButton[] radioButtons = getRootRadiobuttons(root);
         System.out.println(Arrays.toString(radioButtons));
 
-        String[] selectedDeck = new String[]{"BabyDragon", "Inferno", "Barbarian"};//user.getDeck();
+        String[] selectedDeck = user.getDeck();
 
 
         for (RadioButton radioButton: radioButtons){

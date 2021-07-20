@@ -77,9 +77,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="80.0" layoutY="446.0" onMouseClicked="#gotoDeck" prefHeight="72.0" prefWidth="151.0" text="DECK">
+      <Label layoutX="69.0" layoutY="446.0" onMouseClicked="#gotoDeck" prefHeight="72.0" prefWidth="151.0" text="DECK">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="Rockwell Bold" size="35.0" />
          </font>
          <tooltip>
             <Tooltip text="Set your deck!">
@@ -92,9 +92,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label layoutX="259.0" layoutY="446.0" onMouseClicked="#gotoNewGame" prefHeight="72.0" prefWidth="178.0" text="BATTLE!">
+      <Label layoutX="240.0" layoutY="446.0" onMouseClicked="#gotoNewGame" prefHeight="72.0" prefWidth="178.0" text="BATTLE!">
          <font>
-            <Font name="System Bold" size="40.0" />
+            <Font name="Rockwell Bold" size="40.0" />
          </font>
          <tooltip>
             <Tooltip text="A new battle!">
@@ -118,9 +118,9 @@
             <SepiaTone />
          </effect>
       </ImageView>
-      <Label layoutX="465.0" layoutY="445.0" onMouseClicked="#gotoProfile" prefHeight="72.0" prefWidth="178.0" text="PROFILE">
+      <Label layoutX="456.0" layoutY="445.0" onMouseClicked="#gotoProfile" prefHeight="72.0" prefWidth="178.0" text="PROFILE">
          <font>
-            <Font name="System Bold" size="34.0" />
+            <Font name="Rockwell Bold" size="35.0" />
          </font>
          <tooltip>
             <Tooltip text="Your level, battle history, highs and lows, all are here.">

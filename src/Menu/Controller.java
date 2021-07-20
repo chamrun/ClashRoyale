@@ -287,7 +287,7 @@ public class Controller implements Initializable {
         RadioButton[] radioButtons = getRootRadiobuttons(root);
         System.out.println(Arrays.toString(radioButtons));
 
-        String[] selectedDeck = new String[]{"BabyDragon", "Inferno", "Barbarian"};//user.getDeck();
+        String[] selectedDeck = user.getDeck();
 
 
         for (RadioButton radioButton: radioButtons){

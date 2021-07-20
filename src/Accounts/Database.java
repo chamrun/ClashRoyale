@@ -1,5 +1,7 @@
 package Accounts;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +10,7 @@ import java.sql.*;
 public class Database {
 
 
-    //ToDo: empty uName-pass can log in :/
+
 
     private Statement statement;
     private final String tableName;
@@ -33,10 +35,18 @@ public class Database {
         try{
 
             String signupCmd = "INSERT INTO " + tableName + "\n" +
-                    "(uname, pass, mcode) VALUES " +
-                    "('" + userName + "', '" + getMd5(password) + "', '1')";
+                    "(UserName, Password, Coins, Wins, Loses) VALUES " +
+                    "('" + userName + "', '" + getMd5(password) + "', '0', '0', '0')";
 
-            int num = statement.executeUpdate(signupCmd);
+            int num = 0;
+
+            try {
+                num = statement.executeUpdate(signupCmd);
+            }
+            catch (SQLServerException e){
+                System.out.println("UserName is used before.");
+            }
+
 
             if (num == 1) {
                 return new User(this, userName);
@@ -58,8 +68,10 @@ public class Database {
 
         try{
 
-            String cmd = "SELECT pass FROM test.dbo.users\n" +
-                    "WHERE uname = " + "'" + userName + "'";
+            String cmd = "SELECT Password FROM " + tableName +
+                    " WHERE UserName = '" + userName + "'";
+
+            System.out.println(cmd);
 
             ResultSet resultSet = statement.executeQuery(cmd);
 
@@ -67,7 +79,7 @@ public class Database {
             while (resultSet.next()) {
 
                 String hashedInput = getMd5(password);
-                String pass = resultSet.getString("pass").replace(" ", "");// Because pass is too lone, TODO: should be set (16)
+                String pass = resultSet.getString("Password").replace(" ", "");// Because pass is too lone, TODO: should be set (16)
 
                 System.out.println("'" + hashedInput + "'\n" +
                         "'" + pass + "'");
@@ -114,16 +126,27 @@ public class Database {
         }
     }
 
-    public void update(String userName, int level) {
+    public void update(String userName, int coins) {
         //ToDo: level row should be added.
-        String query = "update " + tableName + " set level = " + level + " where uname = '" + userName + "'";
+        String query = "update " + tableName + " set Coins = " + coins + " where UserName = '" + userName + "'";
         try {
             statement.execute(query);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return;
         }
+        System.out.println(userName + "coins updated: " + coins);
+    }
 
-
-        System.out.println(userName + ": " + level);
+    public void update(String userName, String newDeck) {
+        String query = "update " + tableName + " set Deck = '" + newDeck + "' where UserName = '" + userName + "'";
+        System.out.println(query);
+        try {
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return;
+        }
+        System.out.println(userName + " deck updated: " + newDeck);
     }
 }

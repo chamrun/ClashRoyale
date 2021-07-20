@@ -8,14 +8,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Controller {
 
-    Database database = new Database("localhost", "sa", "SQLpass", "test.dbo.users");
+    Database database = new Database("localhost", "sa", "SQLpass", "ClashRoyale.dbo.Users");
 
+    @FXML
     public TextField userName;
+    @FXML
     public TextField password;
+    @FXML
+    private Text alertText;
 
     @FXML
     public void openSignUp(Event event){
@@ -39,7 +44,7 @@ public class Controller {
         User user = database.tryLogIn(userName.getText(), password.getText());
         if (user == null) {
             System.out.println(userName.getText() + " couldn't log in.");
-
+            alertText.setText("UserName or Password is wrong");
             return;
         }
         System.out.println(userName.getText() + " logged in.");
@@ -58,6 +63,7 @@ public class Controller {
         if (user == null){
 
             System.out.println(userName.getText() + " already exists.");
+            alertText.setText(userName.getText() + " already exists.");
             //Suggest logging in.
 
         }
@@ -65,6 +71,7 @@ public class Controller {
 
             System.out.println(user + " signed up.");
             switchToScene(event, "View/logIn.fxml");
+
 
         }
 
