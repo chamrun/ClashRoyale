@@ -68,7 +68,7 @@ public class Database {
 
         try{
 
-            String cmd = "SELECT Password FROM " + tableName +
+            String cmd = "SELECT * FROM " + tableName +
                     " WHERE UserName = '" + userName + "'";
 
             System.out.println(cmd);
@@ -85,7 +85,12 @@ public class Database {
                         "'" + pass + "'");
 
                 if (pass.equals(hashedInput)){
-                    return new User(this, userName);
+                    String deck = resultSet.getString("Deck");
+                    int coins = resultSet.getInt("Coins");
+                    int wins = resultSet.getInt("Wins");
+                    int loses = resultSet.getInt("Loses");
+
+                    return new User(this, userName, deck, coins, wins, loses);
                 }
 
                 //System.out.println(resultSet.getString("uname") + ":: " + resultSet.getString("mcode"));

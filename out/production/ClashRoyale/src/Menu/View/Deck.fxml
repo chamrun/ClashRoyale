@@ -73,7 +73,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Text fill="WHITE" layoutX="126.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose 8 cards!">
+      <Text fx:id="chooseEight" fill="WHITE" layoutX="126.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose 8 cards!">
          <font>
             <Font name="Rockwell" size="40.0" />
          </font>
@@ -281,5 +281,10 @@
             </ImageView>
          </graphic>
       </RadioButton>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="773.0" layoutY="241.0" onMouseClicked="#saveDeck" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Pix/Menu/save.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

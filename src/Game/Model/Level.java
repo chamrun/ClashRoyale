@@ -68,6 +68,22 @@ public enum Level {
         return 2;
     }
 
+    public static Level getLevel(int coins) {
+        if (coins < 300)
+            return ONE;
+
+        if (coins < 500)
+            return TWO;
+
+        if (coins < 900)
+            return THREE;
+
+        if (coins < 1700)
+            return FOUR;
+
+        return FIVE;
+    }
+
     public int getNextLevelCoins() {
         switch (this){
 

@@ -26,6 +26,16 @@ public class User {
         database.update(name, getDeckString());
     }
 
+    public User(Database database, String name, String deck, int coins, int wins, int loses) {//int level ^ switch level 1->ONE, 2->TWO...
+        this.database = database;
+        this.name = name;
+        this.coins = coins;
+        this.wins = wins;
+        this.loses = loses;
+        this.deck = deck.split(" ");
+        level = Level.getLevel(coins);
+    }
+
     private String getDeckString() {
         String deckString = "";
         for (String cardName: deck) {
@@ -35,16 +45,7 @@ public class User {
         return deckString;
     }
 
-    public User(Database database, String name, String deck, int coins, int wins, int loses) {//int level ^ switch level 1->ONE, 2->TWO...
-        this.database = database;
-        this.name = name;
-        level = Level.ONE;
-        //deck = new String[8];
 
-        //ToDo: Should be read from database
-        wins = 1;
-        loses = 2;
-    }
 
     public void addWin() {
         coins += 200;
@@ -126,4 +127,16 @@ public class User {
     public int getCoins() {
         return coins;
     }
+
+
+    public boolean saveDeck(String[] newDeck){
+        if (newDeck.length != 8)
+            return false;
+
+        deck = newDeck;
+        System.out.println("Going to update deck in db...");
+        database.update(name, getDeckString());
+        return true;
+    }
+
 }

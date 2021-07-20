@@ -20,6 +20,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,6 +28,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller implements Initializable {
 
@@ -256,17 +259,22 @@ public class Controller implements Initializable {
      * Deck Controller
      */
 
+    @FXML Text chooseEight;
+
 
     @FXML
     void radioButtonAction(ActionEvent event) {
 
-
+        /*
+        System.out.println(event);
         //System.out.println(event);
         //System.out.println(((RadioButton) event.getSource()).getChildrenUnmodifiable());
 
 
 
-        /*
+        RadioButton radioButton = (RadioButton) event.getSource();
+        String cardName = getRadiobuttonCardname(radioButton);
+
         if (radioButton.isSelected()){
             user.addCard(cardName);
         }
@@ -275,6 +283,59 @@ public class Controller implements Initializable {
         }
 
          */
+    }
+
+    @FXML
+    void saveDeck(MouseEvent event){
+        System.out.println("Trying to save new Deck...");
+        System.out.println("old: " + Arrays.toString(user.getDeck()));
+
+
+        Parent root = ((Node)event.getSource()).getScene().getRoot();
+        RadioButton[] radioButtons = getRootRadiobuttons(root);
+
+        String[] newDeck = new String[8];
+        int i = -1;
+
+        for (RadioButton radioButton: radioButtons){
+
+            if (radioButton.isSelected()){
+                i++;
+                if (i == 8){
+                    chooseEight.setFill(Paint.valueOf("red"));
+
+                    (new Timer()).schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            chooseEight.setFill(Paint.valueOf("white"));
+                        }
+                    }, 1000);
+                    return;
+                }
+
+                newDeck[i] = getRadiobuttonCardname(radioButton);
+            }
+        }
+
+        if (i != 7) {
+            chooseEight.setFill(Paint.valueOf("red"));
+
+            (new Timer()).schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    chooseEight.setFill(Paint.valueOf("white"));
+                }
+            }, 1000);
+            return;
+        }
+
+
+        if (user.saveDeck(newDeck)){
+            switchToScene(event, "View/MainMenu.fxml");
+            return;
+        }
+
+        System.out.println("We couldn't save cards :/ WHY?!");
 
 
 
