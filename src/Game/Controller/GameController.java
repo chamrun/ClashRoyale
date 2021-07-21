@@ -337,7 +337,6 @@ public class GameController {
                 return entry.getKey();
             i++;
         }
-        System.out.println("fuck");
         return null;
     }
 

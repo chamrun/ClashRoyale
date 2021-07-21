@@ -3,6 +3,11 @@ import Game.Model.Board;
 import com.sun.webkit.ThemeClient;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.Parent;
@@ -10,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.control.ProgressBar;
 
 public class Main extends Application {
 
@@ -82,6 +88,33 @@ public class Main extends Application {
 //        }).start();
 //        imageView = imageView3;
 //        controller.landPane.getChildren().add(imageView[0]);
+        ProgressBar progressBar = new ProgressBar();
+//
+//        Service service = new Service() {
+//            @Override
+//            protected Task createTask() {
+//                return new Task() {
+//                    @Override
+//                    protected Object call() throws Exception {
+//                        for(int i=100; i>0; i--){
+//                            updateProgress(i, 100);
+//                            System.out.println(i);
+//                            try {
+//                                Thread.sleep(1*100);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        return null;
+//                    }
+//                };
+//            }
+//        };
+        progressBar.setProgress(0.8);
+
+//        progressBar.progressProperty().bind(service.progressProperty());
+//        service.start();
+        controller.addElement(progressBar);
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
