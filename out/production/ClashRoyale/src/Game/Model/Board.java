@@ -1,8 +1,12 @@
 package Game.Model;
 
+import Game.Model.Buildings.Cannon;
+import Game.Model.Buildings.InfernoTower;
+import Game.Model.Soldiers.*;
 import Game.Model.Towers.King;
 import Game.Model.Towers.Queen;
 import Game.Model.Towers.Tower;
+import Player.Suggestion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -174,5 +178,66 @@ public class Board {
 
         return false;
     }
+
+    public Location suggestLocationToMediumBot() {
+        for (Fightable aFightable : AFightables){
+            if ((!(aFightable instanceof Tower)) && aFightable.getLocation().getY() < 9){
+                return new Location(20, 4);
+            }
+        }
+        return new Location(20, 16);
+    }
+
+    public Suggestion suggestToHardBot() {
+
+        double xMax = 16;
+        double y;
+        Fightable target = null;
+
+        for (Fightable aFightable: AFightables) {
+            if (xMax < aFightable.getLocation().getX()){
+                xMax = aFightable.getLocation().getX();
+                y = aFightable.getLocation().getY();
+                target = aFightable;
+            }
+        }
+
+        if (target == null){
+            return null;
+        }
+
+        Location targetLocation = target.getLocation();
+
+        if (target instanceof Barbarian){
+            return new Suggestion("BabyDragon","Valkyrie", "Arrows",targetLocation);
+        }
+        if (target instanceof Archers){
+            return new Suggestion("Valkyrie","Barbarian","Arrows",targetLocation);
+        }
+        if (target instanceof BabyDragon){
+            return new Suggestion("Wizard", "BabyDragon","Archer",targetLocation);
+        }
+        if (target instanceof Wizard){
+            return new Suggestion("PEKKA","Barbarian","FireBall",targetLocation);
+        }
+        if (target instanceof MiniPEKKA){
+            return new Suggestion("BabyDragon","FireBall", "Arrows",targetLocation);
+        }
+        if (target instanceof Giant){
+            return new Suggestion("BabyDragon", "Barbarian","PEKKA",targetLocation);
+        }
+        if (target instanceof Valkyrie){
+            return new Suggestion("BabyDragon", "PEKKA" , "FireBall", targetLocation);
+        }
+        if (target instanceof Cannon){
+            return new Suggestion("BabyDragon","Giant","Valkyrie",targetLocation);
+        }
+        if (target instanceof InfernoTower){
+            return new Suggestion("Barbarian","PEKKA","Giant",targetLocation);
+        }
+
+        return null;
+    }
+
 
 }

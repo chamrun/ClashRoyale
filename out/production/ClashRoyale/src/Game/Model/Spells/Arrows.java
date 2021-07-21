@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Arrows extends Spell {
     private int areaDamage;
 
-    public Arrows(Board board, Location location, Level level, Team team) {
+    public Arrows(Board board, Level level, Location location, Team team) {
         super(4, 3, board, location, team);
         areaDamage = getAD(level);
 

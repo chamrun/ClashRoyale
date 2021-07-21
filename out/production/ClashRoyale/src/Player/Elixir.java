@@ -24,4 +24,12 @@ public class Elixir extends Thread{
     public int getElixirs() {
         return elixirs;
     }
+
+    public boolean use(int cost) {
+        if (cost < elixirs) {
+            elixirs -= cost;
+            return true;
+        }
+        return false;
+    }
 }
