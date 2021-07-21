@@ -65,7 +65,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Text fx:id="levelText" layoutX="91.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose difficulty!" textAlignment="CENTER" wrappingWidth="757.561279296875">
+      <Text fx:id="chooseDifficultyText" layoutX="91.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose difficulty!" textAlignment="CENTER" wrappingWidth="757.561279296875">
          <font>
             <Font name="Rockwell" size="35.0" />
          </font>

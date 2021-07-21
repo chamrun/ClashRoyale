@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.Controller.GameController">
+    <children>
+        <ImageView fitHeight="639.0" fitWidth="1136.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../Pic/Land/landOfGame.jpg" />
+            </image>
+        </ImageView>
+        <BorderPane prefHeight="639.0" prefWidth="1136.0">
+            <left>
+                <AnchorPane prefHeight="649.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="cardImageView1" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="cardImageView3" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="264.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="cardImageView2" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="132.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="cardImageView4" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="396.0" onMouseClicked="#clickMouseOnCard" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="cardImageView5" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="528.0" onMouseClicked="#clickMouseOnCard" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <BorderPane prefHeight="639.0" prefWidth="976.0" BorderPane.alignment="CENTER">
+                    <top>
+                        <AnchorPane prefHeight="40.0" prefWidth="976.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="408.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../Desktop/clash%201/seri%2014/Free-Game-Icons-of-Fantasy-Potions-Pack-1/PNG/potions%20(3).png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="528.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../Desktop/clash%201/seri%2014/Free-Game-Icons-of-Fantasy-Potions-Pack-1/PNG/potions%20(3).png" />
+                                    </image>
+                                </ImageView>
+                                <Text layoutX="388.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="20.0">
+                                    <font>
+                                        <Font name="Times New Roman" size="22.0" />
+                                    </font>
+                                </Text>
+                                <Text fill="#206945" layoutX="568.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot; TimesNewRoman&quot;; -fx-font-family: Garamond;" text="3" textAlignment="CENTER" wrappingWidth="20.0">
+                                    <font>
+                                        <Font name="System Bold" size="22.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                    </top>
+                    <bottom>
+                        <AnchorPane prefHeight="50.0" prefWidth="976.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ProgressBar fx:id="timeProgressBar" blendMode="EXCLUSION" layoutX="220.0" layoutY="10.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
+                                <ProgressBar blendMode="EXCLUSION" layoutX="220.0" layoutY="30.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
+                                <Text layoutX="100.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                                <Text layoutX="100.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elixir" />
+                            </children>
+                        </AnchorPane>
+                    </bottom>
+                    <center>
+                        <StackPane BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fitHeight="549.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../Pic/Land/landOfGame.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" onMouseMoved="#moveMouseOnLandPane" prefHeight="549.0" />
+                            </children>
+                        </StackPane>
+                    </center>
+                </BorderPane>
+            </right>
+        </BorderPane>
+    </children>
+</StackPane>

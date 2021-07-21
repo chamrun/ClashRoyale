@@ -227,6 +227,8 @@ public class Controller implements Initializable {
     private RadioButton medium;
     @FXML
     private RadioButton hard;
+    @FXML
+    private Text chooseDifficultyText;
 
     public void startGame(Event event) {
         System.out.println(event);
@@ -236,13 +238,31 @@ public class Controller implements Initializable {
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
 
+            return;
         }
         else if (selectedButton == medium){
             System.out.println("Starting medium game...");
+
+            return;
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
+
+            return;
         }
+
+
+        System.out.println("No button is selected :/");
+
+        chooseDifficultyText.setFill(Paint.valueOf("red"));
+
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                chooseDifficultyText.setFill(Paint.valueOf("black"));
+            }
+        }, 1000);
+
     }
 
 

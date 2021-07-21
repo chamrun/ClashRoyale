@@ -4,26 +4,24 @@ import Game.Model.Towers.King;
 import Game.Model.Towers.Tower;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Board {
 
     private final int length;
     private final int width;
-    private HashMap<Team, Region> teams;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
     private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
-    public Board(HashMap<Team, Region> teams, int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
+    public Board(int length, int width, int searchFightableRange) {
         this.length = length;
         this.width = width;
-        this.bridges = bridges;
+        this.bridges = new ArrayList<>();
+        bridges.add(new Bridge(new Location(4, 17), new Location(4, 19)));
+        bridges.add(new Bridge(new Location(4, 17), new Location(4, 19)));
         this.searchFightableRange = searchFightableRange;
-        this.teams.put(Team.A, Region.A);
-        this.teams.put(Team.B, Region.B);
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
     }
@@ -43,10 +41,6 @@ public class Board {
 
     public int getSearchFightableRange() {
         return searchFightableRange;
-    }
-
-    public HashMap<Team, Region> getTeams() {
-        return teams;
     }
 
     public LinkedList<Fightable> getAFightables() {
