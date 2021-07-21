@@ -67,7 +67,7 @@
                <font>
                   <Font name="Rockwell" size="12.0" />
                </font></Text>
-            <Text fx:id="alertText" fill="RED" layoutX="472.0" layoutY="380.0" onMouseClicked="#openSignUp" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" wrappingWidth="186.66664632161473">
+            <Text fx:id="alertText" fill="RED" layoutX="472.0" layoutY="380.0" onMouseClicked="#openSignUp" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" textAlignment="CENTER" wrappingWidth="186.66664632161473">
                <font>
                   <Font name="Rockwell" size="12.0" />
                </font>
