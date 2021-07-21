@@ -51,6 +51,10 @@ public abstract class Player extends Thread{
 
         Card newCard;
 
+        if (getElixir() < Card.getCostFromString(deck[index]))
+            return;
+
+
         switch (readyCards.get(index)){
             case "Archer"-> newCard = new Archers         (board, level, location, team);
             case "Arrows"-> newCard = new Arrows          (board, level, location, team);
@@ -65,19 +69,22 @@ public abstract class Player extends Thread{
             case "Valkyrie"-> newCard = new Valkyrie      (board, level, location, team);
             case "Wizard"-> newCard = new Wizard          (board, level, location, team);
             default -> {
-                System.out.println("WTC?! (What the card)");
+                System.out.println("WTC?! (What the card): " + readyCards.get(index));
                 return;
             }
         }
 
-        //ToDo
-        if (elixir.use(newCard.getCost())){
-            newCard.s
+        if (!elixir.use(newCard.getCost())){
+            System.out.println("-ERR- Not enough elixir for " + readyCards.get(index) + " (" + getElixir()+ ")");
+            return;
         }
 
 
+        readyCards.remove(index);
         readyCards.add(nextReadyCard);
         nextReadyCard = getRandomNextCard();
+
+        //ToDo: should be added to board LinkedList?
     }
 
 

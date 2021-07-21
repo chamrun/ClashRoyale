@@ -6,7 +6,6 @@ import Game.Model.Level;
 public class User extends Player{
     private final Database database;
     private final String name;
-    private Level level;
     private int coins;
     private int wins;
     private int loses;
