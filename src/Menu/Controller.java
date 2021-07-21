@@ -2,6 +2,7 @@ package Menu;
 
 import Accounts.Database;
 import Accounts.User;
+import Game.Controller.GameController;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -93,7 +94,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void switchToScene(javafx.event.Event event, String sceneName){
+    public GameController switchToScene(javafx.event.Event event, String sceneName){
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
         System.out.println("Trying to switch to " + sceneName);
@@ -111,6 +112,9 @@ public class Controller implements Initializable {
             if (!sceneName.startsWith("..")){
                 ((Controller) loader.getController()).setUser(user);
             }
+            else if (sceneName.startsWith("../Game")){
+                return (GameController) loader.getController();
+            }
 
             //ToDo: if sceneName is "Game/..", send user to it, somehow
         }
@@ -120,6 +124,9 @@ public class Controller implements Initializable {
         catch (IOException e){
             e.printStackTrace();
         }
+
+
+        return null;
 
     }
 
@@ -238,7 +245,7 @@ public class Controller implements Initializable {
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
-            switchToScene(event, "../Game/View/GameView.fxml");
+            switchToScene(event, "../Game/View/GameView.fxml").set;
             return;
         }
         else if (selectedButton == medium){

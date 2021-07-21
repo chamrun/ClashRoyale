@@ -1,8 +1,4 @@
-import Game.Controller.GameController;
-import Game.Model.Board;
-import com.sun.webkit.ThemeClient;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.Parent;

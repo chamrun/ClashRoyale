@@ -2,21 +2,16 @@ package Game.Controller;
 
 import Debugging.Deb;
 import Game.Model.*;
-import Game.Model.Buildings.Cannon;
-import Game.Model.Buildings.InfernoTower;
-import Game.Model.Soldiers.*;
-import Game.Model.Spells.Arrows;
-import Game.Model.Spells.Fireball;
-import Game.Model.Spells.Rage;
+import Game.Model.Soldiers.Barbarian;
 import Game.View.GameView;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 import java.util.*;
 
@@ -334,5 +329,9 @@ public class GameController {
         chosenImageView = ((ImageView) event.getSource());
         chosenCard = chosenImageView.getImage();
     }
+
+
+
+    //public void setBoardAndPlayer(Board board, Playe)
 
 }

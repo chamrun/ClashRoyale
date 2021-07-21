@@ -1,13 +1,6 @@
 package Game.Model.Soldiers;
 
-import Game.Controller.GameController;
 import Game.Model.*;
-import javafx.geometry.Point3D;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.util.LinkedList;
-import java.util.TimerTask;
 
 public class BabyDragon extends Soldier {
 

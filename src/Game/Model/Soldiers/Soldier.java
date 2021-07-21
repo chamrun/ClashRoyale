@@ -1,15 +1,11 @@
 package Game.Model.Soldiers;
 
 import Debugging.Deb;
-import Game.Controller.GameController;
 import Game.Model.*;
-import javafx.application.Platform;
 import javafx.geometry.Point3D;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,6 +1,5 @@
 package Game.Model.Soldiers;
 
-import Game.Controller.GameController;
 import Game.Model.*;
 
 public class Valkyrie extends Soldier{
