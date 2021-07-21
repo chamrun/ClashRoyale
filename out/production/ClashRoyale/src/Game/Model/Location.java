@@ -5,11 +5,11 @@ public class Location {
     private double y;
 
     public Location(double x, double y) {
-        if (18 < x || 36 < y || x < 0 || y < 0) {
+        if (18 < x || 32 < y || x < 0 || y < 0) {
             System.out.println("(" + x + "," + y + ") is not valid.");
             if (18 < x)
                 x = 17;
-            if (18 < y)
+            if (32 < y)
                 y = 17;
             if (x < 0)
                 x = 0;
