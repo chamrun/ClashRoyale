@@ -175,4 +175,13 @@ public class Board {
         return false;
     }
 
+    public Location suggestLocationToMediumBot() {
+        for (Fightable aFightable : AFightables){
+            if ((!(aFightable instanceof Tower)) && aFightable.getLocation().getY() < 9){
+                return new Location(20, 4);
+            }
+        }
+        return new Location(20, 16);
+        
+    }
 }

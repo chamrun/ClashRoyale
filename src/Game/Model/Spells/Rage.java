@@ -12,7 +12,7 @@ public class Rage extends Spell {
     private int effect;
     private long duration;
 
-    public Rage(Board board, Location location, Level level,Team team) {
+    public Rage(Board board, Level level, Location location, Team team) {
         super(5, 3, board, location, team);
         effect = 40;
         duration = getDuration(level);
