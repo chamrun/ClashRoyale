@@ -4,6 +4,7 @@ import Debugging.Deb;
 import Game.Model.*;
 import Game.Model.Soldiers.Barbarian;
 import Game.View.GameView;
+import Player.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -332,6 +333,9 @@ public class GameController {
 
 
 
-    //public void setBoardAndPlayer(Board board, Playe)
+    public void setBoardAndPlayer(Board board, Player user, Player bot){
+        this.board = board;
+        //.. setting user and bot?..
+    }
 
 }

@@ -1,6 +1,7 @@
 package Game.Model.Soldiers;
 
 import Debugging.Deb;
+import Game.Controller.GameController;
 import Game.Model.*;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
@@ -59,7 +60,7 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
-                   boolean isAreaSplash, int count, int cost, Team team, Type type,GameController controller) {
+                   boolean isAreaSplash, int count, int cost, Team team, Type type, GameController controller) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
         this.speed = speed;
         this.target = target;

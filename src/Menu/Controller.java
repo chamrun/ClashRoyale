@@ -1,7 +1,11 @@
 package Menu;
 
 import Accounts.Database;
-import Accounts.User;
+import Game.Model.Board;
+import Player.EasyBot;
+import Player.HardBot;
+import Player.MediumBot;
+import Player.User;
 import Game.Controller.GameController;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
@@ -243,33 +247,43 @@ public class Controller implements Initializable {
 
         RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
 
+        if (selectedButton == null){
+
+            System.out.println("No button is selected :/");
+
+            chooseDifficultyText.setFill(Paint.valueOf("red"));
+
+            (new Timer()).schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    chooseDifficultyText.setFill(Paint.valueOf("black"));
+                }
+            }, 1000);
+
+        }
+
+        //ToDo: setting searchFightableRange...
+        Board board = new Board(19, 35, 0);;
+        user.setBoard(board);
+
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
-            switchToScene(event, "../Game/View/GameView.fxml").set;
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new EasyBot(board));
             return;
         }
         else if (selectedButton == medium){
             System.out.println("Starting medium game...");
-            switchToScene(event, "../Game/View/GameView.fxml");
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new MediumBot(board));;
             return;
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
-            switchToScene(event, "../Game/View/GameView.fxml");
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new HardBot(board));
             return;
         }
 
 
-        System.out.println("No button is selected :/");
 
-        chooseDifficultyText.setFill(Paint.valueOf("red"));
-
-        (new Timer()).schedule(new TimerTask() {
-            @Override
-            public void run() {
-                chooseDifficultyText.setFill(Paint.valueOf("black"));
-            }
-        }, 1000);
 
     }
 

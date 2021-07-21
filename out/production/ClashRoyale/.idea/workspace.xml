@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Bridge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Buildings/Building.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Buildings/Cannon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Buildings/InfernoTower.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Fightable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Level.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Location.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Region.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Archers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/BabyDragon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Barbarian.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Giant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/MiniPEKKA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Mode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Soldier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Valkyrie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Soldiers/Wizard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Speed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Spells/Arrows.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Spells/Fireball.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Spells/Rage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Spells/Spell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Target.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Team.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Towers/King.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Towers/Queen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Towers/Tower.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Model/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/Deck - Copy.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/Deck.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/Exit.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/MainMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/NewGame - Copy.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/NewGame.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/View/Profile.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Model/Soldiers/BabyDragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Model/Soldiers/BabyDragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Model/Soldiers/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Model/Soldiers/Soldier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Model/Soldiers/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Model/Soldiers/Valkyrie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Controller.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JavaFxApplication" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1612" />
+    <option name="height" value="876" />
+  </component>
+  <component name="ProjectId" id="1u9uXMPhkKuFCYjQ7WIYqViirI9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaFxApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaFxApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaFxApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlserver" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Player" />
+      <recent name="Game" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="L:\Programming\Java\ClashRoyale\src\Menu\View" />
+      <recent name="L:\Programming\Java\ClashRoyale\src\Accounts\Scenes" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ClashRoyale" />
+      <option name="VM_PARAMETERS" value="--module-path L:\Programming\Java\sdk\javafx-sdk-16\lib --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game.Run" />
+      <module name="ClashRoyale" />
+      <option name="VM_PARAMETERS" value="--module-path L:\Programming\Java\sdk\javafx-sdk-16\lib --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Run" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <created>1359379246138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1359379246138</updated>
+      <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1624090180103" duration="4136000" />
+      <workItem from="1624101086544" duration="5343000" />
+      <workItem from="1624118395492" duration="1448000" />
+      <workItem from="1624124327732" duration="776000" />
+      <workItem from="1624139300835" duration="713000" />
+      <workItem from="1624191418825" duration="748000" />
+      <workItem from="1624195376599" duration="5738000" />
+      <workItem from="1624205039375" duration="1306000" />
+      <workItem from="1624211135657" duration="371000" />
+      <workItem from="1624247657213" duration="305000" />
+      <workItem from="1624248432069" duration="1126000" />
+      <workItem from="1624255960683" duration="2000" />
+      <workItem from="1624256197698" duration="195000" />
+      <workItem from="1624267712697" duration="199000" />
+      <workItem from="1624343542401" duration="178000" />
+      <workItem from="1624393535197" duration="2245000" />
+      <workItem from="1624423351268" duration="25000" />
+      <workItem from="1624423474207" duration="126000" />
+      <workItem from="1624433306381" duration="2194000" />
+      <workItem from="1624450413780" duration="833000" />
+      <workItem from="1624454539896" duration="1487000" />
+      <workItem from="1624468732126" duration="1000" />
+      <workItem from="1624510349629" duration="1392000" />
+      <workItem from="1624533076308" duration="344000" />
+      <workItem from="1624538068246" duration="1195000" />
+      <workItem from="1624885267161" duration="891000" />
+      <workItem from="1624946657646" duration="3110000" />
+      <workItem from="1625230738183" duration="775000" />
+      <workItem from="1625738823804" duration="1015000" />
+      <workItem from="1625746617023" duration="2672000" />
+      <workItem from="1625764322583" duration="600000" />
+      <workItem from="1625798578309" duration="1751000" />
+      <workItem from="1625802262231" duration="703000" />
+      <workItem from="1625803683741" duration="1949000" />
+      <workItem from="1625828644876" duration="6401000" />
+      <workItem from="1625841453192" duration="1821000" />
+      <workItem from="1625854478356" duration="1334000" />
+      <workItem from="1625901420663" duration="2519000" />
+      <workItem from="1625908841839" duration="7664000" />
+      <workItem from="1625922873885" duration="4820000" />
+      <workItem from="1625939490478" duration="597000" />
+      <workItem from="1625983377807" duration="3376000" />
+      <workItem from="1625989322462" duration="2756000" />
+      <workItem from="1626028961255" duration="14000" />
+      <workItem from="1626077205128" duration="496000" />
+      <workItem from="1626092832561" duration="10356000" />
+      <workItem from="1626169421568" duration="8612000" />
+      <workItem from="1626320735269" duration="1190000" />
+      <workItem from="1626371016662" duration="1863000" />
+      <workItem from="1626373399671" duration="1828000" />
+      <workItem from="1626408579314" duration="2493000" />
+      <workItem from="1626422783034" duration="3291000" />
+      <workItem from="1626500308633" duration="4673000" />
+      <workItem from="1626516966477" duration="5821000" />
+      <workItem from="1626527646179" duration="3460000" />
+      <workItem from="1626536898157" duration="2097000" />
+      <workItem from="1626545214929" duration="4219000" />
+      <workItem from="1626550036646" duration="261000" />
+      <workItem from="1626550450738" duration="1153000" />
+      <workItem from="1626585174542" duration="1815000" />
+      <workItem from="1626589869941" duration="5798000" />
+      <workItem from="1626599332165" duration="2617000" />
+      <workItem from="1626602865840" duration="423000" />
+      <workItem from="1626603431958" duration="1934000" />
+      <workItem from="1626607234332" duration="7822000" />
+      <workItem from="1626617092155" duration="7910000" />
+      <workItem from="1626628146928" duration="2256000" />
+      <workItem from="1626673806272" duration="1009000" />
+      <workItem from="1626674883106" duration="187000" />
+      <workItem from="1626675507689" duration="1428000" />
+      <workItem from="1626678256167" duration="176000" />
+      <workItem from="1626682693274" duration="1849000" />
+      <workItem from="1626688540860" duration="6031000" />
+      <workItem from="1626709674698" duration="3487000" />
+      <workItem from="1626754336168" duration="5414000" />
+      <workItem from="1626763667718" duration="3573000" />
+      <workItem from="1626774197296" duration="5828000" />
+      <workItem from="1626780136704" duration="447000" />
+      <workItem from="1626781706747" duration="8022000" />
+      <workItem from="1626795569064" duration="2854000" />
+      <workItem from="1626800156056" duration="3807000" />
+      <workItem from="1626832000784" duration="3328000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1302000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967742" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="45" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="27" selection-start="136" selection-end="136" vertical-scroll-proportion="0.17171717">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
