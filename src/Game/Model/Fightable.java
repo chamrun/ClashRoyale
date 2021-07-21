@@ -31,6 +31,7 @@ public abstract class Fightable extends Thread{
         this.hitSpeed = hitSpeed;
         this.range = range;
         this.location = location;
+        location.setEmpty(false);
     }
 
     public Direction getDirection() {

@@ -63,14 +63,14 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public Soldier(Board board, int hp, int damage, long hitSpeed, double range, Location location, Speed speed, Target target,
-                   boolean isAreaSplash, int count, int cost, Team team, Type type,GameController controller) {
+                   boolean isAreaSplash, int count, int cost, Team team, Type type, GameController controller) {
         super(board, hp, damage, hitSpeed, range, location, team, type);
         this.speed = speed;
         this.target = target;
         this.isAreaSplash = isAreaSplash;
         this.count = count;
         this.cost = cost;
-        fightTime = (long) hitSpeed * 1000;
+        fightTime = (long) hitSpeed;
         moveTime = getMoveTime();
         currentImage = new ImageView();
 
@@ -93,7 +93,7 @@ public abstract class Soldier extends Fightable implements Card {
     public void initializeFightImages() {
         String address = null;
         fightImageViews = new ImageView[16];
-        fightImageViews[0] = fight_1_r;
+        fight_1_r=fightImageViews[0] ;
         fightImageViews[4] = fight_1_l;
         fightImageViews[8] = fight_1_u;
         fightImageViews[12] = fight_1_d;
@@ -128,13 +128,16 @@ public abstract class Soldier extends Fightable implements Card {
             }
 
             System.out.println(address);
-            if (i == 3)
-                fightImageViews[i - 1] = makeRotationForms(i, address);
-            else if (i == 0)
-                fightImageViews[i + 3] = makeRotationForms(i, address);
-            else if (i == 1)
-                fightImageViews[i + 7] = makeRotationForms(i, address);
-            else fightImageViews[i + 11] = makeRotationForms(i, address);
+            for (int j = 0;j < 4 ;j++) {
+                if (j == 3)
+                    fightImageViews[i - 1] = makeRotationForms(j, address);
+                else if (j == 0)
+                    fightImageViews[i + 3] = makeRotationForms(j, address);
+                else if (j == 1)
+                    fightImageViews[i + 7] = makeRotationForms(j, address);
+                else if (j == 2)
+                    fightImageViews[i + 11] = makeRotationForms(j, address);
+            }
         }
     }
 
@@ -220,22 +223,20 @@ public abstract class Soldier extends Fightable implements Card {
 
     @Override
     public void run() {
-        while (alive) {
-            LinkedList<Fightable> enemies = getNearEnemies();
 
-            if (enemies == null) {
-                move();
-                Deb.print(toString() + "between two steps : " + moveTime + "seconds.");
-            } else {
-                fight(enemies);
-                try {
-                    Thread.sleep(hitSpeed);
-                    Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        fightSteps();
+
+//        while (alive) {
+//            LinkedList<Fightable> enemies = getNearEnemies();
+//
+//            if (enemies == null) {
+//                move();
+//                Deb.print(toString() + "between two steps : " + moveTime + "seconds.");
+//            } else {
+//                fight(enemies);
+//                Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
+//            }
+//        }
     }
 
 
@@ -281,7 +282,6 @@ public abstract class Soldier extends Fightable implements Card {
             if (nearestEnemy == null) {
                 return null;
             }
-
             nearEnemies.add(nearestEnemy);
         }
 
@@ -311,11 +311,65 @@ public abstract class Soldier extends Fightable implements Card {
 
     public void fight(LinkedList<Fightable> targets) {
 
+        setDirectionOfTarget(targets.get(0));
+        fightSteps();
+
         while (alive) {
             for (Fightable target : targets) {
                 target.toGetHurt(damage);
             }
         }
+    }
+
+    public void fightSteps() {
+        direction = Direction.UP;
+        try {
+            for (int i = 1; i < 5; i++) {
+                Thread.sleep(fightTime / 4);
+                prepareFightImages(i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void prepareFightImages(int i) {
+        controller.clear(currentImage);
+        if (direction.equals(Direction.RIGHT)) {
+            currentImage = (i % 2 == 1) ? ((i == 1) ? fightImageViews[0] : fightImageViews[2]) :
+                    ((i == 2) ? fightImageViews[1] : fightImageViews[3]);
+        } else if (direction.equals(Direction.LEFT)) {
+            currentImage = (i % 2 == 1) ? ((i == 1) ? fightImageViews[4] : fightImageViews[6]) :
+                    ((i == 2) ? fightImageViews[5] : fightImageViews[7]);
+        } else if (direction.equals(Direction.UP)) {
+            currentImage = (i % 2 == 1) ? ((i == 1) ? fightImageViews[8] : fightImageViews[10]) :
+                    ((i == 2) ? fightImageViews[9] : fightImageViews[11]);
+        } else {
+            currentImage = (i % 2 == 1) ? ((i == 1) ? fightImageViews[12] : fightImageViews[14]) :
+                    ((i == 2) ? fightImageViews[13] : fightImageViews[15]);
+        }
+        System.out.println(currentImage.getRotate());
+        currentImage.setY(location.getY() * tileHeight);
+        currentImage.setX(location.getX() * tileWidth);
+        controller.addElement(currentImage);
+        Deb.print("Image for fight has set. direction : " + direction + " image : " + currentImage.getImage().getUrl()
+                + " position : X = " + currentImage.getX() + " Y = " + currentImage.getY());
+
+    }
+
+    public void setDirectionOfTarget(Fightable fightable) {
+        if (fightable.getLocation().getX() == location.getX()) {
+            if (fightable.getLocation().getY() > location.getY())
+                direction = Direction.DOWN;
+            else direction = Direction.UP;
+        } else {
+            if (fightable.getLocation().getX() > location.getX())
+                direction = Direction.RIGHT;
+            else
+                direction = Direction.LEFT;
+        }
+        Deb.print("target is on the " + direction);
     }
 
 
@@ -344,7 +398,7 @@ public abstract class Soldier extends Fightable implements Card {
                 location = board.getLocations()[location.getX() - 1][location.getY()];
             }
         }
-        Deb.print("new Location : X = "+location.getX()+" Y = "+location.getY());
+        Deb.print("new Location : X = " + location.getX() + " Y = " + location.getY());
         location.setEmpty(false);
         currentImage.setX(location.getX() * tileWidth);
         currentImage.setY(location.getY() * tileHeight);
@@ -354,7 +408,7 @@ public abstract class Soldier extends Fightable implements Card {
     public void moveSteps() {
         try {
             for (int i = 0; i < 4; i++) {
-                Deb.print("step "+i+" : progress : "+ moveProgress);
+                Deb.print("step " + i + " : progress : " + moveProgress);
                 Thread.sleep(moveTime / 4);
                 prepareMoveImageView();
                 moveProgress++;
@@ -371,24 +425,24 @@ public abstract class Soldier extends Fightable implements Card {
         controller.clear(currentImage);
         if (direction.equals(Direction.RIGHT)) {
             currentImage = (moveProgress % 2 == 1) ? walk_closed_r : walk_open_r;
-            currentImage.setY(location.getY()*tileHeight);
+            currentImage.setY(location.getY() * tileHeight);
             currentImage.setX(location.getX() * tileWidth + moveProgress * tileWidth / 4);
         } else if (direction.equals(Direction.LEFT)) {
             currentImage = (moveProgress % 2 == 1) ? walk_closed_l : walk_open_l;
-            currentImage.setY(location.getY()*tileHeight);
+            currentImage.setY(location.getY() * tileHeight);
             currentImage.setX(location.getX() * tileWidth - moveProgress * tileWidth / 4);
         } else if (direction.equals(Direction.UP)) {
             currentImage = (moveProgress % 2 == 1) ? walk_closed_u : walk_open_u;
-            currentImage.setX(location.getX()*tileWidth);
+            currentImage.setX(location.getX() * tileWidth);
             currentImage.setY(location.getY() * tileHeight - moveProgress * tileHeight / 4);
         } else {
             currentImage = (moveProgress % 2 == 1) ? walk_closed_d : walk_open_d;
-            currentImage.setX(location.getX()*tileWidth);
+            currentImage.setX(location.getX() * tileWidth);
             currentImage.setY(location.getY() * tileHeight + moveProgress * tileHeight / 4);
         }
         controller.addElement(currentImage);
-        Deb.print("Image for walk has set. direction : "+direction+" image : "+currentImage.getImage().getUrl()
-        +" position : X = " +currentImage.getX()+" Y = "+currentImage.getY());
+        Deb.print("Image for walk has set. direction : " + direction + " image : " + currentImage.getImage().getUrl()
+                + " position : X = " + currentImage.getX() + " Y = " + currentImage.getY());
     }
 //
 //    public Location getNearestBridge() {
