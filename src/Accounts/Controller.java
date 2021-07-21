@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -21,6 +23,13 @@ public class Controller {
     public TextField password;
     @FXML
     private Text alertText;
+
+    Media clickMedia = new Media(getClass().getResource("../Audio/click.wav").toExternalForm());
+
+
+    public Controller(){
+
+    }
 
     @FXML
     public void openSignUp(Event event){
@@ -39,7 +48,18 @@ public class Controller {
 
     @FXML
     public void logIn(Event event) {
+
         System.out.println(event.getEventType() + " on " + ((Button) event.getTarget()).getText());
+
+        if (userName.getText().equals("")){
+            alertText.setText("UserName can't be empty.");
+            return;
+        }
+        if (password.getText().equals("")){
+            alertText.setText("Password can't be empty.");
+            return;
+        }
+
 
         User user = database.tryLogIn(userName.getText(), password.getText());
         if (user == null) {
@@ -58,6 +78,15 @@ public class Controller {
     @FXML
     public void signUp(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
+
+        if (userName.getText().equals("")){
+            alertText.setText("UserName can't be empty.");
+            return;
+        }
+        if (password.getText().equals("")){
+            alertText.setText("Password can't be empty.");
+            return;
+        }
 
         User user = database.trySignUp(userName.getText(), password.getText());
         if (user == null){
@@ -91,6 +120,8 @@ public class Controller {
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
+        playClick();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
             loader.load();
@@ -121,5 +152,10 @@ public class Controller {
     private String getTitle(String sceneName) {
         String[] strings = (sceneName.replace(".fxml", "")).split("/");
         return strings[strings.length - 1];
+    }
+
+    private void playClick(){
+        MediaPlayer clickPlayer = new MediaPlayer(clickMedia);
+        clickPlayer.play();
     }
 }

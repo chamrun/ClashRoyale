@@ -285,6 +285,9 @@
          <image>
             <Image url="@../../Pix/Menu/save.png" />
          </image>
+         <effect>
+            <DropShadow />
+         </effect>
       </ImageView>
    </children>
 </AnchorPane>
