@@ -30,12 +30,12 @@ public class Main extends Application {
 //
 //        primaryStage.show();
 
-        Parent root = FXMLLoader.load(getClass().getResource("Game/View/GameView.fxml"));
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("Game/View/GameView.fxml"));
-//        loader.load();
-//        Parent root = loader.getRoot();
-//        GameController controller = loader.getController();
+//        Parent root = FXMLLoader.load(getClass().getResource("Game/View/GameView.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Game/View/GameView.fxml"));
+        loader.load();
+        Parent root = loader.getRoot();
+        GameController controller = loader.getController();
 
         imageView[0].setFitHeight(30.5);
         imageView[0].setFitWidth(30.5);
@@ -60,8 +60,8 @@ public class Main extends Application {
 //        imageView3.setImage(image);
 //        controller.landPane.getChildren().add(imageView3);
 //        controller.landPane.getChildren().add(imageView1);
-//        Board board = new Board(18,35,18);
-//        controller.setBoard(board);
+        Board board = new Board(18,35,18);
+        controller.setBoard(board);
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
