@@ -22,6 +22,7 @@ import java.util.*;
 
 
 public class GameController {
+    private String[] cards = {"Archers","MiniPEKKA","Giant","BabyDragon","Valkyrie","Wizard","Arrows","Rage"};
     private Location[][] locations;
     private HashMap<Image, String> cardImages;
     private Image chosenCard;
@@ -57,6 +58,48 @@ public class GameController {
     public void initialize(){
 //        initializeCardImageViews();
 //        board = new Board(18,35,18);
+    }
+    public void createCardImages(){
+        for (String name : cards){
+            switch (name){
+                case "Archers":
+                    cardImages.put(new Image("Cards/Archer.png"),name);
+                    break;
+                case "BabyDragon":
+                    cardImages.put(new Image("Cards/babyDragon.png"),name);
+                    break;
+                case "Arrows":
+                    cardImages.put(new Image("Cards/Arrows.png"),name);
+                    break;
+                case "Barbarian":
+                    cardImages.put(new Image("Cards/barbarian.png"),name);
+                    break;
+                case "Cannon":
+                    cardImages.put(new Image("Cards/Cannon.png"),name);
+                    break;
+                case "Fireball":
+                    cardImages.put(new Image("Cards/Fireball.png"),name);
+                    break;
+                case "Giant":
+                    cardImages.put(new Image("Cards/Giant.png"),name);
+                    break;
+                case "Inferno":
+                    cardImages.put(new Image("Cards/inferno.png"),name);
+                    break;
+                case "MiniPEKKA":
+                    cardImages.put(new Image("Cards/PEKKA.png"),name);
+                    break;
+                case "Rage":
+                    cardImages.put(new Image("Cards/Rage.png"),name);
+                    break;
+                case "Valkyrie":
+                    cardImages.put(new Image("Cards/Valkyrie.png"),name);
+                    break;
+                case "Wizard":
+                    cardImages.put(new Image("Cards/Wizard.png"),name);
+                    break;
+            }
+        }
     }
 
     public void initializeCardImageViews(){
