@@ -1,6 +1,7 @@
 package Game.Model;
 
 import Game.Model.Towers.King;
+import Game.Model.Towers.Queen;
 import Game.Model.Towers.Tower;
 
 import java.util.ArrayList;
@@ -148,4 +149,54 @@ public class Board {
 
         return null;
     }
+
+
+    public boolean isLocationValid(Team team, Location location){
+        double y = location.getY();
+
+        if (team == Team.A){
+            if (location.getY() < 17){
+                return true;
+            }
+
+            int nQueens = 0;
+            for (Fightable bFightable : BFightables){
+                if (bFightable instanceof Queen) {
+                    nQueens++;
+                }
+            }
+
+            if (nQueens == 1 && y < 19){
+                return true;
+            }
+
+            if (nQueens == 0 && y < 21){
+                return true;
+            }
+        }
+
+        if (team == Team.B){
+            if (location.getY() > 16){
+                return true;
+            }
+
+            int nQueens = 0;
+            for (Fightable aFightable : AFightables){
+                if (aFightable instanceof Queen) {
+                    nQueens++;
+                }
+            }
+
+            if (nQueens == 1 && y > 18){
+                return true;
+            }
+
+            if (nQueens == 0 && y > 20){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
