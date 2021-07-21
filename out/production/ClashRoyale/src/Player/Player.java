@@ -8,23 +8,6 @@ public abstract class Player extends Thread{
 
 
 
-    protected abstract void play();
-
-
-    public void putACard(){
-
-    }
-
-
-    //deck = new String[8];
-    //readyCards = new String[4];
-
-
-
-
-
-
-
 
     @Override
     public void run() {
@@ -36,6 +19,15 @@ public abstract class Player extends Thread{
     protected Elixir elixir;
     public int getElixir() {
         return elixir.getElixirs();
+    }
+
+
+
+    protected abstract void play();
+
+
+    public void putACard() {
+
     }
 
 

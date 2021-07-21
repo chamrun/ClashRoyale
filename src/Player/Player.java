@@ -4,25 +4,10 @@ public abstract class Player extends Thread{
 
     protected String[] deck;
     protected String[] readyCards;
-
-
-
-
-    protected abstract void play();
-
-
-    public void putACard(){
-
+    protected Elixir elixir;
+    public int getElixir() {
+        return elixir.getElixirs();
     }
-
-
-    //deck = new String[8];
-    //readyCards = new String[4];
-
-
-
-
-
 
 
 
@@ -33,9 +18,13 @@ public abstract class Player extends Thread{
         play();
     }
 
-    protected Elixir elixir;
-    public int getElixir() {
-        return elixir.getElixirs();
+
+
+    protected abstract void play();
+
+
+    public void putACard() {
+
     }
 
 

@@ -7,7 +7,7 @@ public class EasyBot extends Bot{
         while (true) {
 
             if (5 < getElixir()){
-
+                
             }
 
 
