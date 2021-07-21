@@ -122,7 +122,7 @@ public abstract class Soldier extends Fightable implements Card {
             } else if (this instanceof MiniPEKKA) {
                 address = "characters/MiniPEKKA/Min_Fight_" + i + ".png";
             } else if (this instanceof Valkyrie) {
-                address = "characters/MiniPEKKA/Min_Fight_" + i + ".png";
+                address = "characters/Valkyrie/Val_Fight_" + i + ".png";
             } else if (this instanceof Wizard) {
                 address = "characters/Wizard/Wiz_Fight_" + i + ".png";
             }
@@ -161,8 +161,8 @@ public abstract class Soldier extends Fightable implements Card {
             addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
             addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
         } else if (this instanceof Valkyrie) {
-            addressForClosed = "characters/MiniPEKKA/Min_Walk_Closed.png";
-            addressForOpen = "characters/MiniPEKKA/Min_Walk_Open.png";
+            addressForClosed = "characters/Valkyrie/Val_Walk_Closed.png";
+            addressForOpen = "characters/Valkyrie/Val_Walk_Open.png";
         } else if (this instanceof Wizard) {
             addressForClosed = "characters/Wizard/Wiz_Walk_Closed.png";
             addressForOpen = "characters/Wizard/Wiz_Walk_Open.png";

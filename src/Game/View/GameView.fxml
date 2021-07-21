@@ -41,7 +41,7 @@
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="cardImageView5" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="528.0" onMouseClicked="#clickMouseOnCard" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cardImageView5" fitHeight="110.0" fitWidth="110.0" layoutX="25.0" layoutY="528.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Pic/characters/Barbarians/Bar_Walk_Closed.png" />
                      </image>
