@@ -1,11 +1,12 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class Wizard extends Soldier {
-    public Wizard(Board board, Level level, Location location, Team team) {
+    public Wizard(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1700, 5, location, Speed.MEDIUM,
-                Target.GROUND_AIR, true, 1, 5, team , Type.GROUND);
+                Target.GROUND_AIR, true, 1, 5, team , Type.GROUND,controller);
 
         start();
     }

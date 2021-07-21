@@ -2,5 +2,6 @@ package Game.Model.Soldiers;
 
 public enum Mode {
     FIGHT,
-    MOVE
+    MOVE_0,
+    MOVE_1
 }

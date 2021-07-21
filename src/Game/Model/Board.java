@@ -4,35 +4,59 @@ import Game.Model.Towers.King;
 import Game.Model.Towers.Tower;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Board {
 
-    private final int length;
+    private final int height;
     private final int width;
+    private Location[][] locations;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
-    private final ArrayList<Bridge> bridges;
+//    private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
-    public Board(int length, int width, int searchFightableRange) {
-        this.length = length;
+    public Board( int height, int width,int searchFightableRange) {
+        this.height = height;
         this.width = width;
-        this.bridges = new ArrayList<>();
-        bridges.add(new Bridge(new Location(4, 17), new Location(4, 19)));
-        bridges.add(new Bridge(new Location(4, 17), new Location(4, 19)));
+        initializeLocations();
         this.searchFightableRange = searchFightableRange;
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
     }
 
 
-    public ArrayList<Bridge> getBridges() {
-        return bridges;
+//    public Board( int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
+//        this.length = length;
+//        this.width = width;
+//        initializeLocations();
+//        this.bridges = bridges;
+//        this.searchFightableRange = searchFightableRange;
+//        AFightables = new LinkedList<>();
+//        BFightables = new LinkedList<>();
+//    }
+
+    public void initializeLocations(){
+        locations = new Location[width][height];
+        for (int i = 0; i < width; i++){
+            for (int j = 0 ; j < height ; j++){
+//                Location location = new Location(i,j);
+                locations[i][j] =  new Location(i,j);
+            }
+        }
     }
 
-    public int getLength() {
-        return length;
+    public Location[][] getLocations() {
+        return locations;
+    }
+
+//    public ArrayList<Bridge> getBridges() {
+//        return bridges;
+//    }
+
+    public int getHeight() {
+        return height;
     }
 
     public int getWidth() {
