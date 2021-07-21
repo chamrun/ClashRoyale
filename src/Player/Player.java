@@ -1,14 +1,13 @@
 package Player;
 
 
-import Game.Model.Board;
+import Game.Model.*;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
-import Game.Model.Level;
-import Game.Model.Location;
 import Game.Model.Soldiers.*;
-import Game.Model.Spells.*;
-import Game.Model.Team;
+import Game.Model.Spells.Arrows;
+import Game.Model.Spells.Fireball;
+import Game.Model.Spells.Rage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -50,24 +49,32 @@ public abstract class Player extends Thread{
 
     public void putCard(int index, Location location, Team team) {
 
+        Card newCard;
+
         switch (readyCards.get(index)){
-            case "Archer"-> new Archers         (board, level, location, team);
-            case "Arrows"-> new Arrows          (board, level, location, team);
-            case "BabyDragon"-> new BabyDragon  (board, level, location, team);
-            case "Barbarian"-> new Barbarian    (board, level, location, team);
-            case "Cannon"-> new Cannon          (board, level, location, team);
-            case "FireBall"-> new Fireball      (board, level, location, team);
-            case "Giant"-> new Giant            (board, level, location, team);
-            case "Inferno"-> new InfernoTower   (board, level, location, team);
-            case "PEKKA"-> new MiniPEKKA        (board, level, location, team);
-            case "Rage"-> new Rage              (board, level, location, team);
-            case "Valkyrie"-> new Valkyrie      (board, level, location, team);
-            case "Wizard"-> new Wizard          (board, level, location, team);
+            case "Archer"-> newCard = new Archers         (board, level, location, team);
+            case "Arrows"-> newCard = new Arrows          (board, level, location, team);
+            case "BabyDragon"-> newCard = new BabyDragon  (board, level, location, team);
+            case "Barbarian"-> newCard = new Barbarian    (board, level, location, team);
+            case "Cannon"-> newCard = new Cannon          (board, level, location, team);
+            case "FireBall"-> newCard = new Fireball      (board, level, location, team);
+            case "Giant"-> newCard = new Giant            (board, level, location, team);
+            case "Inferno"-> newCard = new InfernoTower   (board, level, location, team);
+            case "PEKKA"-> newCard = new MiniPEKKA        (board, level, location, team);
+            case "Rage"-> newCard = new Rage              (board, level, location, team);
+            case "Valkyrie"-> newCard = new Valkyrie      (board, level, location, team);
+            case "Wizard"-> newCard = new Wizard          (board, level, location, team);
             default -> {
                 System.out.println("WTC?! (What the card)");
                 return;
             }
         }
+
+        //ToDo
+        if (elixir.use(newCard.getCost())){
+            newCard.s
+        }
+
 
         readyCards.add(nextReadyCard);
         nextReadyCard = getRandomNextCard();

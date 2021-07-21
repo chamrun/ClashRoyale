@@ -13,12 +13,11 @@ public class EasyBot extends Bot{
 
     @Override
     protected void play() {
-        while (true) {
+        while (true) {// ToDo: while(Alive) for all PlayMethods.
 
             if (5 < getElixir()){
                 Location randomLocation = new Location(getRandInt(18), 19 + getRandInt(16));
                 putCard(getRandInt(4), randomLocation, Team.B);
-
             }
             else {
                 try {

@@ -182,6 +182,14 @@ public class Board {
             }
         }
         return new Location(20, 16);
-        
+    }
+
+    public Location suggestToHardBot(String[] bestCards) {
+        for (Fightable aFightable : AFightables){
+            if ((!(aFightable instanceof Tower)) && aFightable.getLocation().getY() < 9){
+                return new Location(20, 4);
+            }
+        }
+        return new Location(20, 16);
     }
 }
