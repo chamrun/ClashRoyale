@@ -13,7 +13,7 @@ public class HardBot extends Bot{
 
     @Override
     protected void play() {
-        while (true) {
+        while (active) {
 
             if (3 < getElixir()){
 

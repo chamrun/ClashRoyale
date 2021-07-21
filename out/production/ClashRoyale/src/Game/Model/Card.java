@@ -4,7 +4,7 @@ public interface Card {
     int getCost();
 
     static int getCostFromString(String cardName){
-        int cost = 11;
+        int cost;
 
         switch (cardName){
             case "Archer", "Arrows", "BabyDragon", "Cannon", "Rage" -> cost = 3;

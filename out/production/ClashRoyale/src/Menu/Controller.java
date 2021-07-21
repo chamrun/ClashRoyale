@@ -3,6 +3,7 @@ package Menu;
 import Accounts.Database;
 import Game.Model.Board;
 import Player.EasyBot;
+import Player.HardBot;
 import Player.MediumBot;
 import Player.User;
 import com.sun.tools.javac.Main;
@@ -253,6 +254,7 @@ public class Controller implements Initializable {
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
+            HardBot hardBot = new HardBot(board);
         }
     }
 

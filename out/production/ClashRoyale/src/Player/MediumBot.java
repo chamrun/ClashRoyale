@@ -12,7 +12,7 @@ public class MediumBot extends Bot{
 
     @Override
     protected void play() {
-        while (true) {
+        while (active) {
 
             if (3 + getRandInt(3) < getElixir()){
                 Location busyLocation = board.suggestLocationToMediumBot();
