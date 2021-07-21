@@ -1,6 +1,7 @@
 package Game.Model;
 
 import Game.Model.Towers.King;
+import Game.Model.Towers.Queen;
 import Game.Model.Towers.Tower;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Board {
 
     private final int length;
     private final int width;
-    private HashMap<Team, Region> teams;
+    private Location[][] locations;
     private LinkedList<Fightable> AFightables;
     private LinkedList<Fightable> BFightables;
     private final ArrayList<Bridge> bridges;
@@ -22,8 +23,6 @@ public class Board {
         this.width = width;
         this.bridges = bridges;
         this.searchFightableRange = searchFightableRange;
-        this.teams.put(Team.A, Region.A);
-        this.teams.put(Team.B, Region.B);
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
     }
@@ -43,10 +42,6 @@ public class Board {
 
     public int getSearchFightableRange() {
         return searchFightableRange;
-    }
-
-    public HashMap<Team, Region> getTeams() {
-        return teams;
     }
 
     public LinkedList<Fightable> getAFightables() {
@@ -129,5 +124,72 @@ public class Board {
          */
 
         return null;
+    }
+
+
+    public boolean isLocationValid(Team team, Location location){
+        double y = location.getY();
+
+        if (team == Team.A){
+            if (location.getY() < 17){
+                return true;
+            }
+
+            int nQueens = 0;
+            for (Fightable bFightable : BFightables){
+                if (bFightable instanceof Queen) {
+                    nQueens++;
+                }
+            }
+
+            if (nQueens == 1 && y < 19){
+                return true;
+            }
+
+            if (nQueens == 0 && y < 21){
+                return true;
+            }
+        }
+
+        if (team == Team.B){
+            if (location.getY() > 16){
+                return true;
+            }
+
+            int nQueens = 0;
+            for (Fightable aFightable : AFightables){
+                if (aFightable instanceof Queen) {
+                    nQueens++;
+                }
+            }
+
+            if (nQueens == 1 && y > 18){
+                return true;
+            }
+
+            if (nQueens == 0 && y > 20){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Location suggestLocationToMediumBot() {
+        for (Fightable aFightable : AFightables){
+            if ((!(aFightable instanceof Tower)) && aFightable.getLocation().getY() < 9){
+                return new Location(20, 4);
+            }
+        }
+        return new Location(20, 16);
+    }
+
+    public Location suggestToHardBot(String[] bestCards) {
+        for (Fightable aFightable : AFightables){
+            if ((!(aFightable instanceof Tower)) && aFightable.getLocation().getY() < 9){
+                return new Location(20, 4);
+            }
+        }
+        return new Location(20, 16);
     }
 }

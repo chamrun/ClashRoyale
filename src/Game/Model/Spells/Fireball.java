@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Fireball extends Spell{
     private int areaDamage;
 
-    public Fireball(Board board, Location location, Level level , Team team) {
+    public Fireball(Board board, Level level, Location location, Team team) {
         super(2.5, 4, board, location, team);
         areaDamage = getAD(level);
 

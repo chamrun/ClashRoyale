@@ -1,7 +1,7 @@
 package Menu;
 
 import Accounts.Database;
-import Accounts.User;
+import Player.User;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -181,6 +181,13 @@ public class Controller implements Initializable {
     @FXML
     public void refreshProfile(Event event){
 
+        /*
+        user.addWin();
+        user.addLose();
+        user.addWin();
+
+
+         */
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
 
@@ -237,6 +244,7 @@ public class Controller implements Initializable {
         System.out.println(event);
 
         RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
+        System.out.println(selectedButton);
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");

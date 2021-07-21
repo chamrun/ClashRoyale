@@ -285,6 +285,9 @@
          <image>
             <Image url="@../../Pix/Menu/save.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <effect>
             <DropShadow />
          </effect>

@@ -1,7 +1,10 @@
 package Menu;
 
 import Accounts.Database;
-import Accounts.User;
+import Game.Model.Board;
+import Player.EasyBot;
+import Player.MediumBot;
+import Player.User;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -28,10 +31,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -181,6 +181,13 @@ public class Controller implements Initializable {
     @FXML
     public void refreshProfile(Event event){
 
+        /*
+        user.addWin();
+        user.addLose();
+        user.addWin();
+
+
+         */
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
 
@@ -237,13 +244,17 @@ public class Controller implements Initializable {
         System.out.println(event);
 
         RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
+        System.out.println(selectedButton);
+
+        Board board = null;//new Board();
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
-
+            EasyBot bot = new EasyBot(board);
         }
         else if (selectedButton == medium){
             System.out.println("Starting medium game...");
+            MediumBot mediumBot = new MediumBot(board);
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
