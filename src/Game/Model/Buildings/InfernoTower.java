@@ -1,13 +1,14 @@
 package Game.Model.Buildings;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class InfernoTower extends Building {
     int maxDamage;
 
-    public InfernoTower(Board board, Level level, Location location , Team team){
+    public InfernoTower(Board board, Level level, Location location , Team team, GameController controller){
 
-        super(board, getHP(level), getDamage(level), 400, 6, Target.GROUND_AIR, 40, 5, location , team);
+        super(board, getHP(level), getDamage(level), 400, 6, Target.GROUND_AIR, 40, 5, location , team,controller);
 
         switch (level) {
             case ONE -> maxDamage = 400;

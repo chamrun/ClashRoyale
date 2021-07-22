@@ -1,15 +1,20 @@
 package Game.Model.Buildings;
 
+import Game.Controller.GameController;
 import Game.Model.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Cannon extends Building {
+    GameController controller;
 
-    public Cannon(Board board, Level level, Location location , Team team){
+    public Cannon(Board board, Level level, Location location , Team team, GameController controller){
 
         super(board, getHP(level), getDamage(level), 800, 5.5, Target.GROUND, 30,
-                3, location,team);
+                3, location,team,controller);
+        setImage();
+        setProgressBar();
         start();
-
     }
 
     private static int getHP(Level level) {

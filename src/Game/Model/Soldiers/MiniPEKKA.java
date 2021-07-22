@@ -1,12 +1,13 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class MiniPEKKA extends Soldier {
 
-    public MiniPEKKA(Board board, Level level, Location location, Team team) {
+    public MiniPEKKA(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1800, 1, location, Speed.FAST,
-                Target.GROUND, false, 1, 4, team , Type.GROUND);
+                Target.GROUND, false, 1, 4, team , Type.GROUND,controller);
 
         start();
     }

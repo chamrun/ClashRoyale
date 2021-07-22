@@ -1,13 +1,14 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class Archers extends Soldier {
 
 
-    public Archers(Board board, Level level, Location location, Team team) {
+    public Archers(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1200, 5, location, Speed.MEDIUM,
-                Target.GROUND_AIR, false, 2, 3, team, Type.GROUND);
+                Target.GROUND_AIR, false, 2, 3, team, Type.GROUND,controller);
 
         start();
     }
