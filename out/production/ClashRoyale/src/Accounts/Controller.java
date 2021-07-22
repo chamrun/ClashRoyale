@@ -1,5 +1,6 @@
 package Accounts;
 
+import Audio.Audio;
 import Player.User;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -9,8 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,8 +23,6 @@ public class Controller {
     public TextField password;
     @FXML
     private Text alertText;
-
-    Media clickMedia = new Media(getClass().getResource("../Audio/click.wav").toExternalForm());
 
 
     public Controller(){
@@ -125,7 +122,7 @@ public class Controller {
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
 
-        playClick();
+        Audio.click();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
@@ -159,8 +156,4 @@ public class Controller {
         return strings[strings.length - 1];
     }
 
-    private void playClick(){
-        MediaPlayer clickPlayer = new MediaPlayer(clickMedia);
-        clickPlayer.play();
-    }
 }

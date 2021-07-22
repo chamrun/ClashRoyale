@@ -6,8 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Pix" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Audio" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/Pic" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Audio/Sounds" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -394,6 +394,7 @@ public abstract class Soldier extends Fightable implements Card {
         if (location.getDistance(destination) == 0)
             return;
         location.setEmpty(true);
+
         if (destination.getX() == location.getX()) {
             if (destination.getY() > location.getY()) {
                 direction = Direction.DOWN;
@@ -404,7 +405,8 @@ public abstract class Soldier extends Fightable implements Card {
                 moveSteps();
                 location = board.getLocations()[location.getX()][location.getY() - 1];
             }
-        } else {
+        }
+        else {
             if (destination.getX() > location.getX()) {
                 direction = Direction.RIGHT;
                 moveSteps();
