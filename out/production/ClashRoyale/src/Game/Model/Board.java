@@ -10,6 +10,7 @@ import Game.Model.Towers.Tower;
 import Player.Suggestion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Board {
@@ -32,8 +33,8 @@ public class Board {
 
         //ToDo: setting bridges exactly
         bridges = new ArrayList<>();
-        bridges.add(new Bridge(new Location(17, 2), new Location(18, 2)));
-        bridges.add(new Bridge(new Location(17, 14), new Location(18, 14)));
+        bridges.add(new Bridge(new Location(17, 2), new Location(19, 2)));
+        bridges.add(new Bridge(new Location(17, 14), new Location(19, 14)));
     }
 
     public void initializeLocations(){
@@ -110,6 +111,10 @@ public class Board {
     public void removeFightable(Fightable deadFightable, Team killerTeam) {
         //Update screen...
 
+        //ToDo: (team should get changed?)
+        BFightables.remove(deadFightable);
+        AFightables.remove(deadFightable);
+
         if (killerTeam.equals(Team.A)){
             BFightables.remove(deadFightable);
         }
@@ -142,6 +147,8 @@ public class Board {
         if (team == Team.A){
             for (Fightable bFightable :BFightables){
                 if (bFightable instanceof Tower){
+                    //a.a(bFightable + " is a Tower!");
+
                     double distance = location.getDistance(bFightable.getLocation());
                     if (distance < minDistance){
                         minDistance = distance;
@@ -290,4 +297,11 @@ public class Board {
     }
 
 
+    public void addAFightable(Fightable... newFightables) {
+        Collections.addAll(AFightables, newFightables);
+    }
+
+    public void addBFightable(Fightable... newFightables) {
+        Collections.addAll(BFightables, newFightables);
+    }
 }

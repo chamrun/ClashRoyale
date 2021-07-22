@@ -1,6 +1,7 @@
 package Game.Model;
 
 
+import Game.Model.Towers.Tower;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
@@ -53,6 +54,11 @@ public abstract class Fightable extends Thread{
     }
 
     public void setOnRightLocationBar() {
+        if (this instanceof Tower){
+            progressBar.setLayoutX(currentImage.getX() + 5);
+            progressBar.setLayoutY(currentImage.getY() - 15);
+            return;
+        }
         progressBar.setLayoutX(currentImage.getX() + 1);
         progressBar.setLayoutY(currentImage.getY() + 1);
     }
@@ -99,8 +105,10 @@ public abstract class Fightable extends Thread{
         hp -= damage;
         if (hp < 0){
             alive = false;
+            System.out.println(this.getClass() + " of " + team + " died.");
             board.removeFightable(this, team);
-            progressBar.setProgress(hp* 1.0 / hpPrimaryValue);
+            //ERROR: IllegalStateException: Not on FX application thread; currentThread = Thread-180
+            //progressBar.setProgress((double) hp / hpPrimaryValue);
         }
     }
 

@@ -7,10 +7,9 @@ public class Queen extends Tower {
 
     public Queen(Board board, Level level, Location location , Team team, GameController controller){
         super(board, getHP(level), getDamage(level), 800, 7.5, location , team, controller);
-        convertProgressBarToAppropriateSize();
-        setOnRightLocationBar();
 
-        controller.addElement(progressBar);
+        currentImage.setFitHeight(92.7);
+        currentImage.setFitWidth(56.55);
     }
 
     @Override

@@ -98,8 +98,8 @@ public abstract class Player extends Thread{
 
 
 
-    protected String[] getRandomDeck() {
-        String[] allCards = new String[]{"Archer", "Arrows", "BabyDragon", "Barbarian", "Cannon", "FireBall", "Giant", "Inferno", "PEKKA", "Rage", "Valkyrie", "Wizard"};
+    protected static String[] getRandomDeck() {
+        String[] allCards = new String[]{"Archers", "Arrows", "BabyDragon", "Barbarian", "Cannon", "Fireball", "Giant", "InfernoTower", "MiniPEKKA", "Rage", "Valkyrie", "Wizard"};
         String[] randomDeck = new String[8];
         ArrayList<Integer> usedNumbers = new ArrayList<>();
 
@@ -157,7 +157,7 @@ public abstract class Player extends Thread{
 
 
 
-    public int getRandInt(int Bound){
+    public static int getRandInt(int Bound){
         Random random = new Random();
         return random.nextInt(Bound);
     }

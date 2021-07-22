@@ -2,7 +2,6 @@ package Game.Controller;
 
 import Audio.Audio;
 import Debugging.Deb;
-import Debugging.a;
 import Game.Model.*;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
@@ -11,6 +10,7 @@ import Game.Model.Spells.Arrows;
 import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
 import Game.Model.Towers.King;
+import Game.Model.Towers.Queen;
 import Game.View.GameView;
 import Player.Bot;
 import Player.User;
@@ -481,14 +481,30 @@ public class GameController {
         });
 
 
-        a.a("Making king...");
-        King king = new King(board, user.getLevel(), new Location(4, 8), Team.A, this);
-        a.a("King was created.");
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                landPane.getChildren().add(((Fightable) king).getCurrentImage());
-            }
-        });
+        initializeTowers(user, bot, board);
+    }
+
+    private void initializeTowers(User user, Bot bot, Board board) {
+
+        King aKing = new King(board, user.getLevel(), new Location(4, 5), Team.A, this);
+        Platform.runLater(() -> landPane.getChildren().add(aKing.getCurrentImage()));
+
+        Queen aQueenOne = new Queen(board, user.getLevel(), new Location(8, 1), Team.A, this);
+        Platform.runLater(() -> landPane.getChildren().add(aQueenOne.getCurrentImage()));
+
+        Queen aQueenTwo = new Queen(board, user.getLevel(), new Location(8, 13), Team.A, this);
+        Platform.runLater(() -> landPane.getChildren().add(aQueenTwo.getCurrentImage()));
+
+        King bKing = new King(board, user.getLevel(), new Location(29, 5), Team.B, this);
+        Platform.runLater(() -> landPane.getChildren().add(bKing.getCurrentImage()));
+
+        Queen bQueenOne = new Queen(board, user.getLevel(), new Location(25, 1), Team.B, this);
+        Platform.runLater(() -> landPane.getChildren().add(bQueenOne.getCurrentImage()));
+
+        Queen bQueenTwo = new Queen(board, user.getLevel(), new Location(25, 13), Team.B, this);
+        Platform.runLater(() -> landPane.getChildren().add(bQueenTwo.getCurrentImage()));
+
+        board.addAFightable(aKing, aQueenOne, aQueenTwo);
+        board.addBFightable(bKing, bQueenOne, bQueenTwo);
     }
 }

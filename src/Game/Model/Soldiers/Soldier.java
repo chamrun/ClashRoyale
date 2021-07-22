@@ -251,8 +251,8 @@ public abstract class Soldier extends Fightable implements Card {
 
 
             i++;
-            if (i == 30)
-                System.exit(-1);
+            if (i == 300)
+                System.exit(-3);
         }
         die();
     }
@@ -336,14 +336,25 @@ public abstract class Soldier extends Fightable implements Card {
 
     public void fight(LinkedList<Fightable> targets) {
 
+        //ToDo: setDirectionOfTarget finds direction correctly,
+        // but view shows something wrong.
+
         setDirectionOfTarget(targets.get(0));
         fightSteps();
 
-        while (alive) {
+        //while (alive) {
             for (Fightable target : targets) {
                 target.toGetHurt(damage);
+                a.a("Fighting with " + target.getClass() + " from " + targets);
+
+                if (!target.alive()){
+                    targets.remove(target);
+                    a.a("One died: " + targets.toString());
+                    if (targets.size() == 0)
+                        break;
+                }
             }
-        }
+        //}
     }
 
     public void fightSteps() {
@@ -374,7 +385,7 @@ public abstract class Soldier extends Fightable implements Card {
             currentImage = (i % 2 == 1) ? ((i == 1) ? fightImageViews[12] : fightImageViews[14]) :
                     ((i == 2) ? fightImageViews[13] : fightImageViews[15]);
         }
-        System.out.println(currentImage.getRotate());
+        //System.out.println(currentImage.getRotate());
         currentImage.setY(location.getY() * tileHeight);
         currentImage.setX(location.getX() * tileWidth);
         setOnRightLocationBar();
@@ -396,6 +407,7 @@ public abstract class Soldier extends Fightable implements Card {
                 direction = Direction.LEFT;
         }
         Deb.print("target is on the " + direction);
+        a.a("target is on the " + direction);
     }
 
 
