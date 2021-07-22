@@ -94,7 +94,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void switchToScene(javafx.event.Event event, String sceneName){
+    public void switchToScene(Event event, String sceneName){
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
         System.out.println("Trying to switch to " + sceneName);
@@ -186,8 +186,6 @@ public class Controller implements Initializable {
          */
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
-
-        //ToDo: just for test, should be removed
 
 
         if (chart.getData().size() != 0) {

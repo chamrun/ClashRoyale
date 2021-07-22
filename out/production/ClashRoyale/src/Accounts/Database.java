@@ -81,7 +81,7 @@ public class Database {
             while (resultSet.next()) {
 
                 String hashedInput = getMd5(password);
-                String pass = resultSet.getString("Password").replace(" ", "");// Because pass is too lone, TODO: should be set (16)
+                String pass = resultSet.getString("Password");
 
                 System.out.println("'" + hashedInput + "'\n" +
                         "'" + pass + "'");

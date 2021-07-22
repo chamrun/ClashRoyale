@@ -1,22 +1,55 @@
 package Player;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Elixir extends Thread{
+
     private int elixirs;
+    boolean gameIsOn;
+    long millisPerElixir;
+
+    public Elixir(){
+        elixirs = 4;
+        gameIsOn = true;
+        millisPerElixir = 2000;
+
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                millisPerElixir = 1000;
+            }
+        }, 120000);
+
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                gameIsOn = false;
+            }
+        }, 180000);
+
+
+
+        start();
+
+    }
 
     @Override
     public void run() {
-        elixirs = 8;
 
-        while (true)//while (game is on)
+
+        while (gameIsOn)
         {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(millisPerElixir);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
             if (elixirs < 10)
                 elixirs++;
+
+
         }
     }
 

@@ -33,10 +33,13 @@ public class Controller {
         switchToScene(event, "View/logIn.fxml");
     }
 
+    /*
     @FXML
     public void openResetPassword(Event event){
         switchToScene(event, "View/resetPassword.fxml");
     }
+
+     */
 
     @FXML
     public void logIn(Event event) {
@@ -79,13 +82,14 @@ public class Controller {
 
     }
 
-
-
+    /*
     @FXML
     public void confirmEmailToReset(Event event){
         System.out.println(event.getEventType() + " on " + event.getTarget());
         switchToScene(event, "View/resetPassword2.fxml");
     }
+
+     */
 
 
     public Menu.Controller switchToScene(Event event, String sceneName){
