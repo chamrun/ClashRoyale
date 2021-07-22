@@ -10,6 +10,8 @@ import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
 import Game.View.GameView;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
@@ -28,16 +30,20 @@ public class GameController {
     private Image chosenCard = null;
     private Timer timer = new Timer();
     private final int FRAMES_PER_SECOND = 1;
-    private boolean isTimeOver = false;
-    private long gameTime = 3 * 60 * 1000;
+    private boolean isGameOver = false;
+    private int gameTime = 3 * 60;
     private boolean doubleElixir = false;
-    private long elixirTime = 2 * 1000;
+    private long elixirTime = 5 * 1000;
     private ImageView[] cardImageViews = new ImageView[5];
     private ImageView chosenImageView;
     private Location chosenLocation;
     private Board board;
     private int count = 0;
     private LinkedList<String> card;
+    private int elixir = 4;
+
+    @FXML
+    private ProgressBar elixirProgressBar;
 
     public void setBoard(Board board) {
         this.board = board;
@@ -53,7 +59,71 @@ public class GameController {
 
     public void initialize() {
         createCardImages();
+        startTimeTimer();
+        startElixirTimer();
 
+    }
+
+    public void startElixirTimer() {
+        Service service = new Service() {
+            @Override
+            protected Task createTask() {
+                return new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        while (!isGameOver) {
+                            if (elixir == 10)
+                                continue;
+                            elixir++;
+                            updateProgress(elixir, 10);
+                            Deb.print("Elixir : " + elixir);
+                            long time = (doubleElixir) ? elixirTime / 2 : elixirTime;
+                            try {
+                                Thread.sleep(time);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        return null;
+                    }
+                };
+            }
+        };
+        elixirProgressBar.progressProperty().bind(service.progressProperty());
+        service.start();
+
+    }
+
+
+    public void startTimeTimer() {
+
+        Service service = new Service() {
+            @Override
+            protected Task createTask() {
+                return new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        for (int i = gameTime; i > 0; i--) {
+                            updateProgress(i, 180);
+                            if (isGameOver)
+                                return null;
+                            if (i == gameTime / 3)
+                                doubleElixir = true;
+                            System.out.println(i);
+                            try {
+                                Thread.sleep(1 * 100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        isGameOver = true;
+                        return null;
+                    }
+                };
+            }
+        };
+        timeProgressBar.progressProperty().bind(service.progressProperty());
+        service.start();
     }
 
     public void createCardImages() {
@@ -148,10 +218,6 @@ public class GameController {
         return null;
     }
 
-    public void initialize(GameView gameView) {
-//        this.gameView = new GameView(landPane);
-//        startTimer();
-    }
 
     public void die(Node node) {
         Platform.runLater(new Runnable() {
@@ -160,7 +226,7 @@ public class GameController {
                 landPane.getChildren().remove(node);
             }
         });
-        Deb.print("deleting char");
+        Deb.print("node deleted.");
     }
 
     @FXML
@@ -172,72 +238,11 @@ public class GameController {
     @FXML
     public ImageView backgroundImage;
 
-    public void startTimer() {
-        TimerTask timerTask = new TimerTask() {
-            public void run() {
-//                gameView.update();
-                Deb.print("View has updated. {in controller}");
-            }
-        };
-
-        long frameTimeInMilliseconds = (long) (1000.0 / FRAMES_PER_SECOND);
-        this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
-        Deb.print("Timer task starts.");
-
-    }
-
-    public void update() {
-        //todo : update view
-        //todo : check time limit
-        //todo : check end of game
-    }
-
-    public void gameTimer() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(gameTime * 2 / 3);
-                    doubleElixir = true;
-                    Deb.print("Double elixir mode is on.");
-                    Thread.sleep(gameTime * 1 / 3);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        isTimeOver = true;
-        //its a new thread
-
-    }
-
-    public void addElixir() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                long time;
-                if (doubleElixir)
-                    time = elixirTime / 2;
-                else
-                    time = elixirTime;
-                try {
-                    Thread.sleep(time);
-                    addPlayersElixirs();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        //its a new thread
-    }
 
     public void addPlayersElixirs() {
         //add Elixirs to players
     }
 
-    public void removeLandElement(ImageView imageView) {
-        landPane.getChildren().remove(imageView);
-    }
 
 //    @FXML
 //    void clickMouseOnLandPane(MouseEvent event) {
@@ -292,20 +297,22 @@ public class GameController {
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
         if (chosenCard != null) {
-            if (chosenLocation.isEmpty()) {
-                Card card = createCard(chosenLocation);
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        landPane.getChildren().add(((Fightable) card).getCurrentImage());
-                    }
-                });
-                Deb.print("Class : GameController | method : clickMouseOnLandPane " +
-                        "| new card added to landPane.");
-                resetCardAndLocation();
+            if (getCost() >= elixir) {
+                if (chosenLocation.isEmpty()) {
+                    Card card = createCard(chosenLocation);
+                    elixir -= getCost();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            landPane.getChildren().add(((Fightable) card).getCurrentImage());
+                        }
+                    });
+                    Deb.print("Class : GameController | method : clickMouseOnLandPane " +
+                            "| new card added to landPane.");
+                    resetCardAndLocation();
+                }
             }
         }
-
     }
 
     public void resetCardAndLocation() {
@@ -397,6 +404,28 @@ public class GameController {
         }
         Deb.print("Class : GameController | method : createCard | new card created.");
         return card;
+    }
+
+    public int getCost() {
+        switch (cardImages.get(chosenCard)) {
+            case "Archers":
+            case "Rage":
+            case "Arrows":
+                return 3;
+            case "BabyDragon":
+            case "MiniPEKKA":
+            case "Valkyrie":
+            case "Fireball":
+                return 4;
+            case "Barbarian":
+            case "Wizard":
+            case "Giant":
+            case "InfernoTower":
+                return 5;
+            case "Cannon":
+                return 6;
+        }
+        return 0;
     }
 
 

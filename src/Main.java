@@ -88,7 +88,7 @@ public class Main extends Application {
 //        }).start();
 //        imageView = imageView3;
 //        controller.landPane.getChildren().add(imageView[0]);
-        ProgressBar progressBar = new ProgressBar();
+//        ProgressBar progressBar = new ProgressBar();
 //
 //        Service service = new Service() {
 //            @Override
@@ -110,11 +110,11 @@ public class Main extends Application {
 //                };
 //            }
 //        };
-        progressBar.setProgress(0.8);
-
+//        progressBar.setProgress(0.8);
+//
 //        progressBar.progressProperty().bind(service.progressProperty());
 //        service.start();
-        controller.addElement(progressBar);
+//        controller.addElement(progressBar);
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

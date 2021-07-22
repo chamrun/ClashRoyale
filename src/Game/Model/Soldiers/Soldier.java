@@ -224,19 +224,19 @@ public abstract class Soldier extends Fightable implements Card {
     @Override
     public void run() {
 
-        fightSteps();
+//        fightSteps();
 
-//        while (alive) {
-//            LinkedList<Fightable> enemies = getNearEnemies();
-//
-//            if (enemies == null) {
-//                move();
-//                Deb.print(toString() + "between two steps : " + moveTime + "seconds.");
-//            } else {
-//                fight(enemies);
-//                Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
-//            }
-//        }
+        while (alive) {
+            LinkedList<Fightable> enemies = getNearEnemies();
+
+            if (enemies == null) {
+                move();
+                Deb.print(toString() + "between two steps : " + moveTime + "seconds.");
+            } else {
+                fight(enemies);
+                Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
+            }
+        }
     }
 
 
@@ -245,7 +245,7 @@ public abstract class Soldier extends Fightable implements Card {
         //find nearest enemy
         //if it is null go to bridge
         //if it is on bridge go over
-        move(new Location(12, 12));
+        move(new Location(20, 12));
 //        Fightable target = getNearestEnemy(board.getSearchFightableRange());
 //        if (target != null) {
 //            move(target.getLocation());
