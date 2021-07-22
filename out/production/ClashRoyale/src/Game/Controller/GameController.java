@@ -167,11 +167,12 @@ public class GameController {
                 case "Cannon" ->        cardImages.put(new Image("Cards/Cannon.png"), cardName);
                 case "Fireball" ->      cardImages.put(new Image("Cards/Fireball.png"), cardName);
                 case "Giant" ->         cardImages.put(new Image("Cards/Giant.png"), cardName);
-                case "Inferno" ->       cardImages.put(new Image("Cards/inferno.png"), cardName);
+                case "InfernoTower" ->  cardImages.put(new Image("Cards/InfernoTower.png"), cardName);
                 case "MiniPEKKA" ->     cardImages.put(new Image("Cards/MiniPEKKA.png"), cardName);
                 case "Rage" ->          cardImages.put(new Image("Cards/Rage.png"), cardName);
                 case "Valkyrie" ->      cardImages.put(new Image("Cards/Valkyrie.png"), cardName);
                 case "Wizard" ->        cardImages.put(new Image("Cards/Wizard.png"), cardName);
+                default -> System.out.println(cardName + "is not valid!\n");
             }
             card.add(cardName);
         }
@@ -311,12 +312,15 @@ public class GameController {
         Audio.click();
 
         //todo : check validation of location and card then put it in
-        Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
+        //Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
+        Deb.print("Location for new card: (" + (int) (event.getX() / gameView.getTileWidth()) + "," + (int) (event.getY() / gameView.getTileHeight()) + ")");
         if (chosenCard != null) {
             if (elixir >= getCost()) {
                 if (chosenLocation.isEmpty()) {
+                    System.out.println("Creating card...");
                     Card card = createCard(chosenLocation);
+                    System.out.println(card);
                     elixir -= getCost();
                     Platform.runLater(new Runnable() {
                         @Override
@@ -387,7 +391,13 @@ public class GameController {
             case "Rage" ->          new Rage        (board, Level.ONE, location, Team.B);
             default -> null;
         };
-        Deb.print("Class : GameController | method : createCard | new card created.");
+        //Deb.print("Class : GameController | method : createCard | new card created.");
+        if (card == null) {
+            System.out.println(cardImages.get(chosenCard) + " is not valid!");
+            return null;
+        }
+
+        Deb.print(cardImages.get(chosenCard) + " was created");
         return card;
     }
 

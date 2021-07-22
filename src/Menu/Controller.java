@@ -103,8 +103,10 @@ public class Controller implements Initializable {
         System.out.println(event.getEventType() + " on " + event.getTarget());
         System.out.println("Trying to switch to " + sceneName);
 
+        FXMLLoader loader = null;
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
+            loader = new FXMLLoader(getClass().getResource(sceneName));
             loader.load();
             Parent root = loader.getRoot();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -130,6 +132,13 @@ public class Controller implements Initializable {
         }
         catch (IOException e){
             e.printStackTrace();
+        }
+
+        if (sceneName.contains("NewGame")) {
+            ((Controller) loader.getController()).medium.setSelected(true);
+        }
+        else if (sceneName.contains("Profile")) {
+            ((Controller) loader.getController()).refreshProfile(event);
         }
 
 

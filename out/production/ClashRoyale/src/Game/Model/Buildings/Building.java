@@ -38,9 +38,12 @@ public abstract class Building extends Fightable implements Card {
     public void setImage(){
         String address;
         if (this instanceof Cannon)
-        address = "Building/Cannon.png";
+            address = "Building/Cannon.png";
         else
             address = (team.equals(Team.A))? "Building/Inferno_A.png":"Building/Inferno_B.png";
+
+        System.out.println("Setting pic for " + this);
+
         currentImage = new ImageView(new Image(address));
         currentImage.setFitHeight(50);
         currentImage.setFitWidth(50);

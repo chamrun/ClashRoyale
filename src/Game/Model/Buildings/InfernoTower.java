@@ -23,6 +23,10 @@ public class InfernoTower extends Building {
             }
         }
 
+        setImage();
+        setProgressBar();
+        start();
+
         run();
 
 

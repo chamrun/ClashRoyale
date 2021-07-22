@@ -250,7 +250,7 @@
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/Inferno.png" />
+                  <Image url="@../../Pix/Cards/InfernoTower.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
