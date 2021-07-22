@@ -157,8 +157,6 @@ public class GameController {
           //      "cards: " + Arrays.toString(deck));
 
 
-        //ToDo: just to make app Run!
-
 
         for (String cardName : deck) {
             switch (cardName) {
@@ -170,7 +168,7 @@ public class GameController {
                 case "Fireball" ->      cardImages.put(new Image("Cards/Fireball.png"), cardName);
                 case "Giant" ->         cardImages.put(new Image("Cards/Giant.png"), cardName);
                 case "Inferno" ->       cardImages.put(new Image("Cards/inferno.png"), cardName);
-                case "MiniPEKKA" ->     cardImages.put(new Image("Cards/PEKKA.png"), cardName);
+                case "MiniPEKKA" ->     cardImages.put(new Image("Cards/MiniPEKKA.png"), cardName);
                 case "Rage" ->          cardImages.put(new Image("Cards/Rage.png"), cardName);
                 case "Valkyrie" ->      cardImages.put(new Image("Cards/Valkyrie.png"), cardName);
                 case "Wizard" ->        cardImages.put(new Image("Cards/Wizard.png"), cardName);
@@ -375,18 +373,18 @@ public class GameController {
 
     public Card createCard(Location location) {
         Card card = switch (cardImages.get(chosenCard)) {
-            case "Archers" -> new Archers(board, Level.ONE, location, Team.B, this);
-            case "BabyDragon" -> new BabyDragon(board, Level.ONE, location, Team.B, this);
-            case "Barbarian" -> new Barbarian(board, Level.ONE, location, Team.B, this);
-            case "Giant" -> new Giant(board, Level.ONE, location, Team.B, this);
-            case "MiniPEKKA" -> new MiniPEKKA(board, Level.ONE, location, Team.B, this);
-            case "Valkyrie" -> new Valkyrie(board, Level.ONE, location, Team.B, this);
-            case "Wizard" -> new Wizard(board, Level.ONE, location, Team.B, this);
-            case "Cannon" -> new Cannon(board, Level.ONE, location, Team.B, this);
-            case "InfernoTower" -> new InfernoTower(board, Level.ONE, location, Team.B, this);
-            case "Arrows" -> new Arrows(board, Level.ONE, location, Team.B);
-            case "Fireball" -> new Fireball(board, Level.ONE, location, Team.B);
-            case "Rage" -> new Rage(board, Level.ONE, location, Team.B);
+            case "Archers" ->       new Archers     (board, Level.ONE, location, Team.B, this);
+            case "BabyDragon" ->    new BabyDragon  (board, Level.ONE, location, Team.B, this);
+            case "Barbarian" ->     new Barbarian   (board, Level.ONE, location, Team.B, this);
+            case "Giant" ->         new Giant       (board, Level.ONE, location, Team.B, this);
+            case "MiniPEKKA" ->     new MiniPEKKA   (board, Level.ONE, location, Team.B, this);
+            case "Valkyrie" ->      new Valkyrie    (board, Level.ONE, location, Team.B, this);
+            case "Wizard" ->        new Wizard      (board, Level.ONE, location, Team.B, this);
+            case "Cannon" ->        new Cannon      (board, Level.ONE, location, Team.B, this);
+            case "InfernoTower" ->  new InfernoTower(board, Level.ONE, location, Team.B, this);
+            case "Arrows" ->        new Arrows      (board, Level.ONE, location, Team.B);
+            case "Fireball" ->      new Fireball    (board, Level.ONE, location, Team.B);
+            case "Rage" ->          new Rage        (board, Level.ONE, location, Team.B);
             default -> null;
         };
         Deb.print("Class : GameController | method : createCard | new card created.");
@@ -434,9 +432,7 @@ public class GameController {
         this.board = board;
         locations = this.board.getLocations();
         this.deck = user.getDeck();
-        System.out.println(Arrays.toString(deck));
-        System.out.println("deck = new String[]{\"Archers\", \"BabyDragon\", \"Arrows\", \"Barbarian\",\n" +
-                "                \"Cannon\", \"Fireball\", \"Giant\", \"Inferno\"};");
+        bot.setGameController(this);
 
         //System.out.println("locations" + Arrays.deepToString(locations));
 
