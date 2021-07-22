@@ -1,5 +1,6 @@
 package Game.Controller;
 
+import Audio.Audio;
 import Debugging.Deb;
 import Game.Model.*;
 import Game.Model.Buildings.Cannon;
@@ -332,6 +333,7 @@ public class GameController {
 
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {
+        Audio.click();
 
         //todo : check validation of location and card then put it in
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
@@ -480,6 +482,7 @@ public class GameController {
     @FXML
     void clickMouseOnCard(MouseEvent event) {
         System.out.print("Selecting ");
+        Audio.click();
         chosenImageView = ((ImageView) event.getSource());
         chosenCard = chosenImageView.getImage();
         System.out.println(chosenCard);
