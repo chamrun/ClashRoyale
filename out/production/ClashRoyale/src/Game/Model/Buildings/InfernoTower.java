@@ -27,7 +27,7 @@ public class InfernoTower extends Building {
         setProgressBar();
         start();
 
-        run();
+        start();
 
 
 
@@ -88,7 +88,7 @@ public class InfernoTower extends Building {
             endamage(target);
 
             try {
-                Thread.sleep((int) hitSpeed * 1000);
+                Thread.sleep((int) hitSpeed * 1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

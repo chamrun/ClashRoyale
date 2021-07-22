@@ -2,10 +2,17 @@ package Game.Model.Towers;
 
 import Game.Controller.GameController;
 import Game.Model.*;
+import javafx.application.Platform;
+import javafx.scene.control.ProgressBar;
 
 public abstract class Tower extends Fightable {
 
     public Tower(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, GameController controller) {
         super(board, hp, damage, hitSpeed, range, location, team, Type.BUILDING);
+        progressBar = new ProgressBar();
+
+
+        controller.addElement(progressBar);
+        Platform.runLater(() -> progressBar.setProgress(1));
     }
 }

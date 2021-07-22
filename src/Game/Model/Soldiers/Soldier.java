@@ -1,6 +1,7 @@
 package Game.Model.Soldiers;
 
 import Debugging.Deb;
+import Debugging.a;
 import Game.Controller.GameController;
 import Game.Model.*;
 import javafx.application.Platform;
@@ -55,8 +56,6 @@ public abstract class Soldier extends Fightable implements Card {
     protected ImageView fight_4_u;
     protected ImageView fight_4_d;
     protected ImageView[] fightImageViews;
-    protected double tileWidth = 976 / 35.0;
-    protected double tileHeight = 549 / 18.0;
     protected double sizeOfChar = 50;
     protected GameController controller;
 
@@ -267,7 +266,14 @@ public abstract class Soldier extends Fightable implements Card {
         Fightable target = getNearestEnemy(board.getSearchFightableRange());
 
         if (target == null) {
-            move(getNearestBridge());
+            //a.a(team + ":" + location.getX());
+
+            if (team == Team.A && location.getX() < 18)
+                move(getNearestBridge());
+            else if (team == Team.B && location.getX() > 17)
+                move(getNearestBridge());
+            else
+                move(board.getNearestTower(location, team));
         }
         else {
             move(target.getLocation());
@@ -275,6 +281,7 @@ public abstract class Soldier extends Fightable implements Card {
                     + " Y = " + target.getLocation().getY());
         }
     }
+
 
 
     public LinkedList<Fightable> getNearEnemies() {
@@ -393,22 +400,13 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public void move(Location destination) {
+        a.a(this + "going to " + destination + " from " + location);
+
         if (location.getDistance(destination) == 0)
             return;
         location.setEmpty(true);
 
-        if (destination.getX() == location.getX()) {
-            if (destination.getY() > location.getY()) {
-                direction = Direction.DOWN;
-                moveSteps();
-                location = board.getLocations()[location.getX()][location.getY() + 1];
-            } else {
-                direction = Direction.UP;
-                moveSteps();
-                location = board.getLocations()[location.getX()][location.getY() - 1];
-            }
-        }
-        else {
+        if (destination.getY() == location.getY()) {
             if (destination.getX() > location.getX()) {
                 direction = Direction.RIGHT;
                 moveSteps();
@@ -417,6 +415,19 @@ public abstract class Soldier extends Fightable implements Card {
                 direction = Direction.LEFT;
                 moveSteps();
                 location = board.getLocations()[location.getX() - 1][location.getY()];
+            }
+        }
+        else {
+
+
+            if (destination.getY() > location.getY()) {
+                direction = Direction.DOWN;
+                moveSteps();
+                location = board.getLocations()[location.getX()][location.getY() + 1];
+            } else {
+                direction = Direction.UP;
+                moveSteps();
+                location = board.getLocations()[location.getX()][location.getY() - 1];
             }
         }
         Deb.print("new Location : X = " + location.getX() + " Y = " + location.getY());

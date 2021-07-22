@@ -1,15 +1,24 @@
 package Game.Model.Towers;
 
 import Game.Controller.GameController;
-import Game.Model.*;
+import Game.Model.Board;
+import Game.Model.Level;
+import Game.Model.Location;
+import Game.Model.Team;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class King extends Tower {
 
     public King(Board board, Level level, Location location, Team team , GameController controller){
         super(board, getHP(level), getDamage(level), 1000, 7, location, team,controller);
+        currentImage = new ImageView(new Image("Tower/king.png"));
+        currentImage.setFitHeight(96);
+        currentImage.setFitWidth(37);
+        currentImage.setX(tileWidth * location.getX());
+        currentImage.setY(tileHeight * location.getY());
         convertProgressBarToAppropriateSize();
         setOnRightLocationBar();
-        controller.addElement(progressBar);
     }
 
     @Override
@@ -20,7 +29,7 @@ public class King extends Tower {
             endamage(getNearestEnemy(range));
 
             try {
-                Thread.sleep((int) hitSpeed * 1000);
+                Thread.sleep((int) hitSpeed * 1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

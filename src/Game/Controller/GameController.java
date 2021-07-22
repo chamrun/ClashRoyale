@@ -2,6 +2,7 @@ package Game.Controller;
 
 import Audio.Audio;
 import Debugging.Deb;
+import Debugging.a;
 import Game.Model.*;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
@@ -9,6 +10,7 @@ import Game.Model.Soldiers.*;
 import Game.Model.Spells.Arrows;
 import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
+import Game.Model.Towers.King;
 import Game.View.GameView;
 import Player.Bot;
 import Player.User;
@@ -26,7 +28,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Random;
 
 
 public class GameController {
@@ -127,8 +132,8 @@ public class GameController {
                             if (i == gameTime / 3)
                                 doubleElixir = true;
 
-                            if (i % 20 == 0)
-                                System.out.println(i);
+                            if (i % 50 == 0)
+                                System.out.println("time left: " + i);
 
 
                             try {
@@ -315,6 +320,7 @@ public class GameController {
         //Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
         Deb.print("Location for new card: (" + (int) (event.getX() / gameView.getTileWidth()) + "," + (int) (event.getY() / gameView.getTileHeight()) + ")");
+
         if (chosenCard != null) {
             if (elixir >= getCost()) {
                 if (chosenLocation.isEmpty()) {
@@ -377,18 +383,18 @@ public class GameController {
 
     public Card createCard(Location location) {
         Card card = switch (cardImages.get(chosenCard)) {
-            case "Archers" ->       new Archers     (board, Level.ONE, location, Team.B, this);
-            case "BabyDragon" ->    new BabyDragon  (board, Level.ONE, location, Team.B, this);
-            case "Barbarian" ->     new Barbarian   (board, Level.ONE, location, Team.B, this);
-            case "Giant" ->         new Giant       (board, Level.ONE, location, Team.B, this);
-            case "MiniPEKKA" ->     new MiniPEKKA   (board, Level.ONE, location, Team.B, this);
-            case "Valkyrie" ->      new Valkyrie    (board, Level.ONE, location, Team.B, this);
-            case "Wizard" ->        new Wizard      (board, Level.ONE, location, Team.B, this);
-            case "Cannon" ->        new Cannon      (board, Level.ONE, location, Team.B, this);
-            case "InfernoTower" ->  new InfernoTower(board, Level.ONE, location, Team.B, this);
-            case "Arrows" ->        new Arrows      (board, Level.ONE, location, Team.B);
-            case "Fireball" ->      new Fireball    (board, Level.ONE, location, Team.B);
-            case "Rage" ->          new Rage        (board, Level.ONE, location, Team.B);
+            case "Archers" ->       new Archers     (board, Level.ONE, location, Team.A, this);
+            case "BabyDragon" ->    new BabyDragon  (board, Level.ONE, location, Team.A, this);
+            case "Barbarian" ->     new Barbarian   (board, Level.ONE, location, Team.A, this);
+            case "Giant" ->         new Giant       (board, Level.ONE, location, Team.A, this);
+            case "MiniPEKKA" ->     new MiniPEKKA   (board, Level.ONE, location, Team.A, this);
+            case "Valkyrie" ->      new Valkyrie    (board, Level.ONE, location, Team.A, this);
+            case "Wizard" ->        new Wizard      (board, Level.ONE, location, Team.A, this);
+            case "Cannon" ->        new Cannon      (board, Level.ONE, location, Team.A, this);
+            case "InfernoTower" ->  new InfernoTower(board, Level.ONE, location, Team.A, this);
+            case "Arrows" ->        new Arrows      (board, Level.ONE, location, Team.A);
+            case "Fireball" ->      new Fireball    (board, Level.ONE, location, Team.A);
+            case "Rage" ->          new Rage        (board, Level.ONE, location, Team.A);
             default -> null;
         };
         //Deb.print("Class : GameController | method : createCard | new card created.");
@@ -471,6 +477,17 @@ public class GameController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 String elText = ""+(int)(t1.doubleValue()*10);
                 elixirText.setText(elText);
+            }
+        });
+
+
+        a.a("Making king...");
+        King king = new King(board, user.getLevel(), new Location(4, 8), Team.A, this);
+        a.a("King was created.");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                landPane.getChildren().add(((Fightable) king).getCurrentImage());
             }
         });
     }

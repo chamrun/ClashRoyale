@@ -1,5 +1,6 @@
 package Game.Model;
 
+import Debugging.a;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
 import Game.Model.Soldiers.*;
@@ -31,7 +32,7 @@ public class Board {
 
         //ToDo: setting bridges exactly
         bridges = new ArrayList<>();
-        bridges.add(new Bridge(new Location(17, 3), new Location(18, 3)));
+        bridges.add(new Bridge(new Location(17, 2), new Location(18, 2)));
         bridges.add(new Bridge(new Location(17, 14), new Location(18, 14)));
     }
 
@@ -133,17 +134,50 @@ public class Board {
         //Showing final result and saving game in history
     }
 
-    public Location getNearestTower(Location location) {
+    public Location getNearestTower(Location location, Team team) {
         // TODO: should be this way:
-        /*
-        if (width / 2 < location.getX())
-            return bridges.getAHead();
-        else
-            return bridges.getBHead();
+        double minDistance = 20;
+        Location nearestTower = null;
 
-         */
+        if (team == Team.A){
+            for (Fightable bFightable :BFightables){
+                if (bFightable instanceof Tower){
+                    double distance = location.getDistance(bFightable.getLocation());
+                    if (distance < minDistance){
+                        minDistance = distance;
+                        nearestTower = bFightable.getLocation();
+                    }
+                }
+            }
 
-        return null;
+
+            if (nearestTower == null) {
+                a.a(team + " has no enemyTower?!");
+                return new Location(35, 9);
+            }
+
+        }
+        else if (team == Team.B) {
+
+            for (Fightable aFightable : AFightables) {
+                if (aFightable instanceof Tower) {
+                    double distance = location.getDistance(aFightable.getLocation());
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearestTower = aFightable.getLocation();
+                    }
+                }
+
+
+                if (nearestTower == null) {
+                    a.a(team + " has no enemyTower?!");
+                    return new Location(1, 9);
+                }
+            }
+        }
+
+        return nearestTower;
+
     }
 
 

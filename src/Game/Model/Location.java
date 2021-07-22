@@ -57,4 +57,13 @@ public class Location {
     public double getDistance(Location src) {
         return Math.sqrt(Math.pow(x - src.getX(), 2) + Math.pow(y - src.getY(), 2));
     }
+
+    @Override
+    public String toString() {
+        return "{"  +
+                x   +
+                "," +
+                y   +
+                "}";
+    }
 }

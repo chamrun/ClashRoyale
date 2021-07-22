@@ -23,6 +23,9 @@ public abstract class Fightable extends Thread{
     protected Direction direction;
     protected ProgressBar progressBar;
     protected final int hpPrimaryValue;
+
+    protected double tileWidth = 976 / 35.0;
+    protected double tileHeight = 549 / 18.0;
     //    private boolean isAlive;
 
     public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
