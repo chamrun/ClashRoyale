@@ -9,7 +9,6 @@ import Game.Model.Towers.Tower;
 import Player.Suggestion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Board {
@@ -22,14 +21,18 @@ public class Board {
     private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
-    public Board( int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
+    public Board( int length, int width, int searchFightableRange) {
         this.height = length;
         this.width = width;
         initializeLocations();
-        this.bridges = bridges;
         this.searchFightableRange = searchFightableRange;
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
+
+        //ToDo: setting bridges exactly
+        bridges = new ArrayList<>();
+        bridges.add(new Bridge(new Location(17, 3), new Location(18, 3)));
+        bridges.add(new Bridge(new Location(17, 14), new Location(18, 14)));
     }
 
     public void initializeLocations(){

@@ -9,6 +9,8 @@ import Game.Model.Spells.Arrows;
 import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
 import Game.View.GameView;
+import Player.Bot;
+import Player.User;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -463,4 +465,6 @@ public class GameController {
         chosenCard = chosenImageView.getImage();
     }
 
+    public void setBoardAndPlayer(Board board, User user, Bot bot) {
+    }
 }
