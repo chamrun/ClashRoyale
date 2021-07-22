@@ -64,38 +64,36 @@ public class Database {
 
     }
 
-    public User tryLogIn(String userName, String password){
+    public User tryLogIn(String userName, String inputPassword){
         System.out.println(userName + " is trying to login...");
 
 
         try{
 
-            String cmd = "SELECT * FROM " + tableName +
+            String query = "SELECT * FROM " + tableName +
                     " WHERE UserName = '" + userName + "'";
 
-            System.out.println(cmd);
+            System.out.println(query);
 
-            ResultSet resultSet = statement.executeQuery(cmd);
+            ResultSet resultSet = statement.executeQuery(query);
 
             // Print results from select statement
             while (resultSet.next()) {
 
-                String hashedInput = getMd5(password);
-                String pass = resultSet.getString("Password");
+                String hashedInput = getMd5(inputPassword);
+                String dataBasePass = resultSet.getString("Password");
 
                 System.out.println("'" + hashedInput + "'\n" +
-                        "'" + pass + "'");
+                                   "'" + dataBasePass + "'");
 
-                if (pass.equals(hashedInput)){
-                    String deck = resultSet.getString("Deck");
-                    int coins = resultSet.getInt("Coins");
-                    int wins = resultSet.getInt("Wins");
-                    int loses = resultSet.getInt("Loses");
+                if (dataBasePass.equals(hashedInput)){
+                    String deck =   resultSet.getString ("Deck");
+                    int coins =     resultSet.getInt    ("Coins");
+                    int wins =      resultSet.getInt    ("Wins");
+                    int loses =     resultSet.getInt    ("Loses");
 
                     return new User(this, userName, deck, coins, wins, loses);
                 }
-
-                //System.out.println(resultSet.getString("uname") + ":: " + resultSet.getString("mcode"));
             }
 
         }
@@ -134,7 +132,7 @@ public class Database {
     }
 
     public void update(String userName, int coins, int winsOrLoses, boolean isWon) {
-        //ToDo: level row should be added.
+
         String query = "update " + tableName + " set Coins = " + coins + " where UserName = '" + userName + "'";
         try {
             statement.execute(query);
