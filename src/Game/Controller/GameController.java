@@ -28,26 +28,27 @@ import java.util.*;
 
 
 public class GameController {
-    private String[] cards = {"Archers", "MiniPEKKA", "Giant", "BabyDragon", "Valkyrie", "Wizard", "Arrows", "Rage"};
+    private String[] cards;
     private Location[][] locations;
     private HashMap<Image, String> cardImages = new HashMap<>();
     private Image chosenCard = null;
-    private Timer timer = new Timer();
-    private final int FRAMES_PER_SECOND = 1;
     private boolean isGameOver = false;
     private int gameTime = 3 * 60;
     private boolean doubleElixir = false;
-    private long elixirTime = 5 * 1000;
+    private long elixirTime = 2 * 1000;
     private ImageView[] cardImageViews = new ImageView[5];
     private ImageView chosenImageView;
     private Location chosenLocation;
     private Board board;
-    private int count = 0;
     private LinkedList<String> card;
     private int elixir = 4;
 
     public GameView getGameView() {
         return gameView;
+    }
+
+    public void setCards(String[] cards) {
+        this.cards = cards;
     }
 
     @FXML
@@ -77,8 +78,6 @@ public class GameController {
         createCardImages();
         startTimeTimer();
         startElixirTimer();
-//        timeText.textProperty().bind(timeProgressBar.progressProperty());
-
         timeProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
