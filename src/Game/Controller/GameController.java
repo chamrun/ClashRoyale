@@ -297,7 +297,7 @@ public class GameController {
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
         if (chosenCard != null) {
-            if (getCost() >= elixir) {
+            if (elixir >= getCost()) {
                 if (chosenLocation.isEmpty()) {
                     Card card = createCard(chosenLocation);
                     elixir -= getCost();

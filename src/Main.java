@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.skin.ProgressBarSkin;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -88,7 +89,7 @@ public class Main extends Application {
 //        }).start();
 //        imageView = imageView3;
 //        controller.landPane.getChildren().add(imageView[0]);
-//        ProgressBar progressBar = new ProgressBar();
+//        ProgressBarSkin progressBarSkin = new ProgressBarSkin(new ProgressBar());
 //
 //        Service service = new Service() {
 //            @Override
@@ -114,7 +115,7 @@ public class Main extends Application {
 //
 //        progressBar.progressProperty().bind(service.progressProperty());
 //        service.start();
-//        controller.addElement(progressBar);
+//        controller.addElement(progressBarSkin);
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

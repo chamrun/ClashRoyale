@@ -6,8 +6,10 @@ import Game.Model.*;
 import javafx.application.Platform;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -86,14 +88,34 @@ public abstract class Soldier extends Fightable implements Card {
         }
         currentImage.setX(tileWidth * location.getX());
         currentImage.setY(tileHeight * location.getY());
+        progressBar = new ProgressBar();
+        convertProgressBarToAppropriateSize();
+        setOnRightLocationBar();
+
         this.controller = controller;
+//        controller.addElement(currentImage);
+        progressBar.setProgress(0.2);
+        controller.addElement(progressBar);
+
 
     }
+
+    public void convertProgressBarToAppropriateSize() {
+        progressBar.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        progressBar.setMinHeight(Region.USE_COMPUTED_SIZE);
+        progressBar.setMaxWidth(Region.USE_COMPUTED_SIZE);
+        progressBar.setMinWidth(Region.USE_COMPUTED_SIZE);
+        progressBar.setPrefWidth(sizeOfChar * 4 / 5);
+        progressBar.setPrefHeight(sizeOfChar / 10);
+
+    }
+
+
 
     public void initializeFightImages() {
         String address = null;
         fightImageViews = new ImageView[16];
-        fight_1_r=fightImageViews[0] ;
+        fight_1_r = fightImageViews[0];
         fightImageViews[4] = fight_1_l;
         fightImageViews[8] = fight_1_u;
         fightImageViews[12] = fight_1_d;
@@ -128,7 +150,7 @@ public abstract class Soldier extends Fightable implements Card {
             }
 
             System.out.println(address);
-            for (int j = 0;j < 4 ;j++) {
+            for (int j = 0; j < 4; j++) {
                 if (j == 3)
                     fightImageViews[i - 1] = makeRotationForms(j, address);
                 else if (j == 0)
@@ -223,9 +245,6 @@ public abstract class Soldier extends Fightable implements Card {
 
     @Override
     public void run() {
-
-//        fightSteps();
-
         while (alive) {
             LinkedList<Fightable> enemies = getNearEnemies();
 
@@ -245,6 +264,7 @@ public abstract class Soldier extends Fightable implements Card {
         //find nearest enemy
         //if it is null go to bridge
         //if it is on bridge go over
+//        controller.addElement(progressBar);
         move(new Location(20, 12));
 //        Fightable target = getNearestEnemy(board.getSearchFightableRange());
 //        if (target != null) {
@@ -352,6 +372,7 @@ public abstract class Soldier extends Fightable implements Card {
         System.out.println(currentImage.getRotate());
         currentImage.setY(location.getY() * tileHeight);
         currentImage.setX(location.getX() * tileWidth);
+        setOnRightLocationBar();
         controller.addElement(currentImage);
         Deb.print("Image for fight has set. direction : " + direction + " image : " + currentImage.getImage().getUrl()
                 + " position : X = " + currentImage.getX() + " Y = " + currentImage.getY());
@@ -402,6 +423,7 @@ public abstract class Soldier extends Fightable implements Card {
         location.setEmpty(false);
         currentImage.setX(location.getX() * tileWidth);
         currentImage.setY(location.getY() * tileHeight);
+        setOnRightLocationBar();
         Deb.print("moved to  :  X = " + location.getX() + " Y = " + location.getY());
     }
 
@@ -441,6 +463,7 @@ public abstract class Soldier extends Fightable implements Card {
             currentImage.setY(location.getY() * tileHeight + moveProgress * tileHeight / 4);
         }
         controller.addElement(currentImage);
+        setOnRightLocationBar();
         Deb.print("Image for walk has set. direction : " + direction + " image : " + currentImage.getImage().getUrl()
                 + " position : X = " + currentImage.getX() + " Y = " + currentImage.getY());
     }

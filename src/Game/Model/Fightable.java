@@ -1,6 +1,7 @@
 package Game.Model;
 
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 
 import java.util.LinkedList;
@@ -19,7 +20,8 @@ public abstract class Fightable extends Thread{
     protected final Type type;
     protected ImageView currentImage;
     protected Direction direction;
-        //    private boolean isAlive;
+    protected ProgressBar progressBar;
+    //    private boolean isAlive;
 
     public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
         this.team = team;
@@ -32,6 +34,11 @@ public abstract class Fightable extends Thread{
         this.range = range;
         this.location = location;
         location.setEmpty(false);
+    }
+
+    public void setOnRightLocationBar() {
+        progressBar.setLayoutX(currentImage.getX() + 1);
+        progressBar.setLayoutY(currentImage.getY() + 1);
     }
 
     public Direction getDirection() {
