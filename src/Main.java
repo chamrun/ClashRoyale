@@ -1,5 +1,7 @@
 import Game.Controller.GameController;
 import Game.Model.Board;
+import Game.Model.Location;
+import Game.Model.Throwable;
 import com.sun.webkit.ThemeClient;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -69,6 +71,10 @@ public class Main extends Application {
 //        controller.landPane.getChildren().add(imageView1);
         Board board = new Board(18,35,18);
         controller.setBoard(board);
+        System.out.println("tan : "+Math.atan(1.0));
+
+        new Throwable("Arrow",10*1000,new Location(0,0),new Location(10,10),controller).start();
+
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {

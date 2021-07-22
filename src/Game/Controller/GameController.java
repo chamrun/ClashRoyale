@@ -46,6 +46,10 @@ public class GameController {
     private LinkedList<String> card;
     private int elixir = 4;
 
+    public GameView getGameView() {
+        return gameView;
+    }
+
     @FXML
     private ProgressBar elixirProgressBar;
 
@@ -361,14 +365,6 @@ public class GameController {
         chosenCard = null;
         chosenLocation = null;
         initializeCardImageViews(card);
-//        Platform.runLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                chosenImageView.setImage(cardImageViews[4].getImage());
-//                cardImageViews[4].setImage(getRandomCardImage());
-//            }
-//        });
-
         Deb.print("chosenCard and chosenLocation resets.");
     }
 
