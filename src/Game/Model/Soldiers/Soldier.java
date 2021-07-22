@@ -97,7 +97,13 @@ public abstract class Soldier extends Fightable implements Card {
         this.controller = controller;
         controller.addElement(progressBar);
 
-        progressBar.setProgress(1);
+//        controller.setProgress(progressBar,1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setProgress(1);
+            }
+        });
 
 
     }

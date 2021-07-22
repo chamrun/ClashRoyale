@@ -71,7 +71,7 @@ public class Main extends Application {
 //        controller.landPane.getChildren().add(imageView1);
         Board board = new Board(18,35,18);
         controller.setBoard(board);
-        System.out.println("tan : "+Math.atan(1.0));
+//        System.out.println("tan : "+Math.atan(1.0));
 
         new Throwable("Arrow",10*1000,new Location(0,0),new Location(10,10),controller).start();
 

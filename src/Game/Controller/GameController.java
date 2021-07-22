@@ -252,11 +252,11 @@ public class GameController {
         return null;
     }
 
-    public void setProgress(ProgressBar progressBar){
+    public void setProgress(ProgressBar progressBar,double i){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                progressBar.setProgress(1);
+                progressBar.setProgress(i);
             }
         });
     }

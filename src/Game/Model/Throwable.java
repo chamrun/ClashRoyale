@@ -23,9 +23,9 @@ public class Throwable extends Thread {
 
         String address = new String();
         if (type.equals("Arrow")) {
-            address = "Pix/Cards/Archer.png";
+            address = "Pic/Throwable/Arrow.png";
         } else {
-            address = "";
+            address = "Pic/Throwable/Fireball.png";
         }
         imageView = new ImageView(new Image(address));
         setSizeAndAngle();
