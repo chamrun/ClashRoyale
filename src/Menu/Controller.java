@@ -287,7 +287,7 @@ public class Controller implements Initializable {
             return;
         }
 
-        switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, bot);
+        switchToScene(event, "../Game/View/GameView.fxml").setter(board, user, bot);
 
 
 

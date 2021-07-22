@@ -30,7 +30,7 @@ import java.util.*;
 
 
 public class GameController {
-    private String[] cards;
+    private String[] deck;
     private Location[][] locations;
     private HashMap<Image, String> cardImages = new HashMap<>();
     private Image chosenCard = null;
@@ -49,8 +49,8 @@ public class GameController {
         return gameView;
     }
 
-    public void setCards(String[] cards) {
-        this.cards = cards;
+    public void setDeck(String[] deck) {
+        this.deck = deck;
     }
 
     @FXML
@@ -79,29 +79,6 @@ public class GameController {
 
     public void initialize() {
 
-
-        System.out.println("\ninitializing...\ncreating card images...");
-        createCardImages();
-        System.out.println("cardImages were made...");
-        startTimeTimer();
-        startElixirTimer();
-        timeProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                int minutes =(int) (t1.doubleValue()*3);
-                String min = ((minutes/10 == 0)?"0" : "" )+minutes;
-                int seconds = ((int) (t1.doubleValue()*180))%60;
-                String sec = ((seconds/10 == 0)?"0" : "" )+seconds;
-                timeText.setText(min+" : "+sec);
-            }
-        });
-        elixirProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                String elText = ""+(int)(t1.doubleValue()*10);
-                elixirText.setText(elText);
-            }
-        });
     }
 
     public void startElixirTimer() {
@@ -177,13 +154,13 @@ public class GameController {
         card = new LinkedList<>();
         System.out.println("LinkedList was made...");
         System.out.println("card: " + card + "\n" +
-                "cards: " + Arrays.toString(cards));
+                "cards: " + Arrays.toString(deck));
 
         //ToDo: just to make app Run!
-        cards = new String[]{"Archers", "BabyDragon", "Arrows", "Barbarian",
+        deck = new String[]{"Archers", "BabyDragon", "Arrows", "Barbarian",
                 "Cannon", "Fireball", "Giant", "Inferno"};
 
-        for (String cardName : cards) {
+        for (String cardName : deck) {
             switch (cardName) {
                 case "Archers" ->       cardImages.put(new Image("Cards/Archer.png"), cardName);
                 case "BabyDragon" ->    cardImages.put(new Image("Cards/babyDragon.png"), cardName);
@@ -488,13 +465,39 @@ public class GameController {
         System.out.println(chosenCard);
     }
 
-    public void setBoardAndPlayer(Board board, User user, Bot bot) {
+    public void setter(Board board, User user, Bot bot) {
 
         this.board = board;
         locations = this.board.getLocations();
+        this.deck = user.getDeck();
 
-        this.cards = user.getDeck();
+        //System.out.println("locations" + Arrays.deepToString(locations));
 
-        System.out.println("locations" + Arrays.deepToString(locations));
+
+        /*
+         * Initialize
+         */
+        System.out.println("\ninitializing...\ncreating card images...");
+        createCardImages();
+        System.out.println("cardImages were made...");
+        startTimeTimer();
+        startElixirTimer();
+        timeProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                int minutes =(int) (t1.doubleValue()*3);
+                String min = ((minutes/10 == 0)?"0" : "" )+minutes;
+                int seconds = ((int) (t1.doubleValue()*180))%60;
+                String sec = ((seconds/10 == 0)?"0" : "" )+seconds;
+                timeText.setText(min+" : "+sec);
+            }
+        });
+        elixirProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                String elText = ""+(int)(t1.doubleValue()*10);
+                elixirText.setText(elText);
+            }
+        });
     }
 }
