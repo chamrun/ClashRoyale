@@ -422,10 +422,10 @@ public class GameController {
                 card = new Wizard(board, Level.ONE, location, Team.B, this);
                 break;
             case "Cannon":
-                card = new Cannon(board, Level.ONE, location, Team.B);
+                card = new Cannon(board, Level.ONE, location, Team.B,this);
                 break;
             case "InfernoTower":
-                card = new InfernoTower(board, Level.ONE, location, Team.B);
+                card = new InfernoTower(board, Level.ONE, location, Team.B,this);
                 break;
             case "Arrows":
                 card = new Arrows(board, location, Level.ONE, Team.B);

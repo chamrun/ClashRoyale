@@ -1,11 +1,15 @@
 package Game.Model.Towers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class King extends Tower {
 
-    public King(Board board, Level level, Location location, Team team){
-        super(board, getHP(level), getDamage(level), 1000, 7, location, team);
+    public King(Board board, Level level, Location location, Team team , GameController controller){
+        super(board, getHP(level), getDamage(level), 1000, 7, location, team,controller);
+        convertProgressBarToAppropriateSize();
+        setOnRightLocationBar();
+        controller.addElement(progressBar);
     }
 
     @Override

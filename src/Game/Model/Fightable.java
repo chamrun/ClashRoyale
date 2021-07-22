@@ -3,6 +3,7 @@ package Game.Model;
 
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 
 import java.util.LinkedList;
 import java.util.Timer;
@@ -36,6 +37,16 @@ public abstract class Fightable extends Thread{
         this.location = location;
         hpPrimaryValue = hp;
         location.setEmpty(false);
+    }
+
+
+    public void convertProgressBarToAppropriateSize() {
+        progressBar.setMaxHeight(javafx.scene.layout.Region.USE_COMPUTED_SIZE);
+        progressBar.setMinHeight(javafx.scene.layout.Region.USE_COMPUTED_SIZE);
+        progressBar.setMaxWidth(javafx.scene.layout.Region.USE_COMPUTED_SIZE);
+        progressBar.setMinWidth(Region.USE_COMPUTED_SIZE);
+        progressBar.setPrefWidth(50 * 4 / 5);
+        progressBar.setPrefHeight(50 / 10);
     }
 
     public void setOnRightLocationBar() {

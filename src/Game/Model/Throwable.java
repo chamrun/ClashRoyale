@@ -21,12 +21,13 @@ public class Throwable extends Thread {
         this.eLocation = eLocation;
         this.controller = controller;
 
-        String address = new String();
+        String address;
         if (type.equals("Arrow")) {
-            address = "Pic/Throwable/Arrow.png";
+            address = "Throwable/Arrow.png";
         } else {
-            address = "Pic/Throwable/Fireball.png";
+            address = "Throwable/Fireball.png";
         }
+        System.out.println(address);
         imageView = new ImageView(new Image(address));
         setSizeAndAngle();
         controller.addElement(imageView);
@@ -35,8 +36,8 @@ public class Throwable extends Thread {
     @Override
     public void run() {
         try {
-            double xChanges = controller.getGameView().getTileWidth() * (eLocation.getX() - sLocation.getX())/4;
-            double yChanges = controller.getGameView().getTileWidth() * (eLocation.getY() - sLocation.getY())/4;
+            double xChanges = controller.getGameView().getTileWidth() * (eLocation.getX() - sLocation.getX()) / 4;
+            double yChanges = controller.getGameView().getTileWidth() * (eLocation.getY() - sLocation.getY()) / 4;
             for (int i = 0; i < 4; i++) {
                 Thread.sleep(time / 4);
                 prepareMoveImageView(xChanges, yChanges);
@@ -61,9 +62,12 @@ public class Throwable extends Thread {
         if (eLocation.getY() - sLocation.getY() < 0) {
             angle += 180;
         }
-        imageView.setRotationAxis(new Point3D(0,0,1));
-        imageView.setRotate(angle);
+        imageView.setRotationAxis(new Point3D(0, 0, 1));
+        if (type.equals("Arrow"))
+            imageView.setRotate(180 - angle);
+        else
+            imageView.setRotate(angle);
         imageView.setX(sLocation.getX() * controller.getGameView().getTileWidth());
-        imageView.setY(sLocation.getY()* controller.getGameView().getTileHeight());
+        imageView.setY(sLocation.getY() * controller.getGameView().getTileHeight());
     }
 }

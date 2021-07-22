@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -96,8 +95,6 @@ public abstract class Soldier extends Fightable implements Card {
 
         this.controller = controller;
         controller.addElement(progressBar);
-
-//        controller.setProgress(progressBar,1);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -108,14 +105,6 @@ public abstract class Soldier extends Fightable implements Card {
 
     }
 
-    public void convertProgressBarToAppropriateSize() {
-        progressBar.setMaxHeight(Region.USE_COMPUTED_SIZE);
-        progressBar.setMinHeight(Region.USE_COMPUTED_SIZE);
-        progressBar.setMaxWidth(Region.USE_COMPUTED_SIZE);
-        progressBar.setMinWidth(Region.USE_COMPUTED_SIZE);
-        progressBar.setPrefWidth(sizeOfChar * 4 / 5);
-        progressBar.setPrefHeight(sizeOfChar / 10);
-    }
 
 
 
@@ -272,18 +261,16 @@ public abstract class Soldier extends Fightable implements Card {
         //find nearest enemy
         //if it is null go to bridge
         //if it is on bridge go over
-//        controller.addElement(progressBar);
-        move(new Location(20, 12));
-//        Fightable target = getNearestEnemy(board.getSearchFightableRange());
-//        if (target != null) {
-//            move(target.getLocation());
-//            Deb.print(toString() + " moving towards the target : " + target.toString() + " in X = " + target.getLocation().getX()
-//                    + " Y = " + target.getLocation().getY());
-//        } else {
-//            move(getNearestBridge());
-//            Deb.print(toString() + " moving towards the bridge head : " + " in X = " + getLocation().getX()
-//                    + " Y = " + target.getLocation().getY());
-//        }
+        Fightable target = getNearestEnemy(board.getSearchFightableRange());
+        if (target != null) {
+            move(target.getLocation());
+            Deb.print(toString() + " moving towards the target : " + target.toString() + " in X = " + target.getLocation().getX()
+                    + " Y = " + target.getLocation().getY());
+        } else {
+            move(getNearestBridge());
+            Deb.print(toString() + " moving towards the bridge head : " + " in X = " + getLocation().getX()
+                    + " Y = " + target.getLocation().getY());
+        }
     }
 
 
@@ -475,53 +462,53 @@ public abstract class Soldier extends Fightable implements Card {
         Deb.print("Image for walk has set. direction : " + direction + " image : " + currentImage.getImage().getUrl()
                 + " position : X = " + currentImage.getX() + " Y = " + currentImage.getY());
     }
-//
-//    public Location getNearestBridge() {
-//        //TODO: should be transferred to "Board", and bridges needs some changes.
-//        double min = board.getLength();
-//        Location nearestBridge = null;
-//
-//        if (isOnBridge()) {
-//            return getAnotherHead();
-//        }
-//
-//        if (location.getRegion().equals(Region.A)) {
-//            for (Bridge bridge : board.getBridges()) {
-//                if (bridge.getAHead().getDistance(location) < min) {
-//                    min = bridge.getAHead().getDistance(location);
-//                    nearestBridge = bridge.getAHead();
-//                }
-//            }
-//        } else {
-//            for (Bridge bridge : board.getBridges()) {
-//                if (bridge.getBHead().getDistance(location) < min) {
-//                    min = bridge.getBHead().getDistance(location);
-//                    nearestBridge = bridge.getBHead();
-//                }
-//            }
-//        }
-//        return nearestBridge;
-//    }
-//
-//    public Location getAnotherHead() {
-//        if (location.getY() == board.getBridges().get(0).getAHead().getY())
-//            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
-//        else
-//            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
-//    }
-//
-//    public boolean isOnBridge() {
-//        if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
-//            if (location.getX() >= board.getBridges().get(0).getAHead().getX()
-//                    && location.getX() <= board.getBridges().get(0).getBHead().getY())
-//                return true;
-//        } else if (location.getY() == board.getBridges().get(1).getAHead().getY()) {
-//            if (location.getX() >= board.getBridges().get(1).getAHead().getX()
-//                    && location.getX() <= board.getBridges().get(1).getBHead().getY())
-//                return true;
-//        }
-//        return false;
-//    }
+
+    public Location getNearestBridge() {
+        //TODO: should be transferred to "Board", and bridges needs some changes.
+        double min = board.getWidth();
+        Location nearestBridge = null;
+
+        if (isOnBridge()) {
+            return getAnotherHead();
+        }
+
+        if (location.getRegion().equals(Region.A)) {
+            for (Bridge bridge : board.getBridges()) {
+                if (bridge.getAHead().getDistance(location) < min) {
+                    min = bridge.getAHead().getDistance(location);
+                    nearestBridge = bridge.getAHead();
+                }
+            }
+        } else {
+            for (Bridge bridge : board.getBridges()) {
+                if (bridge.getBHead().getDistance(location) < min) {
+                    min = bridge.getBHead().getDistance(location);
+                    nearestBridge = bridge.getBHead();
+                }
+            }
+        }
+        return nearestBridge;
+    }
+
+    public Location getAnotherHead() {
+        if (location.getY() == board.getBridges().get(0).getAHead().getY())
+            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
+        else
+            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
+    }
+
+    public boolean isOnBridge() {
+        if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
+            if (location.getX() >= board.getBridges().get(0).getAHead().getX()
+                    && location.getX() <= board.getBridges().get(0).getBHead().getY())
+                return true;
+        } else if (location.getY() == board.getBridges().get(1).getAHead().getY()) {
+            if (location.getX() >= board.getBridges().get(1).getAHead().getX()
+                    && location.getX() <= board.getBridges().get(1).getBHead().getY())
+                return true;
+        }
+        return false;
+    }
 
     public long getMoveTime() {
         // TODO
