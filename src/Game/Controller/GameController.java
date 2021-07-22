@@ -150,22 +150,22 @@ public class GameController {
     public void createCardImages() {
 
 
-        System.out.println("\ncreating image cards...   :" + card);
+        //System.out.println("Creating image cards...   :" + card);
         card = new LinkedList<>();
-        System.out.println("LinkedList was made...");
-        System.out.println("card: " + card + "\n" +
-                "cards: " + Arrays.toString(deck));
+        //System.out.println("LinkedList was made...");
+        //System.out.println("card: " + card + "\n" +
+          //      "cards: " + Arrays.toString(deck));
+
 
         //ToDo: just to make app Run!
-        deck = new String[]{"Archers", "BabyDragon", "Arrows", "Barbarian",
-                "Cannon", "Fireball", "Giant", "Inferno"};
+
 
         for (String cardName : deck) {
             switch (cardName) {
-                case "Archers" ->       cardImages.put(new Image("Cards/Archer.png"), cardName);
-                case "BabyDragon" ->    cardImages.put(new Image("Cards/babyDragon.png"), cardName);
+                case "Archers" ->       cardImages.put(new Image("Cards/Archers.png"), cardName);
+                case "BabyDragon" ->    cardImages.put(new Image("Cards/BabyDragon.png"), cardName);
                 case "Arrows" ->        cardImages.put(new Image("Cards/Arrows.png"), cardName);
-                case "Barbarian" ->     cardImages.put(new Image("Cards/barbarian.png"), cardName);
+                case "Barbarian" ->     cardImages.put(new Image("Cards/Barbarian.png"), cardName);
                 case "Cannon" ->        cardImages.put(new Image("Cards/Cannon.png"), cardName);
                 case "Fireball" ->      cardImages.put(new Image("Cards/Fireball.png"), cardName);
                 case "Giant" ->         cardImages.put(new Image("Cards/Giant.png"), cardName);
@@ -434,6 +434,9 @@ public class GameController {
         this.board = board;
         locations = this.board.getLocations();
         this.deck = user.getDeck();
+        System.out.println(Arrays.toString(deck));
+        System.out.println("deck = new String[]{\"Archers\", \"BabyDragon\", \"Arrows\", \"Barbarian\",\n" +
+                "                \"Cannon\", \"Fireball\", \"Giant\", \"Inferno\"};");
 
         //System.out.println("locations" + Arrays.deepToString(locations));
 

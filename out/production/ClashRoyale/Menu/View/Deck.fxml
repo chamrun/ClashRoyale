@@ -35,6 +35,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -106,6 +107,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <tooltip>
+            <Tooltip text="Wizard" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="30.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -121,6 +125,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Giant" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="30.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -129,13 +136,16 @@
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/barbarian.png" />
+                  <Image url="@../../Pix/Cards/Barbarian.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Barbarian" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="210.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>
@@ -144,7 +154,7 @@
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/babyDragon.png" />
+                  <Image url="@../../Pix/Cards/BabyDragon.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -154,6 +164,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <tooltip>
+            <Tooltip text="BabyDragon" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="210.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -169,6 +182,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="MiniPEKKA" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="210.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -184,6 +200,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Valkyrie" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="390.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>
@@ -192,7 +211,7 @@
          <graphic>
             <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Pix/Cards/Archer.png" />
+                  <Image url="@../../Pix/Cards/Archers.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -202,6 +221,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <tooltip>
+            <Tooltip text="Archer (*2)" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="390.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -217,6 +239,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Cannon" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="390.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -232,6 +257,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="InfernoTower" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="570.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="#4fffdf">
          <font>
@@ -250,6 +278,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Fireball" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="570.0" layoutY="400.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -265,6 +296,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Arrows" />
+         </tooltip>
       </RadioButton>
       <RadioButton layoutX="570.0" layoutY="260.0" mnemonicParsing="false" onAction="#radioButtonAction" textFill="WHITE">
          <font>
@@ -280,6 +314,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip text="Rage" />
+         </tooltip>
       </RadioButton>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="773.0" layoutY="241.0" onMouseClicked="#saveDeck" pickOnBounds="true" preserveRatio="true">
          <image>

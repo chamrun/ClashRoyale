@@ -243,14 +243,16 @@ public abstract class Soldier extends Fightable implements Card {
 
             if (enemies == null) {
                 move();
+                Deb.print(i + "th:" + toString() + "between two steps: " + hitSpeed + "seconds.");
             }
             else {
                 fight(enemies);
+                Deb.print(i + "th:" + toString() + "between two damages: " + hitSpeed + "seconds.");
             }
 
-            Deb.print(i + "th:" + toString() + "between two damages : " + hitSpeed + "seconds.");
+
             i++;
-            if (i == 180)
+            if (i == 30)
                 System.exit(-1);
         }
         die();
