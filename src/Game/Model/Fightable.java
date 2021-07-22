@@ -21,6 +21,7 @@ public abstract class Fightable extends Thread{
     protected ImageView currentImage;
     protected Direction direction;
     protected ProgressBar progressBar;
+    protected final int hpPrimaryValue;
     //    private boolean isAlive;
 
     public Fightable(Board board, int hp, int damage, long hitSpeed, double range, Location location, Team team, Type type) {
@@ -33,6 +34,7 @@ public abstract class Fightable extends Thread{
         this.hitSpeed = hitSpeed;
         this.range = range;
         this.location = location;
+        hpPrimaryValue = hp;
         location.setEmpty(false);
     }
 
@@ -84,6 +86,7 @@ public abstract class Fightable extends Thread{
         if (hp < 0){
             alive = false;
             board.removeFightable(this, team);
+            progressBar.setProgress(hp* 1.0 / hpPrimaryValue);
         }
     }
 

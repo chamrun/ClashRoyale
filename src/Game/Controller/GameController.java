@@ -10,6 +10,8 @@ import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
 import Game.View.GameView;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -19,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 
 import java.util.*;
 
@@ -45,6 +49,14 @@ public class GameController {
     @FXML
     private ProgressBar elixirProgressBar;
 
+
+    @FXML
+    private Text elixirText;
+
+    @FXML
+    private Text timeText;
+
+
     public void setBoard(Board board) {
         this.board = board;
         locations = board.getLocations();
@@ -61,7 +73,25 @@ public class GameController {
         createCardImages();
         startTimeTimer();
         startElixirTimer();
+//        timeText.textProperty().bind(timeProgressBar.progressProperty());
 
+        timeProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                int minutes =(int) (t1.doubleValue()*3);
+                String min = ((minutes/10 == 0)?"0" : "" )+minutes;
+                int seconds = ((int) (t1.doubleValue()*180))%60;
+                String sec = ((seconds/10 == 0)?"0" : "" )+seconds;
+                timeText.setText(min+" : "+sec);
+            }
+        });
+        elixirProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                String elText = ""+(int)(t1.doubleValue()*10);
+                elixirText.setText(elText);
+            }
+        });
     }
 
     public void startElixirTimer() {
@@ -218,8 +248,17 @@ public class GameController {
         return null;
     }
 
+    public void setProgress(ProgressBar progressBar){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setProgress(1);
+            }
+        });
+    }
 
-    public void die(Node node) {
+
+    public void removeElement(Node node) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

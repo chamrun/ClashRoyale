@@ -80,10 +80,12 @@
                <bottom>
                   <AnchorPane prefHeight="50.0" prefWidth="976.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ProgressBar fx:id="timeProgressBar" blendMode="EXCLUSION" layoutX="220.0" layoutY="10.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
-                        <ProgressBar fx:id="elixirProgressBar" blendMode="EXCLUSION" layoutX="220.0" layoutY="30.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
-                        <Text layoutX="100.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
-                        <Text layoutX="100.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elixir" />
+                        <ProgressBar fx:id="timeProgressBar" blendMode="EXCLUSION" layoutX="150.0" layoutY="10.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
+                        <ProgressBar fx:id="elixirProgressBar" blendMode="EXCLUSION" layoutX="150.0" layoutY="30.0" prefHeight="10.0" prefWidth="700.0" progress="0.0" />
+                        <Text layoutX="50.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                        <Text layoutX="50.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elixir" />
+                        <Text fx:id="elixirText" layoutX="900.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Text fx:id="timeText" layoutX="900.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                      </children>
                   </AnchorPane>
                </bottom>
@@ -95,7 +97,12 @@
                               <Image url="@../../Pic/Land/landOfGame.jpg" />
                            </image>
                         </ImageView>
-                        <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" onMouseMoved="#moveMouseOnLandPane" prefHeight="549.0" />
+                        <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" onMouseMoved="#moveMouseOnLandPane" prefHeight="549.0">
+                           <children>
+                              <ProgressBar layoutX="263.0" layoutY="266.0" prefHeight="17.0" prefWidth="10.0" progress="0.0" />
+                              <ProgressBar layoutX="407.0" layoutY="184.0" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar blendMode="SOFT_LIGHT" cache="true" layoutX="338.0" layoutY="321.0" prefHeight="10.0" prefWidth="50.0" progress="0.71" />
+                           </children></Pane>
                      </children>
                   </StackPane>
                </center>

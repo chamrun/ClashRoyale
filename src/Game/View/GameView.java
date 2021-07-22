@@ -46,7 +46,7 @@ public class GameView {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        controller.die(fighters.get(0).getCurrentImage());
+        controller.removeElement(fighters.get(0).getCurrentImage());
         fighters.remove(0);
 
         //todo : clear pane

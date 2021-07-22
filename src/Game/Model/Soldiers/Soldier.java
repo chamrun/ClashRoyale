@@ -4,6 +4,8 @@ import Debugging.Deb;
 import Game.Controller.GameController;
 import Game.Model.*;
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
@@ -93,9 +95,9 @@ public abstract class Soldier extends Fightable implements Card {
         setOnRightLocationBar();
 
         this.controller = controller;
-//        controller.addElement(currentImage);
-        progressBar.setProgress(0.2);
         controller.addElement(progressBar);
+
+        progressBar.setProgress(1);
 
 
     }
@@ -107,7 +109,6 @@ public abstract class Soldier extends Fightable implements Card {
         progressBar.setMinWidth(Region.USE_COMPUTED_SIZE);
         progressBar.setPrefWidth(sizeOfChar * 4 / 5);
         progressBar.setPrefHeight(sizeOfChar / 10);
-
     }
 
 
@@ -256,6 +257,7 @@ public abstract class Soldier extends Fightable implements Card {
                 Deb.print(toString() + "between two damages : " + hitSpeed + "seconds.");
             }
         }
+        die();
     }
 
 
@@ -529,7 +531,8 @@ public abstract class Soldier extends Fightable implements Card {
 
         //This method is to short, we can put it in the end of "run method".
         board.removeFightable(this, team);
-
+        controller.removeElement(currentImage);
+        controller.removeElement(progressBar);
         //todo : in game controller delete character.
 
     }
