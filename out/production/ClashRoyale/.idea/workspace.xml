@@ -2,40 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/ClashRoyale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ClashRoyale.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/ClashRoyale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/ClashRoyale.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/Controller/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Game/View/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Game/View/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/Menu/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/View/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/src/Game/View/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClashRoyale/src/Menu/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/View/GameView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/View/GameView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/View/GameView1.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Accounts/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Accounts/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/Menu.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/Sounds/Menu.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/click.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/Sounds/click.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/View/Deck - Copy.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/View/NewGame - Copy.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +183,7 @@
       <recent name="Game" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="L:\Programming\Java\ClashRoyale\src\Audio\Sounds" />
       <recent name="L:\Programming\Java\ClashRoyale\src\Menu\View" />
       <recent name="L:\Programming\Java\ClashRoyale\src\Accounts\Scenes" />
     </key>
@@ -274,6 +246,17 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
