@@ -1,6 +1,10 @@
 package Game.Model.Soldiers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
+import javafx.geometry.Point3D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.LinkedList;
 import java.util.TimerTask;
@@ -8,9 +12,9 @@ import java.util.TimerTask;
 public class BabyDragon extends Soldier {
 
 
-    public BabyDragon(Board board, Level level, Location location, Team team) {
+    public BabyDragon(Board board, Level level, Location location, Team team, GameController controller) {
         super(board, getHP(level), getDamage(level), 1800, 3, location, Speed.FAST,
-                Target.GROUND_AIR, true, 1, 4, team, Type.AIR);
+                Target.GROUND_AIR, true, 1, 4, team, Type.AIR,controller);
 
         start();
     }
@@ -21,42 +25,7 @@ public class BabyDragon extends Soldier {
     }
 
 
-    //@Override
-    public void live() {
-        LinkedList<Fightable> target = new LinkedList<>();
-        target.add(getNearestEnemy(board.getSearchFightableRange()));
-        TimerTask move = new TimerTask() {
-            @Override
-            public void run() {
-                if (!alive)
-                    return;
-                if (location.getDistance(target.get(0).getLocation()) <= range) {
-                    fight(target);
-                } else {
-                    Location dest = target.get(0).getLocation();
-                    move(dest);
-                }
 
-            }
-        };
-        moveTimer.schedule(move, 0, moveTime);
-    }
-
-    @Override
-    public Fightable getNearestEnemy(double range) {
-        double min = range;
-        Fightable nearestEnemy = null;
-        LinkedList<Fightable> enemy = (this.team.equals(Team.A)) ? board.getBFightables() : board.getAFightables();
-        for (Fightable fightable : enemy) {
-            if (this.location.getDistance(fightable.getLocation()) < min) {
-                if (isValidEnemy(fightable)) {
-                    nearestEnemy = fightable;
-                    min = this.location.getDistance(fightable.getLocation());
-                }
-            }
-        }
-        return nearestEnemy;
-    }
 
     private static int getHP(Level level) {
         int hp;

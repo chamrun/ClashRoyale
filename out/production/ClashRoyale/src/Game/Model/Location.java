@@ -1,44 +1,56 @@
 package Game.Model;
 
 public class Location {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
+    private boolean isEmpty;
 
-    public Location(double x, double y) {
-        if (18 < x || 32 < y || x < 0 || y < 0) {
-            System.out.println("(" + x + "," + y + ") is not valid.");
-            if (18 < x)
-                x = 17;
-            if (32 < y)
-                y = 17;
-            if (x < 0)
-                x = 0;
-            if (y < 0)
-                y = 0;
+    public boolean isEmpty() {
+        return isEmpty;
+    }
 
-        }
+    public Location(int x, int y) {
+//        if (18 < x || 36 < y || x < 0 || y < 0) {
+//            System.out.println("(" + x + "," + y + ") is not valid.");
+//            if (18 < x)
+//                x = 17;
+//            if (18 < y)
+//                y = 17;
+//            if (x < 0)
+//                x = 0;
+//            if (y < 0)
+//                y = 0;
+//
+//        }
 
         this.x = x;
         this.y = y;
+        isEmpty = true;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 
     public Region getRegion() {
+        if (x < 16)
         return Region.A;
+        else return Region.B;
     }
 
-    public double getX() {
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 

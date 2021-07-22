@@ -1,13 +1,16 @@
 package Game.Model.Towers;
 
+import Game.Controller.GameController;
 import Game.Model.*;
 
 public class Queen extends Tower {
 
-    public Queen(Board board, Level level, Location location , Team team){
-        super(board, getHP(level), getDamage(level), 800, 7.5, location , team);
+    public Queen(Board board, Level level, Location location , Team team, GameController controller){
+        super(board, getHP(level), getDamage(level), 800, 7.5, location , team, controller);
+        convertProgressBarToAppropriateSize();
+        setOnRightLocationBar();
 
-        start();
+        controller.addElement(progressBar);
     }
 
     @Override

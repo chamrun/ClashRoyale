@@ -247,7 +247,7 @@ public class Controller implements Initializable {
         RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
         System.out.println(selectedButton);
 
-        Board board = null;//new Board();
+        Board board = null;
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");

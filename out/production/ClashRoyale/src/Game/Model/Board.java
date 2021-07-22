@@ -14,7 +14,7 @@ import java.util.LinkedList;
 
 public class Board {
 
-    private final int length;
+    private final int height;
     private final int width;
     private Location[][] locations;
     private LinkedList<Fightable> AFightables;
@@ -22,22 +22,35 @@ public class Board {
     private final ArrayList<Bridge> bridges;
     private final int searchFightableRange;
 
-    public Board(HashMap<Team, Region> teams, int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
-        this.length = length;
+    public Board( int length, int width, ArrayList<Bridge> bridges, int searchFightableRange) {
+        this.height = length;
         this.width = width;
+        initializeLocations();
         this.bridges = bridges;
         this.searchFightableRange = searchFightableRange;
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
     }
 
+    public void initializeLocations(){
+        locations = new Location[width][height];
+        for (int i = 0; i < width; i++){
+            for (int j = 0 ; j < height ; j++){
+                locations[i][j] =  new Location(i,j);
+            }
+        }
+    }
+
+    public Location[][] getLocations() {
+        return locations;
+    }
 
     public ArrayList<Bridge> getBridges() {
         return bridges;
     }
 
-    public int getLength() {
-        return length;
+    public int getHeight() {
+        return height;
     }
 
     public int getWidth() {
@@ -56,20 +69,20 @@ public class Board {
         return BFightables;
     }
 
-    //    public Fightable getNearestEnemy(Fightable theFightable, double range) {
-//        double min = range;
-//        Fightable nearestEnemy = null;
-//        LinkedList<Fightable> enemy = (theFightable.getTeam().equals(Team.A)) ? BFightables : AFightables;
-//        for (Fightable fightable : enemy) {
-//            if (theFightable.getLocation().getRegion().equals(fightable.getLocation().getRegion())) {
-//                if (theFightable.getLocation().getDistance(fightable.getLocation()) < min) {
-//                    nearestEnemy = fightable;
-//                    min = theFightable.getLocation().getDistance(fightable.getLocation());
-//                }
-//            }
-//        }
-//        return nearestEnemy;
-//    }
+        public Fightable getNearestEnemy(Fightable theFightable, double range) {
+        double min = range;
+        Fightable nearestEnemy = null;
+        LinkedList<Fightable> enemy = (theFightable.getTeam().equals(Team.A)) ? BFightables : AFightables;
+        for (Fightable fightable : enemy) {
+            if (theFightable.getLocation().getRegion().equals(fightable.getLocation().getRegion())) {
+                if (theFightable.getLocation().getDistance(fightable.getLocation()) < min) {
+                    nearestEnemy = fightable;
+                    min = theFightable.getLocation().getDistance(fightable.getLocation());
+                }
+            }
+        }
+        return nearestEnemy;
+    }
 
     public void removeFightable(Fightable fightable) {
         //Update screen...
