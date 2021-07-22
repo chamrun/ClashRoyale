@@ -263,6 +263,7 @@ public class Controller implements Initializable {
                     chooseDifficultyText.setFill(Paint.valueOf("black"));
                 }
             }, 1000);
+            return;
 
         }
 

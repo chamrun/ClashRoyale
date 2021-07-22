@@ -22,6 +22,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -41,6 +43,8 @@ public class Controller implements Initializable {
      */
 
     User user;
+
+    Media clickMedia = new Media(getClass().getResource("../Audio/click.wav").toExternalForm());
 
     @FXML
     public void setUser(Event event, User user) {
@@ -96,6 +100,8 @@ public class Controller implements Initializable {
     }
 
     public GameController switchToScene(javafx.event.Event event, String sceneName){
+
+        playClick();
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
         System.out.println("Trying to switch to " + sceneName);
@@ -257,6 +263,7 @@ public class Controller implements Initializable {
                     chooseDifficultyText.setFill(Paint.valueOf("black"));
                 }
             }, 1000);
+            return;
 
         }
 
@@ -436,6 +443,11 @@ public class Controller implements Initializable {
         String cardName = getTitle(imageUrl, ".png");
         //System.out.println(cardName);
         return cardName;
+    }
+
+    private void playClick(){
+        MediaPlayer clickPlayer = new MediaPlayer(clickMedia);
+        clickPlayer.play();
     }
 
 

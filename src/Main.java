@@ -36,7 +36,9 @@ public class Main extends Application {
         MediaPlayer musicPlayer = new MediaPlayer(menuSound);
         //musicPlayer.setOnEndOfMedia(() -> musicPlayer.seek(Duration.ZERO));
         //musicPlayer.setOnReady(musicPlayer::play);
-        musicPlayer.play();
+
+        //ToDo: uncomment, to play music.
+        //musicPlayer.play();
 
 
 

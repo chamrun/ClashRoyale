@@ -109,7 +109,7 @@
                               <Image url="@../../Pic/Land/onlyGame%20(976-549).jpg" />
                            </image>
                         </ImageView>
-                        <Pane prefHeight="549.0" prefWidth="976.0" />
+                        <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" prefHeight="549.0" prefWidth="976.0" />
                      </children>
                   </StackPane>
                </center>

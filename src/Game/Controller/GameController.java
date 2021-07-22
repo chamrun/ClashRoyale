@@ -25,10 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 
 public class GameController {
@@ -37,7 +34,7 @@ public class GameController {
     private HashMap<Image, String> cardImages = new HashMap<>();
     private Image chosenCard = null;
     private boolean isGameOver = false;
-    private int gameTime = 3 * 60;
+    private int gameTime = 3 * 60 ;
     private boolean doubleElixir = false;
     private long elixirTime = 2 * 1000;
     private ImageView[] cardImageViews = new ImageView[5];
@@ -67,8 +64,9 @@ public class GameController {
 
 
     public void setBoard(Board board) {
-        this.board = board;
-        locations = board.getLocations();
+
+
+
     }
 
     private GameView gameView;
@@ -79,7 +77,11 @@ public class GameController {
     }
 
     public void initialize() {
+
+
+        System.out.println("\ninitializing...\ncreating card images...");
         createCardImages();
+        System.out.println("cardImages were made...");
         startTimeTimer();
         startElixirTimer();
         timeProgressBar.progressProperty().addListener(new ChangeListener<Number>() {
@@ -146,7 +148,11 @@ public class GameController {
                                 return null;
                             if (i == gameTime / 3)
                                 doubleElixir = true;
-                            System.out.println(i);
+
+                            if (i % 20 == 0)
+                                System.out.println(i);
+
+
                             try {
                                 Thread.sleep(1 * 100);
                             } catch (InterruptedException e) {
@@ -164,23 +170,34 @@ public class GameController {
     }
 
     public void createCardImages() {
+
+
+        System.out.println("\ncreating image cards...   :" + card);
         card = new LinkedList<>();
-        for (String name : cards) {
-            switch (name) {
-                case "Archers" ->       cardImages.put(new Image("Cards/Archer.png"), name);
-                case "BabyDragon" ->    cardImages.put(new Image("Cards/babyDragon.png"), name);
-                case "Arrows" ->        cardImages.put(new Image("Cards/Arrows.png"), name);
-                case "Barbarian" ->     cardImages.put(new Image("Cards/barbarian.png"), name);
-                case "Cannon" ->        cardImages.put(new Image("Cards/Cannon.png"), name);
-                case "Fireball" ->      cardImages.put(new Image("Cards/Fireball.png"), name);
-                case "Giant" ->         cardImages.put(new Image("Cards/Giant.png"), name);
-                case "Inferno" ->       cardImages.put(new Image("Cards/inferno.png"), name);
-                case "MiniPEKKA" ->     cardImages.put(new Image("Cards/PEKKA.png"), name);
-                case "Rage" ->          cardImages.put(new Image("Cards/Rage.png"), name);
-                case "Valkyrie" ->      cardImages.put(new Image("Cards/Valkyrie.png"), name);
-                case "Wizard" ->        cardImages.put(new Image("Cards/Wizard.png"), name);
+        System.out.println("LinkedList was made...");
+        System.out.println("card: " + card + "\n" +
+                "cards: " + Arrays.toString(cards));
+
+        //ToDo: just to make app Run!
+        cards = new String[]{"Archers", "BabyDragon", "Arrows", "Barbarian",
+                "Cannon", "Fireball", "Giant", "Inferno"};
+
+        for (String cardName : cards) {
+            switch (cardName) {
+                case "Archers" ->       cardImages.put(new Image("Cards/Archer.png"), cardName);
+                case "BabyDragon" ->    cardImages.put(new Image("Cards/babyDragon.png"), cardName);
+                case "Arrows" ->        cardImages.put(new Image("Cards/Arrows.png"), cardName);
+                case "Barbarian" ->     cardImages.put(new Image("Cards/barbarian.png"), cardName);
+                case "Cannon" ->        cardImages.put(new Image("Cards/Cannon.png"), cardName);
+                case "Fireball" ->      cardImages.put(new Image("Cards/Fireball.png"), cardName);
+                case "Giant" ->         cardImages.put(new Image("Cards/Giant.png"), cardName);
+                case "Inferno" ->       cardImages.put(new Image("Cards/inferno.png"), cardName);
+                case "MiniPEKKA" ->     cardImages.put(new Image("Cards/PEKKA.png"), cardName);
+                case "Rage" ->          cardImages.put(new Image("Cards/Rage.png"), cardName);
+                case "Valkyrie" ->      cardImages.put(new Image("Cards/Valkyrie.png"), cardName);
+                case "Wizard" ->        cardImages.put(new Image("Cards/Wizard.png"), cardName);
             }
-            card.add(name);
+            card.add(cardName);
         }
         Deb.print(cardImages.size() + " cards have created.");
         initializeCardImageViews();
@@ -315,6 +332,7 @@ public class GameController {
 
     @FXML
     void clickMouseOnLandPane(MouseEvent event) {
+
         //todo : check validation of location and card then put it in
         Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
@@ -461,10 +479,19 @@ public class GameController {
 
     @FXML
     void clickMouseOnCard(MouseEvent event) {
+        System.out.print("Selecting ");
         chosenImageView = ((ImageView) event.getSource());
         chosenCard = chosenImageView.getImage();
+        System.out.println(chosenCard);
     }
 
     public void setBoardAndPlayer(Board board, User user, Bot bot) {
+
+        this.board = board;
+        locations = this.board.getLocations();
+
+        this.cards = user.getDeck();
+
+        System.out.println("locations" + Arrays.deepToString(locations));
     }
 }

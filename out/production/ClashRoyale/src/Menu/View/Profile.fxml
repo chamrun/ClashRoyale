@@ -33,11 +33,17 @@
 -->
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -45,10 +51,27 @@
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Pix/Menu/NewGame.jpg" />
+            <Image url="@../../Pix/Menu/Profile.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="420.0" layoutX="530.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="330.0">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="0.38412693568638395">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" opacity="0.7377521395683289" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill></Rectangle>
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="897.0" layoutY="24.0" onMouseClicked="#gotoExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pix/Menu/Exit.png" />
          </image>
@@ -64,28 +87,33 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Text fx:id="levelText" layoutX="431.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose difficulty!" textAlignment="CENTER" wrappingWidth="385.50341796875">
+      <Text fx:id="levelText" layoutX="560.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your level: " textAlignment="CENTER" wrappingWidth="261.85125732421875">
          <font>
-            <Font size="35.0" />
+            <Font name="Rockwell" size="39.0" />
          </font>
       </Text>
-      <RadioButton layoutX="525.0" layoutY="234.0" mnemonicParsing="false" text="EASY">
+      <ProgressBar fx:id="levelBar" layoutX="560.0" layoutY="200.0" prefHeight="20.0" prefWidth="265.0" progress="0.0">
+         <effect>
+            <DropShadow />
+         </effect></ProgressBar>
+      <PieChart fx:id="chart" layoutX="596.0" layoutY="223.0" prefHeight="219.0" prefWidth="200.0" />
+      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="797.0" layoutY="24.0" onMouseClicked="#refreshProfile" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Pix/Menu/Refresh.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Text fx:id="coins" layoutX="560.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Coins:" textAlignment="CENTER" wrappingWidth="264.1697998046875">
          <font>
-            <Font size="25.0" />
+            <Font name="Rockwell" size="20.0" />
          </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="tg" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton layoutX="525.0" layoutY="272.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$tg">
+      </Text>
+      <Hyperlink layoutX="605.0" layoutY="460.0" text="Delete my Account" textFill="RED">
          <font>
-            <Font size="25.0" />
+            <Font name="Rockwell" size="20.0" />
          </font>
-      </RadioButton>
-      <RadioButton layoutX="525.0" layoutY="310.0" mnemonicParsing="false" text="HARD" toggleGroup="$tg">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </RadioButton>
+      </Hyperlink>
    </children>
 </AnchorPane>

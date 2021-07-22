@@ -66,7 +66,7 @@ public abstract class Fightable extends Thread{
         this.damage += damage;
     }
 
-    public Fightable getNearestEnemy( double range) {
+    public Fightable getNearestEnemy(double range) {
         double min = range;
         Fightable nearestEnemy = null;
 
