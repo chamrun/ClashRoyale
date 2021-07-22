@@ -1,6 +1,7 @@
 package Player;
 
 import Accounts.Database;
+import Game.Model.Board;
 import Game.Model.Level;
 
 public class User extends Player{
@@ -154,5 +155,9 @@ public class User extends Player{
     @Override
     protected void play() {
 
+    }
+
+    public void setBoard(Board board) {
+        //ToDo
     }
 }

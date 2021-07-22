@@ -6,6 +6,7 @@ import Player.EasyBot;
 import Player.HardBot;
 import Player.MediumBot;
 import Player.User;
+import Game.Controller.GameController;
 import com.sun.tools.javac.Main;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -24,15 +25,16 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller implements Initializable {
 
@@ -42,7 +44,6 @@ public class Controller implements Initializable {
      */
 
     User user;
-    Media clickMedia = new Media(getClass().getResource("../Audio/click.wav").toExternalForm());
 
     @FXML
     public void setUser(Event event, User user) {
@@ -97,12 +98,10 @@ public class Controller implements Initializable {
 
     }
 
-    public void switchToScene(Event event, String sceneName){
+    public GameController switchToScene(javafx.event.Event event, String sceneName){
 
         System.out.println(event.getEventType() + " on " + event.getTarget());
         System.out.println("Trying to switch to " + sceneName);
-
-        playClick();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
@@ -117,6 +116,9 @@ public class Controller implements Initializable {
             if (!sceneName.startsWith("..")){
                 ((Controller) loader.getController()).setUser(user);
             }
+            else if (sceneName.startsWith("../Game")){
+                return (GameController) loader.getController();
+            }
 
             //ToDo: if sceneName is "Game/..", send user to it, somehow
         }
@@ -126,6 +128,9 @@ public class Controller implements Initializable {
         catch (IOException e){
             e.printStackTrace();
         }
+
+
+        return null;
 
     }
 
@@ -182,15 +187,10 @@ public class Controller implements Initializable {
     @FXML
     public void refreshProfile(Event event){
 
-        /*
-        user.addWin();
-        user.addLose();
-        user.addWin();
-
-
-         */
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
+
+        //ToDo: just for test, should be removed
 
 
         if (chart.getData().size() != 0) {
@@ -238,27 +238,53 @@ public class Controller implements Initializable {
     private RadioButton medium;
     @FXML
     private RadioButton hard;
+    @FXML
+    private Text chooseDifficultyText;
 
+    @FXML
     public void startGame(Event event) {
         System.out.println(event);
 
         RadioButton selectedButton = (RadioButton) tg.getSelectedToggle();
-        System.out.println(selectedButton);
 
-        Board board = null;
+        if (selectedButton == null){
+
+            System.out.println("No button is selected :/");
+
+            chooseDifficultyText.setFill(Paint.valueOf("red"));
+
+            (new Timer()).schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    chooseDifficultyText.setFill(Paint.valueOf("black"));
+                }
+            }, 1000);
+
+        }
+
+        //ToDo: setting searchFightableRange...
+        Board board = new Board(19, 35, 0);;
+        user.setBoard(board);
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
-            EasyBot bot = new EasyBot(board);
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new EasyBot(board));
+            return;
         }
         else if (selectedButton == medium){
             System.out.println("Starting medium game...");
-            MediumBot mediumBot = new MediumBot(board);
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new MediumBot(board));;
+            return;
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
-            HardBot hardBot = new HardBot(board);
+            switchToScene(event, "../Game/View/GameView.fxml").setBoardAndPlayer(board, user, new HardBot(board));
+            return;
         }
+
+
+
+
     }
 
 
@@ -407,12 +433,6 @@ public class Controller implements Initializable {
         String cardName = getTitle(imageUrl, ".png");
         //System.out.println(cardName);
         return cardName;
-    }
-
-
-    private void playClick(){
-        MediaPlayer clickPlayer = new MediaPlayer(clickMedia);
-        clickPlayer.play();
     }
 
 
