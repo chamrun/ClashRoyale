@@ -7,6 +7,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.net.URL;
+
 
 public class Main extends Application {
 
@@ -14,7 +16,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("Accounts/View/login.fxml"));
+        URL url = getClass().getResource("Accounts/View/login.fxml");
+        if (url == null){
+            System.out.println("url is null!");
+            return;
+        }
+
+        Parent root = FXMLLoader.load(url);
         //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/MainMenu.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/NewGame.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Menu/View/Deck.fxml"));
