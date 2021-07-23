@@ -274,16 +274,16 @@ public abstract class Soldier extends Fightable implements Card {
             //a.a(team + ":" + location.getX());
 
             if (team == Team.A && location.getX() < 18){
-                a.a("A to bridge");
+                //a.a("A to bridge");
                 move(getNearestBridge());
             }
 
             else if (team == Team.B && location.getX() > 18) {
-                a.a("B to bridge");
+                //a.a("B to bridge");
                 move(getNearestBridge());
             }
             else {
-                a.a("to tower");
+                //a.a("to tower");
                 Location towerLocation = board.getNearestTower(location, team);
                 move(new Location(towerLocation.getX() - 1, towerLocation.getY() + 1));
             }

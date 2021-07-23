@@ -237,13 +237,11 @@ public class Board {
     public Suggestion suggestToHardBot() {
 
         double xMax = 16;
-        double y;
         Fightable target = null;
 
         for (Fightable aFightable: AFightables) {
             if (xMax < aFightable.getLocation().getX()){
                 xMax = aFightable.getLocation().getX();
-                y = aFightable.getLocation().getY();
                 target = aFightable;
             }
         }
@@ -252,33 +250,40 @@ public class Board {
             return null;
         }
 
-        Location targetLocation = target.getLocation();
+        Location targetLocation;
+
+        if (target.getLocation().getY() < 5){
+            targetLocation = new Location(18, 2);
+        }
+        else {
+            targetLocation = new Location(18, 14);
+        }
 
         if (target instanceof Barbarian){
             return new Suggestion("BabyDragon","Valkyrie", "Arrows",targetLocation);
         }
-        if (target instanceof Archers){
+        else if (target instanceof Archers){
             return new Suggestion("Valkyrie","Barbarian","Arrows",targetLocation);
         }
-        if (target instanceof BabyDragon){
+        else if (target instanceof BabyDragon){
             return new Suggestion("Wizard", "BabyDragon","Archer",targetLocation);
         }
-        if (target instanceof Wizard){
+        else if (target instanceof Wizard){
             return new Suggestion("PEKKA","Barbarian","FireBall",targetLocation);
         }
-        if (target instanceof MiniPEKKA){
+        else if (target instanceof MiniPEKKA){
             return new Suggestion("BabyDragon","FireBall", "Arrows",targetLocation);
         }
-        if (target instanceof Giant){
+        else if (target instanceof Giant){
             return new Suggestion("BabyDragon", "Barbarian","PEKKA",targetLocation);
         }
-        if (target instanceof Valkyrie){
+        else if (target instanceof Valkyrie){
             return new Suggestion("BabyDragon", "PEKKA" , "FireBall", targetLocation);
         }
-        if (target instanceof Cannon){
+        else if (target instanceof Cannon){
             return new Suggestion("BabyDragon","Giant","Valkyrie",targetLocation);
         }
-        if (target instanceof InfernoTower){
+        else if (target instanceof InfernoTower){
             return new Suggestion("Barbarian","PEKKA","Giant",targetLocation);
         }
 

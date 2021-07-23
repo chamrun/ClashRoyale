@@ -37,7 +37,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        //Audio.theme(); ToDo: uncomment to play music
+        //Audio.theme();
 
         launch(args);
     }

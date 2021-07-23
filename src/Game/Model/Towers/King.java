@@ -24,7 +24,7 @@ public class King extends Tower {
 
         while (alive){
 
-            endamage(getNearestEnemy(range));
+            //endamage(getNearestEnemy(range));
             //ToDo: commented just for testing end of game.
 
             try {

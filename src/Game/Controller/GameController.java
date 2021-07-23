@@ -329,6 +329,11 @@ public class GameController {
         //todo : check validation of location and card then put it in
         //Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
         chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
+
+        if (!board.isLocationValid(Team.A, chosenLocation)){
+            return;
+        }
+
         Deb.print("Location for new card: (" + (int) (event.getX() / gameView.getTileWidth()) + "," + (int) (event.getY() / gameView.getTileHeight()) + ")");
 
         if (chosenCard != null) {

@@ -140,7 +140,7 @@ public abstract class Soldier extends Fightable implements Card {
                 address = "characters/Wizard/Wiz_Fight_" + i + ".png";
             }
 
-            System.out.println(address);
+            //System.out.println(address);
             for (int j = 0; j < 4; j++) {
                 if (j == 3)
                     fightImageViews[i - 1] = makeRotationForms(j, address);
@@ -180,8 +180,8 @@ public abstract class Soldier extends Fightable implements Card {
             addressForClosed = "characters/Wizard/Wiz_Walk_Closed.png";
             addressForOpen = "characters/Wizard/Wiz_Walk_Open.png";
         }
-        System.out.println(addressForClosed);
-        System.out.println(addressForOpen);
+        //System.out.println(addressForClosed);
+        //System.out.println(addressForOpen);
 
         for (int i = 0; i < 4; i++) {
             if (i == 3)
@@ -274,16 +274,16 @@ public abstract class Soldier extends Fightable implements Card {
             //a.a(team + ":" + location.getX());
 
             if (team == Team.A && location.getX() < 18){
-                a.a("A to bridge");
+                //a.a("A to bridge");
                 move(getNearestBridge());
             }
 
             else if (team == Team.B && location.getX() > 18) {
-                a.a("B to bridge");
+                //a.a("B to bridge");
                 move(getNearestBridge());
             }
             else {
-                a.a("to tower");
+                //a.a("to tower");
                 Location towerLocation = board.getNearestTower(location, team);
                 move(new Location(towerLocation.getX() - 1, towerLocation.getY() + 1));
             }
@@ -426,7 +426,7 @@ public abstract class Soldier extends Fightable implements Card {
 
 
     public void move(Location destination) {
-        a.a(this + "going to " + destination + " from " + location);
+        //a.a(this + "going to " + destination + " from " + location);
 
         if (location.getDistance(destination) == 0) {
             a.a("target and src are the same!");

@@ -27,7 +27,7 @@ public class Throwable extends Thread {
         } else {
             address = "Throwable/Fireball.png";
         }
-        System.out.println(address);
+        //System.out.println(address);
         imageView = new ImageView(new Image(address));
         setSizeAndAngle();
         controller.addElement(imageView);

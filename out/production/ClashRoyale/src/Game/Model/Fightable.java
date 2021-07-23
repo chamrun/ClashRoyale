@@ -86,6 +86,9 @@ public abstract class Fightable extends Thread{
         //a.a(getClass() + " allEnemies: " + enemies);
 
         for (Fightable enemy: enemies){
+            if (enemy == null)
+                continue;
+
             if (location.getDistance(enemy.getLocation()) < min) {
                 nearestEnemy = enemy;
                 min = location.getDistance(enemy.getLocation());

@@ -38,12 +38,11 @@ public class HardBot extends Bot{
                     putCard(getRandInt(4), suggestedLocation, Team.B);
                 }
             }
-            else {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
