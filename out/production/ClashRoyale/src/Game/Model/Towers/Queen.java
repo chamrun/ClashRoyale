@@ -26,7 +26,7 @@ public class Queen extends Tower {
             //a.a(i + "th of" + team + " Queen");
             i++;
             Fightable enemy = getNearestEnemy( range);
-            endamage(enemy);
+            //endamage(enemy); ToDo: commented just for testing end of game.
             if (enemy != null)
                 a.a(team + " Queen Fighting with: " + enemy.getClass().getSimpleName());
             //a.a(team + " Queen Fighting with: " + enemy.getClass());
@@ -43,6 +43,11 @@ public class Queen extends Tower {
 
         controller.removeElement(currentImage);
         controller.removeElement(progressBar);
+
+        if (team == Team.A)
+            controller.addToBlueCrowns();
+        else
+            controller.addToRedCrowns();
 
         a.a(getClass().getSimpleName() + " was removed.");
     }

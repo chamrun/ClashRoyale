@@ -64,12 +64,12 @@
                               <Image url="@../../Pic/Crown/blueCrown.png" />
                            </image>
                         </ImageView>
-                        <Text fill="#206945" layoutX="388.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="2" textAlignment="CENTER" wrappingWidth="20.0">
+                        <Text fx:id="redCrowns" fill="#206945" layoutX="388.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="0" textAlignment="CENTER" wrappingWidth="20.0">
                            <font>
                               <Font name="Times New Roman Bold" size="22.0" />
                            </font>
                         </Text>
-                        <Text fill="#206945" layoutX="568.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="2" textAlignment="CENTER" wrappingWidth="20.0">
+                        <Text fx:id="blueCrowns" fill="#206945" layoutX="568.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="0" textAlignment="CENTER" wrappingWidth="20.0">
                            <font>
                               <Font name="Times New Roman Bold" size="22.0" />
                            </font>

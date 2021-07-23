@@ -22,7 +22,7 @@ public class King extends Tower {
 
         while (alive){
 
-            endamage(getNearestEnemy(range));
+            //endamage(getNearestEnemy(range)); ToDo: commented just for testing end of game.
 
             try {
                 Thread.sleep(hitSpeed);
@@ -33,6 +33,8 @@ public class King extends Tower {
 
         controller.removeElement(currentImage);
         controller.removeElement(progressBar);
+
+        controller.endGame(team);
     }
 
     private static int getHP(Level level) {

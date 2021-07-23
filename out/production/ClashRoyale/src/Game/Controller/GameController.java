@@ -2,6 +2,7 @@ package Game.Controller;
 
 import Audio.Audio;
 import Debugging.Deb;
+import Debugging.a;
 import Game.Model.*;
 import Game.Model.Buildings.Cannon;
 import Game.Model.Buildings.InfernoTower;
@@ -20,13 +21,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -49,6 +54,9 @@ public class GameController {
     private Board board;
     private LinkedList<String> card;
     private int elixir = 4;
+
+    private User user;
+    private Team loser;
 
     public GameView getGameView() {
         return gameView;
@@ -106,6 +114,7 @@ public class GameController {
                                 e.printStackTrace();
                             }
                         }
+                        endGame();
                         return null;
                     }
                 };
@@ -454,10 +463,13 @@ public class GameController {
 
     public void setter(Board board, User user, Bot bot) {
 
+
         this.board = board;
         locations = this.board.getLocations();
+
+        this.user = user;
         this.deck = user.getDeck();
-        bot.setter(this, board, user.getLevel());
+        //bot.setter(this, board, user.getLevel()); ToDo: commented just for testing end of game.
 
         //System.out.println("locations" + Arrays.deepToString(locations));
 
@@ -519,5 +531,77 @@ public class GameController {
 
         board.addAFightable(aKing, aQueenOne, aQueenTwo);
         board.addBFightable(bKing, bQueenOne, bQueenTwo);
+    }
+
+
+    @FXML
+    private Text redCrowns;
+
+    @FXML
+    private Text blueCrowns;
+
+
+    public void addToRedCrowns(){
+        int reds = Integer.parseInt(redCrowns.getText());
+        redCrowns.setText(reds + 1 + "");
+    }
+
+    public void addToBlueCrowns(){
+        int blues = Integer.parseInt(blueCrowns.getText());
+        blueCrowns.setText(blues + 1 + "");
+    }
+
+    public void endGame(Team loser){
+        isGameOver = true;
+        this.loser = loser;
+    }
+
+    private void endGame(){
+        if (loser == Team.A)
+            blueCrowns.setText("3");
+        else
+            redCrowns.setText("3");
+
+        if (loser == Team.A){
+            a.a("Bot Won!");
+        }
+        else {
+            a.a("User Won!");
+        }
+
+        switchToScene("../../Menu/View/MainMenu.fxml").setUser(user);
+    }
+
+    public Menu.Controller switchToScene(String sceneName){
+
+        //System.out.println(event.getEventType() + " on " + event.getTarget());
+
+        Audio.click();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
+            loader.load();
+            Parent root = loader.getRoot();
+            Stage stage = (Stage)(redCrowns).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("MainMenu");
+            stage.show();
+
+            if (sceneName.contains("Menu")) {
+                return loader.getController();
+            }
+            /*
+            Parent root = new FXMLLoader(getClass().getResource("LogIn.fxml")).load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+             */
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
