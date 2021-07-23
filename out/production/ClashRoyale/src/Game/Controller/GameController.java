@@ -451,7 +451,7 @@ public class GameController {
         this.board = board;
         locations = this.board.getLocations();
         this.deck = user.getDeck();
-        bot.setGameController(this);
+        bot.setter(this, board, user.getLevel());
 
         //System.out.println("locations" + Arrays.deepToString(locations));
 

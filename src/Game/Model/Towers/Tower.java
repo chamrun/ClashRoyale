@@ -1,6 +1,5 @@
 package Game.Model.Towers;
 
-import Debugging.a;
 import Game.Controller.GameController;
 import Game.Model.*;
 import javafx.application.Platform;
@@ -40,10 +39,10 @@ public abstract class Tower extends Fightable {
         currentImage.setY(tileHeight * location.getY());
         setOnRightLocationBar();
 
-        a.a("Progress bar of " + getClass() + ": "  + progressBar.getProgress());
+        //a.a("Progress bar of " + getClass() + ": "  + progressBar.getProgress());
         progressBar.setProgress(0.98);
         Platform.runLater(()-> progressBar.setProgress(0.97));
-        a.a("Progress bar of " + getClass() + ": "  + progressBar.getProgress() + "\n");
+        //a.a("Progress bar of " + getClass() + ": "  + progressBar.getProgress() + "\n");
     }
 
 

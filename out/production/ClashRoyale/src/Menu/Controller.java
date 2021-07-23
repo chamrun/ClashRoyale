@@ -135,7 +135,7 @@ public class Controller implements Initializable {
         }
 
         if (sceneName.contains("NewGame")) {
-            ((Controller) loader.getController()).medium.setSelected(true);
+            ((Controller) loader.getController()).easy.setSelected(true);
         }
         else if (sceneName.contains("Profile")) {
             ((Controller) loader.getController()).refreshProfile(event);
@@ -275,20 +275,19 @@ public class Controller implements Initializable {
 
         //ToDo: setting searchFightableRange...
         Board board = new Board(19, 35, 0);
-        user.setBoard(board);
         Bot bot = null;
 
         if (selectedButton == easy){
             System.out.println("Starting easy game...");
-            bot = new EasyBot(board);
+            bot = new EasyBot();
         }
         else if (selectedButton == medium){
             System.out.println("Starting medium game...");
-            bot = new MediumBot(board);
+            bot = new MediumBot();
         }
         else if (selectedButton == hard){
             System.out.println("Starting hard game...");
-            bot = new HardBot(board);
+            bot = new HardBot();
         }
 
         if (bot == null){

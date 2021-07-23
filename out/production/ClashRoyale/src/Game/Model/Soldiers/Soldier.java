@@ -347,7 +347,7 @@ public abstract class Soldier extends Fightable implements Card {
         //while (alive) {
             for (Fightable target : targets) {
                 target.toGetHurt(damage);
-                a.a("Fighting with " + target.getClass() + " from " + targets.size() + ": " + targets);
+                a.a("Fighting with " + target.getClass().getSimpleName() + " from " + targets.size() + ": " + targets);
 
                 if (!target.alive()){
                     targets.remove(target);
@@ -557,7 +557,7 @@ public abstract class Soldier extends Fightable implements Card {
     public void die() {
 
         //This method is to short, we can put it in the end of "run method".
-        a.a(getClass() + " is dying...");
+        a.a(getClass().getSimpleName() + " is dying...");
         board.removeFightable(this, team);
         controller.removeElement(currentImage);
         controller.removeElement(progressBar);

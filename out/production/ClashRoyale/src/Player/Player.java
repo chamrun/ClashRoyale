@@ -1,6 +1,7 @@
 package Player;
 
 
+import Debugging.a;
 import Game.Controller.GameController;
 import Game.Model.*;
 import Game.Model.Buildings.Cannon;
@@ -9,6 +10,7 @@ import Game.Model.Soldiers.*;
 import Game.Model.Spells.Arrows;
 import Game.Model.Spells.Fireball;
 import Game.Model.Spells.Rage;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,8 +20,10 @@ public abstract class Player extends Thread{
 
     protected GameController gameController;
 
-    public void setGameController(GameController gameController) {
+    public void setter(GameController gameController, Board board, Level level) {
         this.gameController = gameController;
+        this.board = board;
+        this.level = level;
     }
 
     protected Board board;
@@ -42,17 +46,14 @@ public abstract class Player extends Thread{
 
     @Override
     public void run() {
+        a.a(getClass().getSimpleName() + " started running...");
         elixir = new Elixir();
-        elixir.run();
+        a.a(getClass().getSimpleName() + " elixir set...");
         play();
     }
 
 
     protected abstract void play();
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
 
     public void putCard(int index, Location location, Team team) {
@@ -64,19 +65,18 @@ public abstract class Player extends Thread{
 
 
         switch (readyCards.get(index)){
-            case "Archer"->     newCard = new Archers       (board, level, location, team, gameController);
+            case "Archers"->    newCard = new Archers       (board, level, location, team, gameController);
             case "BabyDragon"-> newCard = new BabyDragon    (board, level, location, team, gameController);
             case "Barbarian"->  newCard = new Barbarian     (board, level, location, team, gameController);
             case "Cannon"->     newCard = new Cannon        (board, level, location, team, gameController);
             case "Giant"->      newCard = new Giant         (board, level, location, team, gameController);
-            case "Inferno"->    newCard = new InfernoTower  (board, level, location, team, gameController);
-            case "PEKKA"->      newCard = new MiniPEKKA     (board, level, location, team, gameController);
+            case "InfernoTower"->newCard= new InfernoTower  (board, level, location, team, gameController);
+            case "MiniPEKKA"->  newCard = new MiniPEKKA     (board, level, location, team, gameController);
             case "Valkyrie"->   newCard = new Valkyrie      (board, level, location, team, gameController);
             case "Wizard"->     newCard = new Wizard        (board, level, location, team, gameController);
-
             case "Rage"->       newCard = new Rage          (board, level, location, team);
             case "Arrows"->     newCard = new Arrows        (board, level, location, team);
-            case "FireBall"->   newCard = new Fireball      (board, level, location, team);
+            case "Fireball"->   newCard = new Fireball      (board, level, location, team);
             default -> {
                 System.out.println("WTC?! (What the card): " + readyCards.get(index));
                 return;
@@ -87,6 +87,9 @@ public abstract class Player extends Thread{
             System.out.println("-ERR- Not enough elixir for " + readyCards.get(index) + " (" + getElixir()+ ")");
             return;
         }
+
+        if (newCard instanceof Fightable)
+            Platform.runLater(() -> gameController.landPane.getChildren().add(((Fightable) newCard).getCurrentImage()));
 
 
         readyCards.remove(index);

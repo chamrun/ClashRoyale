@@ -1,15 +1,11 @@
 package Player;
 
-import Game.Model.Board;
 import Game.Model.Card;
 import Game.Model.Location;
 import Game.Model.Team;
 
 public class HardBot extends Bot{
 
-    public HardBot(Board board) {
-        super(board);
-    }
 
     @Override
     protected void play() {

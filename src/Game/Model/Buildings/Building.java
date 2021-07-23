@@ -2,6 +2,7 @@ package Game.Model.Buildings;
 
 import Game.Controller.GameController;
 import Game.Model.*;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -19,6 +20,7 @@ public abstract class Building extends Fightable implements Card {
         this.lifeTime = lifeTime;
         this.cost = cost;
         controller = gameController;
+        progressBar = new ProgressBar();
     }
 
     public Type getType(){

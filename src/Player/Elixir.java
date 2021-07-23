@@ -1,5 +1,7 @@
 package Player;
 
+import Debugging.a;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,6 +12,7 @@ public class Elixir extends Thread{
     long millisPerElixir;
 
     public Elixir(){
+        a.a("Setting elixir...");
         elixirs = 4;
         gameIsOn = true;
         millisPerElixir = 2000;
@@ -28,7 +31,7 @@ public class Elixir extends Thread{
             }
         }, 180000);
 
-
+        a.a("elixir constructed...");
 
         start();
 

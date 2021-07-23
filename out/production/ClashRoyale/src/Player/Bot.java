@@ -1,16 +1,13 @@
 package Player;
 
-import Game.Model.Board;
-
 import java.util.Arrays;
 
 public abstract class Bot extends Player {
     protected boolean active;
 
-    public Bot(Board board){
+    public Bot(){
         System.out.println("Making a new bot...");
         active = true;
-        this.board = board;
         deck = getRandomDeck();
         System.out.println("Bot Deck is ready...");
         readyCards = getRandomReadyCards();
