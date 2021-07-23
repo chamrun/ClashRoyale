@@ -31,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -56,6 +57,7 @@ public class GameController {
     private int elixir = 4;
 
     private User user;
+    private Bot bot;
     private Team loser;
 
     public GameView getGameView() {
@@ -114,7 +116,6 @@ public class GameController {
                                 e.printStackTrace();
                             }
                         }
-                        endGame();
                         return null;
                     }
                 };
@@ -283,7 +284,7 @@ public class GameController {
 //        }
 //        count++;
 //
-//        //todo : check validation of location and card then put it in
+//
 //        Deb.print("Mouse clicked on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
 //        chosenLocation = locations[(int) (event.getX() / gameView.getTileWidth())][(int) (event.getY() / gameView.getTileHeight())];
 ////        chosenLocation = locations[(int) (event.getY() / gameView.getTileHeight())][(int) (event.getX() / gameView.getTileWidth())];
@@ -389,12 +390,6 @@ public class GameController {
         return false;
     }
 
-    @FXML
-    void moveMouseOnLandPane(MouseEvent event) {
-
-        //todo : check validation of location and card then highlight it.
-//        Deb.print("Mouse moved on (source : " + event.getSource() + " ): X = " + event.getX() + "  Y = " + event.getY());
-    }
 
     public Card createCard(Location location) {
         Card card = switch (cardImages.get(chosenCard)) {
@@ -469,7 +464,8 @@ public class GameController {
 
         this.user = user;
         this.deck = user.getDeck();
-        //bot.setter(this, board, user.getLevel()); ToDo: commented just for testing end of game.
+        this.bot = bot;
+        bot.setter(this, board, user.getLevel()); //ToDo: commented just for testing end of game.
 
         //System.out.println("locations" + Arrays.deepToString(locations));
 
@@ -551,23 +547,48 @@ public class GameController {
         blueCrowns.setText(blues + 1 + "");
     }
 
-    public void endGame(Team loser){
+    public void endGameOutside(Team loser){
         isGameOver = true;
         this.loser = loser;
-    }
 
-    private void endGame(){
-        if (loser == Team.A)
-            blueCrowns.setText("3");
-        else
-            redCrowns.setText("3");
 
         if (loser == Team.A){
             a.a("Bot Won!");
+
+            user.addLose();
+
+            endGameText.setText("GAME OVER!\n" +
+                    "Bot Won!");
+
+            blueCrowns.setText("3");
         }
         else {
             a.a("User Won!");
+            endGameText.setText("GAME OVER!\n" +
+                    "User Won!\n" +
+                    "click here to end.");
+
+            user.addWin();
+
+            redCrowns.setText("3");
         }
+
+        endGameText.setOnMouseClicked(this::endGame);
+        endGameText.setBoundsType(TextBoundsType.VISUAL);
+        System.out.println(endGameText);
+
+        board.endFightables();
+        bot.inactive();
+
+    }
+
+    @FXML
+    private Text endGameText;
+
+
+    @FXML
+    void endGame(MouseEvent event) {
+
 
         switchToScene("../../Menu/View/MainMenu.fxml").setUser(user);
     }

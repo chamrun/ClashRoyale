@@ -66,14 +66,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="797.0" layoutY="24.0" onMouseClicked="#refreshProfile" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Pix/Menu/Refresh.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Text fx:id="chooseEight" fill="WHITE" layoutX="126.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose 8 cards!">
          <font>
             <Font name="Rockwell" size="40.0" />

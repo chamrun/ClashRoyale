@@ -31,7 +31,7 @@ public class Board {
         AFightables = new LinkedList<>();
         BFightables = new LinkedList<>();
 
-        //ToDo: setting bridges exactly
+
         bridges = new ArrayList<>();
         bridges.add(new Bridge(new Location(17, 2), new Location(19, 2)));
         bridges.add(new Bridge(new Location(17, 14), new Location(19, 14)));
@@ -92,7 +92,7 @@ public class Board {
     public void removeFightable(Fightable fightable) {
         //Update screen...
 
-        //TODO: How to to know fightable is in "myArmy" or "enemies"?
+        //
 //        myArmy.remove(fightable);
 //        enemies.remove(fightable);
 
@@ -122,17 +122,6 @@ public class Board {
             AFightables.remove(deadFightable);
         }
 
-
-        if (deadFightable instanceof Tower) {
-            //Update crowns...
-            if (deadFightable instanceof King) {
-                gameOver();
-            } else {
-                //Activates King Tower
-            }
-        }
-
-
     }
 
     private void gameOver() {
@@ -140,7 +129,7 @@ public class Board {
     }
 
     public Location getNearestTower(Location location, Team team) {
-        // TODO: should be this way:
+
         double minDistance = 20;
         Location nearestTower = null;
 
@@ -303,5 +292,22 @@ public class Board {
 
     public void addBFightable(Fightable... newFightables) {
         Collections.addAll(BFightables, newFightables);
+    }
+
+    public void endFightables() {
+        for (Fightable aFightable: AFightables){
+            if (!(aFightable instanceof Tower))
+                aFightable.alive = false;
+
+            aFightable.end();
+        }
+        AFightables.clear();
+        for (Fightable bFightable: BFightables){
+            if (!(bFightable instanceof Tower))
+                bFightable.alive = false;
+
+            bFightable.end();
+        }
+        BFightables.clear();
     }
 }

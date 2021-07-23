@@ -101,10 +101,10 @@ public abstract class Player extends Thread{
         readyCards.remove(index);
         readyCards.add(nextReadyCard);
         nextReadyCard = getRandomNextCard();
+
         if (newCard instanceof Fightable)
             board.addBFightable((Fightable) newCard);
 
-        //ToDo: should be added to board LinkedList?
     }
 
 

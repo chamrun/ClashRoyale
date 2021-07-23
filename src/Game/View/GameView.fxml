@@ -109,7 +109,14 @@
                               <Image url="@../../Pic/Land/onlyGame%20(976-549).jpg" />
                            </image>
                         </ImageView>
-                        <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" prefHeight="549.0" prefWidth="976.0" />
+                        <Pane fx:id="landPane" onMouseClicked="#clickMouseOnLandPane" prefHeight="549.0" prefWidth="976.0">
+                           <children>
+                              <Text fx:id="endGameText" layoutX="10.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="974.1961059570312">
+                                 <font>
+                                    <Font name="Rockwell" size="96.0" />
+                                 </font>
+                              </Text>
+                           </children></Pane>
                      </children>
                   </StackPane>
                </center>

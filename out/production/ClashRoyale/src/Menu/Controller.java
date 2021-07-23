@@ -124,8 +124,6 @@ public class Controller implements Initializable {
                 System.out.println("returning Controller... ");
                 return loader.getController();
             }
-
-            //ToDo: if sceneName is "Game/..", send user to it, somehow
         }
         catch (ExceptionInInitializerError e){
             System.out.println(sceneName + ": wrong?");
@@ -202,7 +200,7 @@ public class Controller implements Initializable {
         levelText.setText(("Level " + user.getLevel().toString()));
         coins.setText(user.getCoins() + "");
 
-        //ToDo: just for test, should be removed
+
 
 
         if (chart.getData().size() != 0) {

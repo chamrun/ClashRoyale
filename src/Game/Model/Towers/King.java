@@ -10,6 +10,8 @@ public class King extends Tower {
 
     public King(Board board, Level level, Location location, Team team , GameController controller){
         super(board, getHP(level), getDamage(level), 1000, 7, location, team,controller);
+        //ToDo
+        //super(board, 300, getDamage(level), 1000, 7, location, team,controller);
 
         currentImage.setFitHeight(144);
         currentImage.setFitWidth(55.5);
@@ -22,7 +24,8 @@ public class King extends Tower {
 
         while (alive){
 
-            //endamage(getNearestEnemy(range)); ToDo: commented just for testing end of game.
+            endamage(getNearestEnemy(range));
+            //ToDo: commented just for testing end of game.
 
             try {
                 Thread.sleep(hitSpeed);
@@ -34,7 +37,7 @@ public class King extends Tower {
         controller.removeElement(currentImage);
         controller.removeElement(progressBar);
 
-        controller.endGame(team);
+        controller.endGameOutside(team);
     }
 
     private static int getHP(Level level) {

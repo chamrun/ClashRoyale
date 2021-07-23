@@ -358,7 +358,7 @@ public abstract class Soldier extends Fightable implements Card {
         //while (alive) {
             for (Fightable target : targets) {
                 target.toGetHurt(damage);
-                a.a("Fighting with " + target.getClass().getSimpleName() + " from " + targets.size() + ": " + targets);
+                //a.a("Fighting with " + target.getClass().getSimpleName() + " from " + targets.size() + ": " + targets);
 
                 if (!target.alive()){
                     targets.remove(target);
