@@ -27,10 +27,6 @@ public class InfernoTower extends Building {
         setProgressBar();
         start();
 
-        start();
-
-
-
     }
 
     private static int getHP(Level level) {

@@ -20,8 +20,6 @@ public abstract class Bot extends Player {
         System.out.println("nextReadyCard: " + nextReadyCard);
         System.out.println("Bot was made!\n");
 
-        start();
-
     }
 
 

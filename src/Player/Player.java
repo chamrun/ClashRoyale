@@ -24,6 +24,8 @@ public abstract class Player extends Thread{
         this.gameController = gameController;
         this.board = board;
         this.level = level;
+
+        start();
     }
 
     protected Board board;
@@ -58,6 +60,8 @@ public abstract class Player extends Thread{
 
     public void putCard(int index, Location location, Team team) {
 
+        a.a(this.getClass().getSimpleName() + " want to put " + index + "th card on " + location);
+
         Card newCard;
 
         if (getElixir() < Card.getCostFromString(deck[index]))
@@ -83,6 +87,8 @@ public abstract class Player extends Thread{
             }
         }
 
+        a.a(index + "th card: " + newCard.getClass().getSimpleName());
+
         if (!elixir.use(newCard.getCost())){
             System.out.println("-ERR- Not enough elixir for " + readyCards.get(index) + " (" + getElixir()+ ")");
             return;
@@ -95,6 +101,8 @@ public abstract class Player extends Thread{
         readyCards.remove(index);
         readyCards.add(nextReadyCard);
         nextReadyCard = getRandomNextCard();
+        if (newCard instanceof Fightable)
+            board.addBFightable((Fightable) newCard);
 
         //ToDo: should be added to board LinkedList?
     }
@@ -102,14 +110,14 @@ public abstract class Player extends Thread{
 
 
     protected static String[] getRandomDeck() {
-        String[] allCards = new String[]{"Archers", "Arrows", "BabyDragon", "Barbarian", "Cannon", "Fireball", "Giant", "InfernoTower", "MiniPEKKA", "Rage", "Valkyrie", "Wizard"};
+        String[] allCards = new String[]{"Archers", "BabyDragon", "Barbarian", "Cannon", "Fireball", "Giant", "InfernoTower", "MiniPEKKA", "Valkyrie", "Wizard"};
         String[] randomDeck = new String[8];
         ArrayList<Integer> usedNumbers = new ArrayList<>();
 
         int i = 0;
 
         while (i < 8) {
-            int randomInt = getRandInt(12);
+            int randomInt = getRandInt(10);
             if (!usedNumbers.contains(randomInt)){
                 randomDeck[i] = allCards[randomInt];
                 i++;

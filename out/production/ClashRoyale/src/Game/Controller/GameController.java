@@ -331,7 +331,13 @@ public class GameController {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            landPane.getChildren().add(((Fightable) card).getCurrentImage());
+                            if (card instanceof Fightable)
+                                landPane.getChildren().add(((Fightable) card).getCurrentImage());
+                            else if (card instanceof Arrows){
+                                //ToDo: some errs :/
+                                //new Throwable("Arrow", 1000, new Location(4, 5), chosenLocation, (this));
+                            }
+
                         }
                     });
                     Deb.print("Class : GameController | method : clickMouseOnLandPane " +

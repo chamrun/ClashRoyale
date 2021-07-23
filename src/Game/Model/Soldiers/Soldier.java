@@ -68,7 +68,7 @@ public abstract class Soldier extends Fightable implements Card {
         this.isAreaSplash = isAreaSplash;
         this.count = count;
         this.cost = cost;
-        fightTime = (long) hitSpeed;
+        fightTime = hitSpeed;
         moveTime = getMoveTime();
         currentImage = new ImageView();
 
@@ -242,7 +242,7 @@ public abstract class Soldier extends Fightable implements Card {
 
             if (enemies == null) {
                 move();
-                Deb.print(i + "th:" + toString() + "between two steps: " + hitSpeed + "seconds.");
+                Deb.print(i + "th:" + this + "between two steps: " + hitSpeed + "seconds.");
             }
             else {
                 fight(enemies);
@@ -251,8 +251,13 @@ public abstract class Soldier extends Fightable implements Card {
 
 
             i++;
-            if (i == 300)
-                System.exit(-3);
+            if (i == 300) {
+                try {
+                    Thread.sleep(180000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         die();
     }
@@ -268,11 +273,17 @@ public abstract class Soldier extends Fightable implements Card {
         if (target == null) {
             //a.a(team + ":" + location.getX());
 
-            if (team == Team.A && location.getX() < 18)
+            if (team == Team.A && location.getX() < 18){
+                a.a("A to bridge");
                 move(getNearestBridge());
-            else if (team == Team.B && location.getX() > 17)
+            }
+
+            else if (team == Team.B && location.getX() > 18) {
+                a.a("B to bridge");
                 move(getNearestBridge());
+            }
             else {
+                a.a("to tower");
                 Location towerLocation = board.getNearestTower(location, team);
                 move(new Location(towerLocation.getX() - 1, towerLocation.getY() + 1));
             }
@@ -419,6 +430,10 @@ public abstract class Soldier extends Fightable implements Card {
 
         if (location.getDistance(destination) == 0) {
             a.a("target and src are the same!");
+            if (team == Team.A)
+                move(new Location(location.getX() + 4, location.getY()));
+            else
+                move(new Location(location.getX() - 4, location.getY()));
             return;
         }
 
@@ -503,6 +518,7 @@ public abstract class Soldier extends Fightable implements Card {
         Location nearestBridge = null;
 
         if (isOnBridge()) {
+            a.a("is on the bridge");
             return getAnotherHead();
         }
 
@@ -525,13 +541,30 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public Location getAnotherHead() {
-        if (location.getY() == board.getBridges().get(0).getAHead().getY())
-            return (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
+        a.a("looking to another bridgeHead for " + this.getClass().getSimpleName());
+        /*
+        if (location.getY() == 19)
+            return new Location(2, 18);
         else
-            return (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
+            return new Location(14, 18);
+
+
+         */
+
+
+        Location target;
+        if (location.getY() == board.getBridges().get(0).getAHead().getY())
+            target = (team.equals(Team.A)) ? board.getBridges().get(0).getBHead() : board.getBridges().get(0).getAHead();
+        else
+            target = (team.equals(Team.A)) ? board.getBridges().get(1).getBHead() : board.getBridges().get(1).getAHead();
+
+        a.a("another head: " + target);
+        return target;
+
     }
 
     public boolean isOnBridge() {
+
         if (location.getY() == board.getBridges().get(0).getAHead().getY()) {
             if (location.getX() >= board.getBridges().get(0).getAHead().getX()
                     && location.getX() <= board.getBridges().get(0).getBHead().getY())
