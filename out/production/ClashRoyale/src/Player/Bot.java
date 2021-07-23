@@ -12,9 +12,9 @@ public abstract class Bot extends Player {
         active = true;
         this.board = board;
         deck = getRandomDeck();
-        System.out.println("Deck is ready...");
+        System.out.println("Bot Deck is ready...");
         readyCards = getRandomReadyCards();
-        System.out.println("Ready Cards are ready...");
+        System.out.println("Bot ReadyCards are ready...");
         nextReadyCard = getRandomNextCard();
 
 
@@ -22,6 +22,8 @@ public abstract class Bot extends Player {
         System.out.println("deck: " + Arrays.toString(deck));
         System.out.println("nextReadyCard: " + nextReadyCard);
         System.out.println("Bot was made!\n");
+
+        start();
 
     }
 

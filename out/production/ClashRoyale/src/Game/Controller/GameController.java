@@ -403,6 +403,9 @@ public class GameController {
             return null;
         }
 
+        if (card instanceof Fightable)
+            board.addAFightable((Fightable) card);
+
         Deb.print(cardImages.get(chosenCard) + " was created");
         return card;
     }
@@ -481,28 +484,32 @@ public class GameController {
         });
 
 
-        initializeTowers(user, bot, board);
+        initializeTowers(user.getLevel(), board);
     }
 
-    private void initializeTowers(User user, Bot bot, Board board) {
+    private void initializeTowers(Level level, Board board) {
 
-        King aKing = new King(board, user.getLevel(), new Location(4, 5), Team.A, this);
+
+        King aKing = new King(board, level, new Location(4, 5), Team.A, this);
         Platform.runLater(() -> landPane.getChildren().add(aKing.getCurrentImage()));
+        Platform.runLater(() -> aKing.setProgressHP(0.95));
 
-        Queen aQueenOne = new Queen(board, user.getLevel(), new Location(8, 1), Team.A, this);
+        Queen aQueenOne = new Queen(board, level, new Location(8, 1), Team.A, this);
         Platform.runLater(() -> landPane.getChildren().add(aQueenOne.getCurrentImage()));
 
-        Queen aQueenTwo = new Queen(board, user.getLevel(), new Location(8, 13), Team.A, this);
+        Queen aQueenTwo = new Queen(board, level, new Location(8, 13), Team.A, this);
         Platform.runLater(() -> landPane.getChildren().add(aQueenTwo.getCurrentImage()));
 
-        King bKing = new King(board, user.getLevel(), new Location(29, 5), Team.B, this);
+
+        King bKing = new King(board, level, new Location(29, 5), Team.B, this);
         Platform.runLater(() -> landPane.getChildren().add(bKing.getCurrentImage()));
 
-        Queen bQueenOne = new Queen(board, user.getLevel(), new Location(25, 1), Team.B, this);
+        Queen bQueenOne = new Queen(board, level, new Location(25, 1), Team.B, this);
         Platform.runLater(() -> landPane.getChildren().add(bQueenOne.getCurrentImage()));
 
-        Queen bQueenTwo = new Queen(board, user.getLevel(), new Location(25, 13), Team.B, this);
+        Queen bQueenTwo = new Queen(board, level, new Location(25, 13), Team.B, this);
         Platform.runLater(() -> landPane.getChildren().add(bQueenTwo.getCurrentImage()));
+
 
         board.addAFightable(aKing, aQueenOne, aQueenTwo);
         board.addBFightable(bKing, bQueenOne, bQueenTwo);

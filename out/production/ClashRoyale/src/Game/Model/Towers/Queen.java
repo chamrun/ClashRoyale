@@ -1,5 +1,6 @@
 package Game.Model.Towers;
 
+import Debugging.a;
 import Game.Controller.GameController;
 import Game.Model.*;
 
@@ -10,20 +11,40 @@ public class Queen extends Tower {
 
         currentImage.setFitHeight(92.7);
         currentImage.setFitWidth(56.55);
+
+        start();
     }
 
     @Override
     public void run() {
+
+        a.a(team + " Queen started.");
+        int i = 0;
+
         while (alive){
 
-            endamage(getNearestEnemy( range));
+            //a.a(i + "th of" + team + " Queen");
+            i++;
+            Fightable enemy = getNearestEnemy( range);
+            endamage(enemy);
+            if (enemy != null)
+                a.a(team + " Queen Fighting with: " + enemy.getClass().getSimpleName());
+            //a.a(team + " Queen Fighting with: " + enemy.getClass());
 
             try {
-                Thread.sleep((int) hitSpeed * 1000);
+                Thread.sleep((int) hitSpeed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //a.a("After sleep");
         }
+
+        a.a(team + " Queen died.");
+
+        controller.removeElement(currentImage);
+        controller.removeElement(progressBar);
+
+        a.a(getClass().getSimpleName() + " was removed.");
     }
 
     private static int getHP(Level level) {

@@ -6,7 +6,7 @@ import Game.Model.*;
 public class Giant extends Soldier {
 
     public Giant(Board board, Level level, Location location, Team team, GameController controller) {
-        super(board, getHP(level), getDamage(level), 1500, 1.5, location, Speed.SLOW,
+        super(board, getHP(level), getDamage(level), 1500, 2, location, Speed.SLOW,
                 Target.BUILDINGS, false, 1, 5, team , Type.GROUND,controller);
 
         start();

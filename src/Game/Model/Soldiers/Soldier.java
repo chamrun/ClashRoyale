@@ -272,8 +272,10 @@ public abstract class Soldier extends Fightable implements Card {
                 move(getNearestBridge());
             else if (team == Team.B && location.getX() > 17)
                 move(getNearestBridge());
-            else
-                move(board.getNearestTower(location, team));
+            else {
+                Location towerLocation = board.getNearestTower(location, team);
+                move(new Location(towerLocation.getX() - 1, towerLocation.getY() + 1));
+            }
         }
         else {
             move(target.getLocation());
@@ -345,7 +347,7 @@ public abstract class Soldier extends Fightable implements Card {
         //while (alive) {
             for (Fightable target : targets) {
                 target.toGetHurt(damage);
-                a.a("Fighting with " + target.getClass() + " from " + targets);
+                a.a("Fighting with " + target.getClass().getSimpleName() + " from " + targets.size() + ": " + targets);
 
                 if (!target.alive()){
                     targets.remove(target);
@@ -358,7 +360,7 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public void fightSteps() {
-        direction = Direction.UP;
+        //direction = Direction.UP; ToDo: what was this?!
         try {
             for (int i = 1; i < 5; i++) {
                 Thread.sleep(fightTime / 4);
@@ -396,6 +398,7 @@ public abstract class Soldier extends Fightable implements Card {
     }
 
     public void setDirectionOfTarget(Fightable fightable) {
+
         if (fightable.getLocation().getX() == location.getX()) {
             if (fightable.getLocation().getY() > location.getY())
                 direction = Direction.DOWN;
@@ -407,15 +410,18 @@ public abstract class Soldier extends Fightable implements Card {
                 direction = Direction.LEFT;
         }
         Deb.print("target is on the " + direction);
-        a.a("target is on the " + direction);
+        //a.a("target is on the " + direction);
     }
 
 
     public void move(Location destination) {
         a.a(this + "going to " + destination + " from " + location);
 
-        if (location.getDistance(destination) == 0)
+        if (location.getDistance(destination) == 0) {
+            a.a("target and src are the same!");
             return;
+        }
+
         location.setEmpty(true);
 
         if (destination.getY() == location.getY()) {
@@ -551,6 +557,7 @@ public abstract class Soldier extends Fightable implements Card {
     public void die() {
 
         //This method is to short, we can put it in the end of "run method".
+        a.a(getClass().getSimpleName() + " is dying...");
         board.removeFightable(this, team);
         controller.removeElement(currentImage);
         controller.removeElement(progressBar);

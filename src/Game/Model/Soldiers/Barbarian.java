@@ -2,8 +2,6 @@ package Game.Model.Soldiers;
 
 import Game.Controller.GameController;
 import Game.Model.*;
-import javafx.geometry.Point3D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Barbarian extends Soldier {
@@ -14,7 +12,7 @@ public class Barbarian extends Soldier {
 
 
     public Barbarian(Board board, Level level, Location location, Team team, GameController controller) {
-        super(board, getHP(level), getDamage(level), 1500, 1, location, Speed.MEDIUM,
+        super(board, getHP(level), getDamage(level), 1500, 2, location, Speed.MEDIUM,
                 Target.GROUND, false, 4, 5, team , Type.GROUND,controller);
 
 

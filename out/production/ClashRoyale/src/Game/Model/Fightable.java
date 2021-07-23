@@ -1,6 +1,7 @@
 package Game.Model;
 
 
+import Debugging.a;
 import Game.Model.Towers.Tower;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
@@ -79,13 +80,21 @@ public abstract class Fightable extends Thread{
         double min = range;
         Fightable nearestEnemy = null;
 
+
+
         LinkedList<Fightable> enemies = (team.equals(Team.A))? board.getBFightables() : board.getAFightables();
+        //a.a(getClass() + " allEnemies: " + enemies);
+
         for (Fightable enemy: enemies){
             if (location.getDistance(enemy.getLocation()) < min) {
                 nearestEnemy = enemy;
                 min = location.getDistance(enemy.getLocation());
             }
         }
+
+        if (nearestEnemy != null)
+            a.a(nearestEnemy.getClass().getSimpleName() + " is nearest to " + getClass().getSimpleName());
+
         return nearestEnemy;
     }
 
@@ -102,11 +111,14 @@ public abstract class Fightable extends Thread{
     }
 
     public void toGetHurt(int damage){
+        a.a(getClass().getSimpleName() + " HP: " + hp + " - " + damage);
         hp -= damage;
         if (hp < 0){
             alive = false;
-            System.out.println(this.getClass() + " of " + team + " died.");
+            System.out.println(this.getClass().getSimpleName() + " of " + team + " died.");
             board.removeFightable(this, team);
+
+
             //ERROR: IllegalStateException: Not on FX application thread; currentThread = Thread-180
             //progressBar.setProgress((double) hp / hpPrimaryValue);
         }

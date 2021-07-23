@@ -13,6 +13,8 @@ public class King extends Tower {
 
         currentImage.setFitHeight(144);
         currentImage.setFitWidth(55.5);
+
+        start();
     }
 
     @Override
@@ -23,11 +25,14 @@ public class King extends Tower {
             endamage(getNearestEnemy(range));
 
             try {
-                Thread.sleep((int) hitSpeed * 1000L);
+                Thread.sleep(hitSpeed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        controller.removeElement(currentImage);
+        controller.removeElement(progressBar);
     }
 
     private static int getHP(Level level) {
