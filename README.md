@@ -1,5 +1,5 @@
 # ClashRoyale
 Clash Royale is a freemium real-time strategy video game, here written by JavaFX + SQL server
 
-![My image](github.com/ChamRun/ClashRoyale/ScreenShots/1-SignUp.jpg)
+![My image](https://github.com/ChamRun/ClashRoyale/tree/main/ScreenShots/1-SignUp.jpg)
 
