@@ -17,6 +17,7 @@ public class Audio {
     }
 
     public static void theme(){
+        System.out.println("Playing theme...");
 
         MediaPlayer musicPlayer = new MediaPlayer(menuSound);
         musicPlayer.setOnEndOfMedia(() -> musicPlayer.seek(Duration.ZERO));
