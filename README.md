@@ -1,5 +1,7 @@
 # ClashRoyale
-Clash Royale is a freemium real-time strategy video game, here written by JavaFX + SQL server
+Clash Royale is a freemium real-time strategy video game.
+
+It's our final project for the advanced programming course built using Java 16, JavaFX, Microsoft SQL Server and SceneBuilder.
 
 
 
