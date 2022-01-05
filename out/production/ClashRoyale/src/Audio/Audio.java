@@ -10,13 +10,13 @@ public class Audio {
     static Media clickMedia = new Media(Audio.class.getResource("Sounds/click.wav").toExternalForm());
     static Media menuSound = new Media(Audio.class.getResource("Sounds/Menu.mp3").toExternalForm());
 
-    public static void click(){
+    public static void click() {
         MediaPlayer clickPlayer = new MediaPlayer(clickMedia);
         clickPlayer.play();
 
     }
 
-    public static void theme(){
+    public static void theme() {
         System.out.println("Playing theme...");
 
         MediaPlayer musicPlayer = new MediaPlayer(menuSound);
